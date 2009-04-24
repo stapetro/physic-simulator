@@ -6,7 +6,7 @@ package physics;
 
 /**
  * Starts application with relevant jframe.
- * @author User
+ * @author Stanislav Petrov, Krasimir Baylov
  */
 public class StartApplication {
 

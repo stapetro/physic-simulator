@@ -9,8 +9,16 @@ import javax.swing.JFrame;
 
 /**
  * Contains all panels.
- * @author User
+ * @author Stanislav Petrov, Krasimir Baylov
  */
 public class MainWindow extends JFrame{
+
+    private AnimationPanel animationPanel;
+    private Settings settings;
+    private Status status;
+
+    public MainWindow(){
+        super();
+    }
 
 }

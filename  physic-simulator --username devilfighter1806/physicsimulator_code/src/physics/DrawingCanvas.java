@@ -1,14 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package physics;
 
-/**
- *
- * @author User
- */
-public class DrawingCanvas {
+import java.awt.Canvas;
 
+/**
+ * Drawing canvas for animation attributes.
+ * @author Stanislav Petrov, Krasimir Baylov
+ */
+public class DrawingCanvas extends Canvas{
+
+    /**
+     * Default constructor.
+     */
+    public DrawingCanvas(){
+        super();
+    }
 }

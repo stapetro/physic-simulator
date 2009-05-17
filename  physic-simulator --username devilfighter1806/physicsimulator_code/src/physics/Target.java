@@ -19,9 +19,9 @@ public class Target {
 
     private static final int X_LOWER_BOUND = 10;
     private static final int X_MID_BOUND = 200;
-    private static final int X_UPPER_BOUND = 500;
-    private static final int Y_MID_UPPER_BOUND = 350;
-    private static final int Y_UPPER_BOUND = 500;
+    private static final int X_UPPER_BOUND = 50;
+    private static final int Y_MID_UPPER_BOUND = 250;
+    private static final int Y_UPPER_BOUND = 50;
     private static final int HEIGHT = 30;
     /**
      * Random generator.
@@ -73,12 +73,13 @@ public class Target {
         //abe tuka neshto sharenko da stava
     }
 
-    public void drawRandomCoordinates(Graphics g) {
-        x = X_LOWER_BOUND + rand.nextInt(X_UPPER_BOUND);
+    public void drawRandomCoordinates(Graphics g, int panelWidth, int panelHeight) {
+        //TODO TO be modified rand y coord.
+        x = X_LOWER_BOUND + rand.nextInt(panelWidth - X_UPPER_BOUND);
         if (x <= X_MID_BOUND) {
-            y = rand.nextInt(Y_MID_UPPER_BOUND);
+            y = rand.nextInt(panelHeight - Y_MID_UPPER_BOUND);
         } else {
-            y = rand.nextInt(Y_UPPER_BOUND);
+            y = rand.nextInt(panelHeight - Y_UPPER_BOUND);
         }
         System.out.println("( " + x + ", " + y + " )");
         drawTarget(g, x, y, HEIGHT, HEIGHT);

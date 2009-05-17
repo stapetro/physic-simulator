@@ -54,13 +54,13 @@ public class SettingsPanel extends javax.swing.JPanel {
         startBtn = new javax.swing.JButton();
         stopBtn = new javax.swing.JButton();
 
-        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14));
         speedLabel.setText("Speed: ");
 
-        angleLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        angleLabel.setFont(new java.awt.Font("Arial", 1, 14));
         angleLabel.setText("Angle: ");
 
-        accelLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        accelLabel.setFont(new java.awt.Font("Arial", 1, 14));
         accelLabel.setText("Acceleration: ");
 
         downtBtn.setLabel("<");
@@ -72,31 +72,36 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        topLbl.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        topLbl.setFont(new java.awt.Font("Georgia", 1, 16));
         topLbl.setText("Adjust Top Positions:");
 
         downLbl.setFont(new java.awt.Font("Arial", 1, 12));
         downLbl.setText("Down");
 
-        upLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        upLbl.setFont(new java.awt.Font("Arial", 1, 12));
         upLbl.setText("   Up");
 
-        speedSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        speedSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         speedSpinner.setModel(new javax.swing.SpinnerNumberModel());
         speedSpinner.setEditor(new JSpinner.NumberEditor(speedSpinner, "#0.00"));
 
-        angleSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        angleSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         angleSpinner.setModel(new javax.swing.SpinnerNumberModel());
         angleSpinner.setEditor(new JSpinner.NumberEditor(angleSpinner, "#0.00"));
 
-        accelSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        accelSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         accelSpinner.setModel(new javax.swing.SpinnerNumberModel());
         accelSpinner.setEditor(new JSpinner.NumberEditor(accelSpinner, "#0.00"));
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 16));
         jLabel1.setText("Adjust Settings below:");
 
         startBtn.setText("Start");
+        startBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startBtnActionPerformed(evt);
+            }
+        });
 
         stopBtn.setText("Stop");
 
@@ -186,6 +191,11 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void upBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upBtnActionPerformed
         setAngle(animPanel);
 }//GEN-LAST:event_upBtnActionPerformed
+
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        animPanel.setTargetPainted(false);
+        animPanel.repaint();
+    }//GEN-LAST:event_startBtnActionPerformed
 
     private void setAngle(AnimationPanel animPnl) {
         animPnl.setAngle(angle);

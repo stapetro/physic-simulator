@@ -25,7 +25,7 @@ public class LogoPanel extends JPanel {
     }
 
     private void initComponents() {
-        logoLabel = new JLabel("Here is some fucking logo!!!!");
+        logoLabel = new JLabel("Here is some fucking logo!!!!<Krasi && Staskata>");
         add(logoLabel);
     }
 }

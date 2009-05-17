@@ -8,10 +8,10 @@
  *
  * Created on 2009-5-16, 23:20:19
  */
-
 package physics;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.border.LineBorder;
 
 /**
@@ -20,10 +20,12 @@ import javax.swing.border.LineBorder;
  */
 public class AnimationPanel extends javax.swing.JPanel {
 
+    private Target target;
+
     /** Creates new form AnimationPanel */
     public AnimationPanel() {
         initComponents();
-
+        target = new Target();
         LineBorder lb = new LineBorder(Color.BLACK, 1);
         setOpaque(true);
         setBorder(lb);
@@ -33,8 +35,17 @@ public class AnimationPanel extends javax.swing.JPanel {
      * Set the angle in the gun panel.
      * @param angleValue
      */
-    public void setAngle(double angleValue){
+    public void setAngle(double angleValue) {
         gunPnl.setAngle(angleValue);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        target.drawRandomCoordinates(g);
+//        g.setColor(Color.RED);
+//        g.drawOval(350, 100, 30, 30);
+//        g.fillOval(350, 100, 30, 30);
     }
 
     /** This method is called from within the constructor to
@@ -76,10 +87,7 @@ public class AnimationPanel extends javax.swing.JPanel {
                 .addComponent(gunPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private physics.GunPanel gunPnl;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -42,151 +42,170 @@ public class SettingsPanel extends javax.swing.JPanel {
         speedLabel = new javax.swing.JLabel();
         angleLabel = new javax.swing.JLabel();
         accelLabel = new javax.swing.JLabel();
-        decrementBtn = new javax.swing.JButton();
-        incrementBtn = new javax.swing.JButton();
-        speedTxt = new javax.swing.JTextField();
-        angleTxt = new javax.swing.JTextField();
-        accelTxt = new javax.swing.JTextField();
+        downtBtn = new javax.swing.JButton();
+        upBtn = new javax.swing.JButton();
         topLbl = new javax.swing.JLabel();
         downLbl = new javax.swing.JLabel();
         upLbl = new javax.swing.JLabel();
         speedSpinner = new javax.swing.JSpinner();
+        angleSpinner = new javax.swing.JSpinner();
+        accelSpinner = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        startBtn = new javax.swing.JButton();
+        stopBtn = new javax.swing.JButton();
 
-        speedLabel.setFont(new java.awt.Font("Arial Black", 0, 14));
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         speedLabel.setText("Speed: ");
 
-        angleLabel.setFont(new java.awt.Font("Arial Black", 0, 14));
+        angleLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         angleLabel.setText("Angle: ");
 
-        accelLabel.setFont(new java.awt.Font("Arial Black", 0, 14));
+        accelLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         accelLabel.setText("Acceleration: ");
 
-        decrementBtn.setLabel("<");
+        downtBtn.setLabel("<");
 
-        incrementBtn.setText(">");
-        incrementBtn.addActionListener(new java.awt.event.ActionListener() {
+        upBtn.setText(">");
+        upBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                incrementBtnActionPerformed(evt);
+                upBtnActionPerformed(evt);
             }
         });
 
-        speedTxt.setText("0");
-
-        angleTxt.setText("0");
-
-        accelTxt.setText("0");
-        accelTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accelTxtActionPerformed(evt);
-            }
-        });
-
-        topLbl.setFont(new java.awt.Font("Arial Black", 0, 14));
+        topLbl.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
         topLbl.setText("Adjust Top Positions:");
 
         downLbl.setFont(new java.awt.Font("Arial", 1, 12));
         downLbl.setText("Down");
 
-        upLbl.setFont(new java.awt.Font("Arial", 1, 12));
-        upLbl.setText("Up");
+        upLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        upLbl.setText("   Up");
 
-        speedSpinner.setFont(new java.awt.Font("Arial", 0, 12));
+        speedSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         speedSpinner.setModel(new javax.swing.SpinnerNumberModel());
         speedSpinner.setEditor(new JSpinner.NumberEditor(speedSpinner, "#0.00"));
+
+        angleSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        angleSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        angleSpinner.setEditor(new JSpinner.NumberEditor(angleSpinner, "#0.00"));
+
+        accelSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        accelSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        accelSpinner.setEditor(new JSpinner.NumberEditor(accelSpinner, "#0.00"));
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jLabel1.setText("Adjust Settings below:");
+
+        startBtn.setText("Start");
+
+        stopBtn.setText("Stop");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accelLabel)
-                            .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(accelTxt)
-                            .addComponent(angleTxt)
-                            .addComponent(speedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(decrementBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                        .addComponent(incrementBtn)))
-                .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(topLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(upLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accelLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(topLbl)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(downtBtn)))
+                            .addComponent(startBtn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(stopBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(upLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(upBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(incrementBtn)
-                    .addComponent(decrementBtn))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(speedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(angleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accelLabel)
-                    .addComponent(accelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(accelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accelLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addComponent(topLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(upLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(88, 88, 88)
-                .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(downtBtn)
+                        .addGap(47, 47, 47)
+                        .addComponent(startBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(upLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(upBtn)
+                        .addGap(47, 47, 47)
+                        .addComponent(stopBtn)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void accelTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accelTxtActionPerformed
-    }//GEN-LAST:event_accelTxtActionPerformed
-
-    private void incrementBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementBtnActionPerformed
+    private void upBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upBtnActionPerformed
         setAngle(animPanel);
-    }//GEN-LAST:event_incrementBtnActionPerformed
+}//GEN-LAST:event_upBtnActionPerformed
 
     private void setAngle(AnimationPanel animPnl) {
         animPnl.setAngle(angle);
         angle += 2F;
-        System.out.println(angle);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accelLabel;
-    private javax.swing.JTextField accelTxt;
+    private javax.swing.JSpinner accelSpinner;
     private javax.swing.JLabel angleLabel;
-    private javax.swing.JTextField angleTxt;
-    private javax.swing.JButton decrementBtn;
+    private javax.swing.JSpinner angleSpinner;
     private javax.swing.JLabel downLbl;
-    private javax.swing.JButton incrementBtn;
+    private javax.swing.JButton downtBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel speedLabel;
     private javax.swing.JSpinner speedSpinner;
-    private javax.swing.JTextField speedTxt;
+    private javax.swing.JButton startBtn;
+    private javax.swing.JButton stopBtn;
     private javax.swing.JLabel topLbl;
+    private javax.swing.JButton upBtn;
     private javax.swing.JLabel upLbl;
     // End of variables declaration//GEN-END:variables
 }

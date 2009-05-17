@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(String name) {
         super(name);
-        layout = new GridLayout(3, 3, 5, 5);
+        layout = new FlowLayout();
         initComponents();
     }
 
@@ -38,7 +38,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(logoPanel, BorderLayout.NORTH);
         add(settingsPanel, BorderLayout.WEST);
-        add(animationPanel, BorderLayout.EAST);
+        add(animationPanel, BorderLayout.CENTER);
         add(controllerPanel, BorderLayout.SOUTH);
         setVisible(true);
     }

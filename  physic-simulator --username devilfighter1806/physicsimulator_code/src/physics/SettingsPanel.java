@@ -1,8 +1,10 @@
 package physics;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JSpinner;
+import userInfo.Calculator;
 
 /*
  * To change this template, choose Tools | Templates
@@ -104,6 +106,11 @@ public class SettingsPanel extends javax.swing.JPanel {
         });
 
         stopBtn.setText("Stop");
+        stopBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -196,6 +203,23 @@ public class SettingsPanel extends javax.swing.JPanel {
         animPanel.setTargetPainted(false);
         animPanel.repaint();
     }//GEN-LAST:event_startBtnActionPerformed
+
+    private void stopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBtnActionPerformed
+        //IMPORTANT: This is just for test. This methid will NOT have the
+        //following functionality!
+        Graphics g = animPanel.getGraphics();
+        g.setColor(Color.BLUE);
+        Calculator calc = new Calculator(10, angle, 9.82);
+        double i = 0;
+        int x;
+        int y;
+        do {
+            i=i+ 0.5;
+            x = calc.getCoordinate(i).x;
+            y = animPanel.getHeight() - calc.getCoordinate(i).y;
+            g.drawOval(x, y, 10, 10);
+        } while (x<calc.getLengthOfFlight() && x< animPanel.getWidth());
+    }//GEN-LAST:event_stopBtnActionPerformed
 
     private void setAngle(AnimationPanel animPnl) {
         animPnl.setAngle(angle);

@@ -34,21 +34,22 @@ public class Calculator {
     /**
      * Help variable to present the current velocity on the Y-axis
      */
-    private double velocityYCoord;
+    private double velocityY;
     /**
      * Help variable to present if the ball is moveing up or down
      */
     private boolean isMoveUp;
+    private int lengthOfFlight;
 
     /**
      * general purpose constructor
      */
     public Calculator(double initVel, double angl, double acc) {
-        setInitialVelosity(initVel);
+        setInitialVelosity(initVel * 10);
         setAngle(angl);
         setAcceleration(acc);
 
-        isMoveUp = true;
+        lengthOfFlight = calculateLengthOfFlight();
     }
 
     /**
@@ -74,9 +75,9 @@ public class Calculator {
      * @param acc       acceleration
      */
     public void initialize(double initVel, double angl, double acc) {
-        setInitialVelosity(initVel);
+        setInitialVelosity(initVel * 10);
         setAngle(angl);
-        setAcceleration(acc);
+        setAcceleration(acc * 10);
 
         isMoveUp = true;
     }
@@ -87,14 +88,15 @@ public class Calculator {
      * @time    The time when we want to get the coordinate
      * @return the coordinate of the ball at the specified time
      */
-    public Point getCoordinate(int time) {
+    public Point getCoordinate(double time) {
         int xCoord; //the coordinate on the X-axis
         int yCoord; //the coordinate on the Y-axis
 
         xCoord = (int) (initialVelocity * Math.cos(angle) * time);
 
-        if (isMovingUp(time)) {
+        if (xCoord < (lengthOfFlight / 2)) {
             yCoord = (int) (initialVelocity * Math.sin(angle) * time - (acceleration * time * time) / 2);
+
         } else {
             yCoord = (int) (initialVelocity * Math.sin(angle) * time + (acceleration * time * time) / 2);
         }
@@ -103,31 +105,16 @@ public class Calculator {
     }
 
     /**
-     * Determinte if the ball is moving up or down at the specified time
+     * Calculate the length of the flight of the ball
      * 
-     * @param time  the moment in which we are checking
-     * @return  retur TRUE if the ball is moving up
-     *          and FALSE if it is falling down
+     * @return  return the length of the flight
      */
-    private boolean isMovingUp(int time) {
-        boolean retVal = true;
+    private int calculateLengthOfFlight() {
+        return (int) ((10 * 2 * initialVelocity * initialVelocity * Math.sin(angle) * Math.cos(angle)) / (acceleration));
+    }
 
-        //calculate the current speed on the Y-axis
-        velocityYCoord = initialVelocity * Math.sin(angle) - acceleration * time;
-
-        /**
-         * if the speed is greater than 0.1 and if we are still moving up - OK
-         * when the speed comes less then the ball starts fallind down and speed
-         * starts accelerating again
-         */
-        if (velocityYCoord > 0.1 && isMoveUp == true) {
-            retVal = true;
-        } else {
-            isMoveUp = false;
-            retVal = false;
-        }
-
-        return retVal;
+    public int getLengthOfFlight(){
+        return lengthOfFlight;
     }
 
     /**

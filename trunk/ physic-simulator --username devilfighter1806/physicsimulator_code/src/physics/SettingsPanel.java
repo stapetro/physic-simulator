@@ -5,20 +5,15 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JSpinner;
 import userInfo.Calculator;
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /*
  * SettingsPanel.java
  *
  * Created on 2009-5-16, 22:09:29
  */
+
 /**
- *
- * @author User
+ * Settings panel.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class SettingsPanel extends javax.swing.JPanel {
 
@@ -199,9 +194,12 @@ public class SettingsPanel extends javax.swing.JPanel {
         setAngle(animPanel);
 }//GEN-LAST:event_upBtnActionPerformed
 
+    /**
+     * Draws target on animation panel.
+     * @param evt
+     */
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        animPanel.setTargetPainted(false);
-        animPanel.repaint();
+        animPanel.drawTarget();
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void stopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBtnActionPerformed
@@ -214,11 +212,11 @@ public class SettingsPanel extends javax.swing.JPanel {
         int x;
         int y;
         do {
-            i=i+ 0.5;
+            i = i + 0.5;
             x = calc.getCoordinate(i).x;
             y = animPanel.getHeight() - calc.getCoordinate(i).y;
             g.drawOval(x, y, 10, 10);
-        } while (x<calc.getLengthOfFlight() && x< animPanel.getWidth());
+        } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
     }//GEN-LAST:event_stopBtnActionPerformed
 
     private void setAngle(AnimationPanel animPnl) {

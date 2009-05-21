@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  * Contains all panels.
- * @author Stanislav Petrov, Krasimir Baylov
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class MainWindow extends JFrame {
 
@@ -29,6 +29,9 @@ public class MainWindow extends JFrame {
         initComponents();
     }
 
+    /**
+     * Adds all panels to main window.
+     */
     private void initComponents() {
         logoPanel = new LogoPanel();
         animationPanel = new AnimationPanel();

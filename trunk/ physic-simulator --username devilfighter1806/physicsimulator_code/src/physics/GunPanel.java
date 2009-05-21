@@ -17,8 +17,8 @@ import java.awt.Graphics2D;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Krasimir Baylov, Stanislav Petrov
+ * Visualize gun.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class GunPanel extends javax.swing.JPanel {
 
@@ -41,9 +41,6 @@ public class GunPanel extends javax.swing.JPanel {
     /** Creates new form btnpanel */
     public GunPanel() {
         initComponents();
-//        LineBorder lb = new LineBorder(Color.BLACK, 1);
-//        setOpaque(true);
-//        setBorder(lb);
     }
 
     @Override

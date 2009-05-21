@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author User
+ * Logo panel.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class LogoPanel extends JPanel {
 

@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * AnimationPanel.java
  *
  * Created on 2009-5-16, 23:20:19
@@ -11,41 +6,32 @@
 package physics;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.image.ImageObserver;
-import java.text.AttributedCharacterIterator;
-import javax.swing.border.LineBorder;
+import javax.swing.BorderFactory;
 
 /**
- *
- * @author Krasimir Baylov, Stanislav Petrov
+ * Display animations.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class AnimationPanel extends javax.swing.JPanel {
 
     private Target target;
-    private boolean targetPainted;
-//    private Graphics g;
     Graphics myGraphics;
 
-    /** Creates new form AnimationPanel */
+    /**
+     * Creates new Animation panel.
+     */
     public AnimationPanel() {
         initComponents();
         target = new Target();
-        targetPainted = false;
-        LineBorder lb = new LineBorder(Color.BLACK, 1);
+        myGraphics = getGraphics();
         setOpaque(true);
-        setBorder(lb);
-        repaint();
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     }
 
     /**
      * Set the angle in the gun panel.
-     * @param angleValue
+     * @param angleValue Angle value to be set.
      */
     public void setAngle(double angleValue) {
         gunPnl.setAngle(angleValue);
@@ -53,24 +39,17 @@ public class AnimationPanel extends javax.swing.JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        //TODO When resize panel to repaint target with same coordinates.
-        /**
-         * Generate new coordinates when start button is pressed in settings
-         * panel.
-         */
-        if (!targetPainted) {
-            super.paintComponent(g);
-            myGraphics = g;
-            target.drawRandomCoordinates(myGraphics, getWidth(), getHeight());
-            targetPainted = true;
-        }
+        super.paintComponent(g);
+        myGraphics = g;
+        target.reDrawTarget(g, getWidth(), getHeight());
     }
 
+    /**
+     * Draws target with random coordinates.
+     */
     public void drawTarget() {
-        System.out.println("test");
-//        repaint();
-//        super.paintComponent(g1);
         target.drawRandomCoordinates(myGraphics, getWidth(), getHeight());
+        repaint();
     }
 
     /** This method is called from within the constructor to
@@ -115,12 +94,5 @@ public class AnimationPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private physics.GunPanel gunPnl;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @param targetPainted the targetPainted to set
-     */
-    public void setTargetPainted(boolean targetPainted) {
-        this.targetPainted = targetPainted;
-    }
 }
 

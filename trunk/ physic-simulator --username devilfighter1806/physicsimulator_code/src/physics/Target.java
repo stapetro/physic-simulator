@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package physics;
 
 import java.awt.Color;
@@ -9,20 +5,18 @@ import java.awt.Graphics;
 import java.util.Random;
 
 /**
- * This class defines the basic characteristics of the target object
+ * Defines the basic characteristics of the target object
  * which will be drawn on the AnimationPanel.
- * @author Stanislav Petrov, Krasimir Baylov
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class Target {
-    //TODO Canvas field.      -----Chech this out. I don't understand it
-    //TODO setters and getters, but we will add then last.  --added by Krasi
-
     private static final int X_LOWER_BOUND = 10;
     private static final int X_MID_BOUND = 200;
     private static final int X_UPPER_BOUND = 50;
     private static final int Y_MID_UPPER_BOUND = 250;
     private static final int Y_UPPER_BOUND = 50;
     private static final int HEIGHT = 30;
+    private static final int TARGET_SIZE = 30;
     /**
      * Random generator.
      */
@@ -35,34 +29,26 @@ public class Target {
      * The y coordinate of the target
      */
     private int y;
-    private Graphics targetDrawer;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public Target() {
-//        drawRandomCoordinates(g);
         rand = new Random(System.currentTimeMillis());
+        x = -100;
+        y = 0;
     }
 
     /**
-     * general purpose constructor
-     * @param xCoord    the x coordinate of the target
-     * @param yCoord    the x coordinate of the target
-     */
-    public Target(int xCoord, int yCoord) {
-    }
-
-    /**
-     * Draw the target on the panel of the specified coordinates
+     * Draws the target on the panel of the specified coordinates.
      *
      * @param xCoord    the x coordinate
      * @param yCoord    the y coordinate
      */
     private void drawTarget(Graphics g, int xCoord, int yCoord, int height, int width) {
         g.setColor(Color.RED);
-        g.drawOval(x, y, 30, 30);
-        g.fillOval(x, y, 30, 30);
+        g.drawOval(x, y, TARGET_SIZE, TARGET_SIZE);
+        g.fillOval(x, y, TARGET_SIZE, TARGET_SIZE);
     }
 
     /**
@@ -73,6 +59,12 @@ public class Target {
         //abe tuka neshto sharenko da stava
     }
 
+    /**
+     * Draws target with random coordinates.
+     * @param g Canvas on which target will be drawn.
+     * @param panelWidth Animation panel width.
+     * @param panelHeight Animation panel height.
+     */
     public void drawRandomCoordinates(Graphics g, int panelWidth, int panelHeight) {
         //TODO TO be modified rand y coord.
         x = X_LOWER_BOUND + rand.nextInt(panelWidth - X_UPPER_BOUND);
@@ -81,7 +73,16 @@ public class Target {
         } else {
             y = rand.nextInt(panelHeight - Y_UPPER_BOUND);
         }
-        System.out.println("( " + x + ", " + y + " )");
         drawTarget(g, x, y, HEIGHT, HEIGHT);
+    }
+
+    /**
+     * Redraws target.
+     * @param g Canvas on which target will be drawn.
+     * @param panelWidth Animation panel width.
+     * @param panelHeight Animation panel height.
+     */
+    public void reDrawTarget(Graphics g, int panelWidth, int panelHeight){
+        drawTarget(g, x, y, panelWidth, panelHeight);
     }
 }

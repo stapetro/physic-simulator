@@ -8,7 +8,7 @@ import java.awt.Point;
 
 /**
  * Data for formulas.
- * @author Stanislav Petrov, Krasimir Baylov
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class Calculator {
 

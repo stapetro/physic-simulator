@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package physics;
 
 /**
- * Starts application with relevant jframe.
- * @author Stanislav Petrov, Krasimir Baylov
+ * Starts application.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class StartApplication {
 

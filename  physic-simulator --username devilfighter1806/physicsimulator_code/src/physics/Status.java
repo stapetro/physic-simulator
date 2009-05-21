@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 /**
  * Status information.
- * @author Stanislav Petrov, Krasimir Baylov
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  */
 public class Status extends JPanel {
     //TODO Status for all values of formulas.

@@ -53,7 +53,7 @@ public class AnimationPanel extends javax.swing.JPanel {
         repaint();
     }
 
-    public Point getGunCoorinates(){
+    public Point getGunCoorinates() {
         return gunPnl.getTopCoordinates();
     }
 

@@ -207,7 +207,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         //following functionality!
         Graphics g = animPanel.getGraphics();
         g.setColor(Color.BLUE);
-        Calculator calc = new Calculator(10, angle, 9.82);
+        Calculator calc = new Calculator(10, angle, 9.82, animPanel.getGunCoorinates());
         double i = 0;
         int x;
         int y;

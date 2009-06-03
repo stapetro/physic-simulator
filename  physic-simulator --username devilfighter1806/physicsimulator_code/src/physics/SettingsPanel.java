@@ -2,6 +2,7 @@ package physics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JSpinner;
 import userInfo.Calculator;
@@ -19,12 +20,17 @@ public class SettingsPanel extends javax.swing.JPanel {
 
     private int angle = 10;
     private AnimationPanel animPanel;
+    /**
+     * Store default background color for buttons.
+     */
+    private Color defaultBtnBackground;
 
     /** Creates new form SettingsPanel */
     public SettingsPanel(AnimationPanel animPnl) {
         initComponents();
         this.animPanel = animPnl;
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        defaultBtnBackground = startBtn.getBackground();
     }
 
     /** This method is called from within the constructor to
@@ -61,8 +67,24 @@ public class SettingsPanel extends javax.swing.JPanel {
         accelLabel.setText("Acceleration: ");
 
         downtBtn.setLabel("<");
+        downtBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                downtBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                downtBtnMouseExited(evt);
+            }
+        });
 
         upBtn.setText(">");
+        upBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                upBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                upBtnMouseExited(evt);
+            }
+        });
         upBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 upBtnActionPerformed(evt);
@@ -94,6 +116,14 @@ public class SettingsPanel extends javax.swing.JPanel {
         jLabel1.setText("Adjust Settings below:");
 
         startBtn.setText("Start");
+        startBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                startBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                startBtnMouseExited(evt);
+            }
+        });
         startBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startBtnActionPerformed(evt);
@@ -101,6 +131,14 @@ public class SettingsPanel extends javax.swing.JPanel {
         });
 
         stopBtn.setText("Stop");
+        stopBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                stopBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                stopBtnMouseExited(evt);
+            }
+        });
         stopBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopBtnActionPerformed(evt);
@@ -218,6 +256,38 @@ public class SettingsPanel extends javax.swing.JPanel {
             g.drawOval(x, y, 10, 10);
         } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
     }//GEN-LAST:event_stopBtnActionPerformed
+
+    private void startBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startBtnMouseEntered
+        startBtn.setBackground(Color.YELLOW);
+    }//GEN-LAST:event_startBtnMouseEntered
+
+    private void startBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startBtnMouseExited
+        startBtn.setBackground(defaultBtnBackground);
+    }//GEN-LAST:event_startBtnMouseExited
+
+    private void stopBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopBtnMouseEntered
+        stopBtn.setBackground(Color.YELLOW);
+    }//GEN-LAST:event_stopBtnMouseEntered
+
+    private void stopBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopBtnMouseExited
+        stopBtn.setBackground(defaultBtnBackground);
+    }//GEN-LAST:event_stopBtnMouseExited
+
+    private void downtBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downtBtnMouseEntered
+        downtBtn.setBackground(Color.YELLOW);
+    }//GEN-LAST:event_downtBtnMouseEntered
+
+    private void downtBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downtBtnMouseExited
+        downtBtn.setBackground(defaultBtnBackground);
+    }//GEN-LAST:event_downtBtnMouseExited
+
+    private void upBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upBtnMouseEntered
+        upBtn.setBackground(Color.YELLOW);
+    }//GEN-LAST:event_upBtnMouseEntered
+
+    private void upBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upBtnMouseExited
+        upBtn.setBackground(defaultBtnBackground);
+    }//GEN-LAST:event_upBtnMouseExited
 
     private void setAngle(AnimationPanel animPnl) {
         animPnl.setAngle(angle);

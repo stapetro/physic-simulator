@@ -15,7 +15,7 @@ public class Calculator {
     /**
      * the start point for all strikes
      */
-    private static final Point startPoint = new Point(0, 0);
+    private Point startPoint = new Point(0, 0);
     /**
      * Initial velocity. Keep in mind that to get the velocity on the
      * X and Y-axis you will need to use SIN and COS
@@ -52,6 +52,15 @@ public class Calculator {
         lengthOfFlight = calculateLengthOfFlight();
     }
 
+    public Calculator(double initVel, double angl, double acc, Point p) {
+        setInitialVelosity(initVel * 10);
+        setAngle(angl);
+        setAcceleration(acc);
+        setStartPoint(p);
+
+        lengthOfFlight = calculateLengthOfFlight();
+    }
+
     /**
      * Default constructor
      */
@@ -75,6 +84,18 @@ public class Calculator {
      * @param acc       acceleration
      */
     public void initialize(double initVel, double angl, double acc) {
+        this.initialize(initVel, angl, acc, new Point(0, 0));
+    }
+
+    /**
+     * Initialize the values of the component and prepare it for future use
+     *
+     * @param initVel   initial velocity
+     * @param angl      angle
+     * @param acc       acceleration
+     * @param initCoords the starting position where the movement will start from
+     */
+    public void initialize(double initVel, double angl, double acc, Point initCoords) {
         setInitialVelosity(initVel * 10);
         setAngle(angl);
         setAcceleration(acc * 10);
@@ -92,13 +113,13 @@ public class Calculator {
         int xCoord; //the coordinate on the X-axis
         int yCoord; //the coordinate on the Y-axis
 
-        xCoord = (int) (initialVelocity * Math.cos(angle) * time);
+        xCoord = startPoint.x + (int) (initialVelocity * Math.cos(angle) * time);
 
         if (xCoord < (lengthOfFlight / 2)) {
-            yCoord = (int) (initialVelocity * Math.sin(angle) * time - (acceleration * time * time) / 2);
+            yCoord = startPoint.y + (int) (initialVelocity * Math.sin(angle) * time - (acceleration * time * time) / 2);
 
         } else {
-            yCoord = (int) (initialVelocity * Math.sin(angle) * time + (acceleration * time * time) / 2);
+            yCoord = startPoint.y + (int) (initialVelocity * Math.sin(angle) * time + (acceleration * time * time) / 2);
         }
 
         return new Point(xCoord, yCoord);
@@ -113,7 +134,7 @@ public class Calculator {
         return (int) ((10 * 2 * initialVelocity * initialVelocity * Math.sin(angle) * Math.cos(angle)) / (acceleration));
     }
 
-    public int getLengthOfFlight(){
+    public int getLengthOfFlight() {
         return lengthOfFlight;
     }
 
@@ -179,5 +200,24 @@ public class Calculator {
         return acceleration;
     }
 
+    /**
+     * setter for the startPoint
+     * @param p     the value that will ne set to startPoint
+     */
+    public void setStartPoint(Point p) {
+        if (p != null) {
+            startPoint = new Point(p.x, 200 - p.y);
+        } else {
+            startPoint = new Point(0, 0);
+        }
+    }
+
+    /**
+     * getter for startPoint
+     * @return  return the value of startPoint
+     */
+    public Point getStartPoint() {
+        return new Point(startPoint.x, startPoint.y);
+    }
     //TODO Fields - speed, angle, acceleration, etc.
 }

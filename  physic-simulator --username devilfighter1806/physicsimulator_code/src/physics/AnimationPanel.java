@@ -7,6 +7,7 @@ package physics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import javax.swing.BorderFactory;
 
 /**
@@ -50,6 +51,10 @@ public class AnimationPanel extends javax.swing.JPanel {
     public void drawTarget() {
         target.drawRandomCoordinates(myGraphics, getWidth(), getHeight());
         repaint();
+    }
+
+    public Point getGunCoorinates(){
+        return gunPnl.getTopCoordinates();
     }
 
     /** This method is called from within the constructor to

@@ -14,6 +14,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import javax.swing.border.LineBorder;
 
 /**
@@ -37,6 +38,10 @@ public class GunPanel extends javax.swing.JPanel {
      * internally will hold a RADIAN value;
      */
     private double angle = 2;
+    /**
+     * The coordinates of the top of the gun.
+     */
+    private Point topCoordinates;
 
     /** Creates new form btnpanel */
     public GunPanel() {
@@ -49,11 +54,22 @@ public class GunPanel extends javax.swing.JPanel {
         //draw the arc
         g.fillArc(-PANEL_SIZE / 2, PANEL_SIZE / 2, ARC_SIZE, ARC_SIZE, 0, 90);
 
+        topCoordinates = new Point((int) ((PANEL_SIZE - 30) * Math.cos(angle)),
+                (int) ((PANEL_SIZE - 30) * (1 - Math.sin(angle))));
+
         //draw the gun
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(20));
-        g2.drawLine(0, getHeight(), (int) ((PANEL_SIZE - 30) * Math.cos(angle)),
-                (int) ((PANEL_SIZE - 30) * (1 - Math.sin(angle))));
+        g2.drawLine(0, getHeight(), topCoordinates.x, topCoordinates.y);
+    }
+
+    /**
+     * getter for the top coordinates of the gun
+     *
+     * @return topCoordinates
+     */
+    public Point getTopCoordinates() {
+        return topCoordinates;
     }
 
     /**

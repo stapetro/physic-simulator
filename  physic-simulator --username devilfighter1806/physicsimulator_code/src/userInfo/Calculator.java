@@ -61,6 +61,11 @@ public class Calculator {
         lengthOfFlight = calculateLengthOfFlight();
     }
 
+    //Neshto ne raboti kakto trabva - da go inspektiram
+    public Calculator(Calculator c){
+        this(c.getInitialVelosity(), c.getAngle(), c.getAcceleration(), c.getStartPoint());
+    }
+
     /**
      * Default constructor
      */

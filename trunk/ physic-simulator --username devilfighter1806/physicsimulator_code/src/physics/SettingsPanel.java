@@ -243,18 +243,22 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void stopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBtnActionPerformed
         //IMPORTANT: This is just for test. This methid will NOT have the
         //following functionality!
-        Graphics g = animPanel.getGraphics();
-        g.setColor(Color.BLUE);
-        Calculator calc = new Calculator(10, angle, 9.82, animPanel.getGunCoorinates());
-        double i = 0;
-        int x;
-        int y;
-        do {
-            i = i + 0.5;
-            x = calc.getCoordinate(i).x;
-            y = animPanel.getHeight() - calc.getCoordinate(i).y;
-            g.drawOval(x, y, 10, 10);
-        } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
+//        Graphics g = animPanel.getGraphics();
+//        g.setColor(Color.BLUE);
+        Calculator calc = new Calculator(7, angle, 9.82, animPanel.getGunCoorinates());
+//        double i = 0;
+//        int x;
+//        int y;
+//        do {
+//            i = i + 0.5;
+//            x = calc.getCoordinate(i).x;
+//            y = animPanel.getHeight() - calc.getCoordinate(i).y;
+//            g.drawOval(x, y, 10, 10);
+//        } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
+        MovingBall b = new MovingBall(animPanel, calc);
+        Thread t = new Thread(b);
+        t.start();
+
     }//GEN-LAST:event_stopBtnActionPerformed
 
     private void startBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startBtnMouseEntered

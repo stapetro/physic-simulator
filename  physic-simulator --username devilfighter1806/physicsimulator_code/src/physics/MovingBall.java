@@ -7,8 +7,6 @@ package physics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import userInfo.Calculator;
 
@@ -46,19 +44,19 @@ public class MovingBall implements Runnable {
 
     public void run() {
         Graphics g = animPanel.getGraphics();
-        g.setColor(Color.BLUE);
+        g.setColor(Color.RED);
         double momentOfTime = 0;
 
         try {
             do {
-                //animPanel.repaint();
-
+                animPanel.repaint(currentCoords.x-30, currentCoords.y - 30, 50, 50);
+                
                 momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                g.drawOval(currentCoords.x, currentCoords.y, 20, 20);
+                g.fillOval(currentCoords.x, currentCoords.y, 20, 20);
 
-                Thread.sleep(40);
+                Thread.sleep(20);
 
             } while (currentCoords.x < animPanel.getWidth() && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {

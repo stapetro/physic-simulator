@@ -47,7 +47,7 @@ public class Target {
      */
     private void drawTarget(Graphics g, int xCoord, int yCoord, int height, int width) {
         g.setColor(Color.RED);
-        g.drawOval(x, y, TARGET_SIZE, TARGET_SIZE);
+//        g.drawOval(x, y, TARGET_SIZE, TARGET_SIZE);
         g.fillOval(x, y, TARGET_SIZE, TARGET_SIZE);
     }
 

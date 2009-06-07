@@ -17,7 +17,7 @@ import javax.swing.BorderFactory;
 public class AnimationPanel extends javax.swing.JPanel {
 
     private Target target;
-    Graphics myGraphics;
+    public Graphics myGraphics;
 
     /**
      * Creates new Animation panel.
@@ -25,7 +25,7 @@ public class AnimationPanel extends javax.swing.JPanel {
     public AnimationPanel() {
         initComponents();
         target = new Target();
-        myGraphics = getGraphics();
+//        myGraphics = this.getGraphics();
         setOpaque(true);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     }
@@ -41,7 +41,7 @@ public class AnimationPanel extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        myGraphics = g;
+//        myGraphics = g;
         target.reDrawTarget(g, getWidth(), getHeight());
     }
 
@@ -49,6 +49,7 @@ public class AnimationPanel extends javax.swing.JPanel {
      * Draws target with random coordinates.
      */
     public void drawTarget() {
+        myGraphics = this.getGraphics();
         target.drawRandomCoordinates(myGraphics, getWidth(), getHeight());
         repaint();
     }

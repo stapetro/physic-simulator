@@ -5,6 +5,7 @@
 package physics;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
@@ -22,10 +23,12 @@ public class MainWindow extends JFrame {
     private LogoPanel logoPanel;
     private Status status;
     private LayoutManager layout;
+    private Container container;
 
     public MainWindow(String name) {
         super(name);
         layout = new FlowLayout();
+        container = getContentPane();
         initComponents();
     }
 
@@ -39,10 +42,10 @@ public class MainWindow extends JFrame {
         controllerPanel = new ControllerPanel();
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(logoPanel, BorderLayout.NORTH);
-        add(settingsPanel, BorderLayout.WEST);
-        add(animationPanel, BorderLayout.CENTER);
-        add(controllerPanel, BorderLayout.SOUTH);
+        container.add(logoPanel, BorderLayout.NORTH);
+        container.add(settingsPanel, BorderLayout.WEST);
+        container.add(animationPanel, BorderLayout.CENTER);
+        container.add(controllerPanel, BorderLayout.SOUTH);
         setVisible(true);
     }
 }

@@ -42,9 +42,10 @@ public class MovingBall implements Runnable {
     }
 
     public void run() {
-        Graphics g = animPanel.getGraphics();
-        g.setColor(Color.RED);
+//        Graphics g = animPanel.getGraphics();
+//        g.setColor(Color.RED);
         double momentOfTime = 0;
+        boolean drawn = false;
 
         try {
             do {
@@ -52,11 +53,19 @@ public class MovingBall implements Runnable {
 //                animPanel.repaint();
 //                animPanel.repaint(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
 //                g.drawOval(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
-                momentOfTime = momentOfTime + 0.2;
+                Graphics g = animPanel.getGraphics();
+//                g.setColor(Color.RED);
+                if (drawn) {
+                    g.setXORMode(animPanel.getBackground());
+                    g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
+                }
+                momentOfTime = momentOfTime + 0.4;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                animPanel.getGraphics().fillOval(currentCoords.x, currentCoords.y, 20, 20);
-                Thread.sleep(20);
+                g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
+                g.dispose();
+                drawn = true;
+                Thread.sleep(100);
             } while (currentCoords.x < animPanel.getWidth() && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
             ex.printStackTrace();

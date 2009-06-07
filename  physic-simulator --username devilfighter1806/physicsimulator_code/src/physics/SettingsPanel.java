@@ -18,8 +18,9 @@ import userInfo.Calculator;
  */
 public class SettingsPanel extends javax.swing.JPanel {
 
-    private int angle = 10;
+    private double angle = 10;
     private AnimationPanel animPanel;
+    Calculator calc;
     /**
      * Store default background color for buttons.
      */
@@ -31,6 +32,8 @@ public class SettingsPanel extends javax.swing.JPanel {
         this.animPanel = animPnl;
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         defaultBtnBackground = startBtn.getBackground();
+        calc = new Calculator(7, angle, 9.82, animPanel.getGunCoorinates());
+        animPanel.setAngle((Double) angleSpinner.getValue());
     }
 
     /** This method is called from within the constructor to
@@ -104,9 +107,14 @@ public class SettingsPanel extends javax.swing.JPanel {
         speedSpinner.setModel(new javax.swing.SpinnerNumberModel());
         speedSpinner.setEditor(new JSpinner.NumberEditor(speedSpinner, "#0.00"));
 
-        angleSpinner.setFont(new java.awt.Font("Arial", 0, 12));
-        angleSpinner.setModel(new javax.swing.SpinnerNumberModel());
+        angleSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        angleSpinner.setModel(new javax.swing.SpinnerNumberModel(45.0d, 5.0d, 85.0d, 1.0d));
         angleSpinner.setEditor(new JSpinner.NumberEditor(angleSpinner, "#0.00"));
+        angleSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                angleSpinnerStateChanged(evt);
+            }
+        });
 
         accelSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         accelSpinner.setModel(new javax.swing.SpinnerNumberModel());
@@ -245,7 +253,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         //following functionality!
 //        Graphics g = animPanel.getGraphics();
 //        g.setColor(Color.BLUE);
-        Calculator calc = new Calculator(7, angle, 9.82, animPanel.getGunCoorinates());
 //        double i = 0;
 //        int x;
 //        int y;
@@ -258,7 +265,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         MovingBall b = new MovingBall(animPanel, calc);
         Thread t = new Thread(b);
         t.start();
-
     }//GEN-LAST:event_stopBtnActionPerformed
 
     private void startBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startBtnMouseEntered
@@ -293,7 +299,13 @@ public class SettingsPanel extends javax.swing.JPanel {
         upBtn.setBackground(defaultBtnBackground);
     }//GEN-LAST:event_upBtnMouseExited
 
+    private void angleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleSpinnerStateChanged
+        calc.setAngle((Double) angleSpinner.getValue());
+        setAngle(animPanel);
+    }//GEN-LAST:event_angleSpinnerStateChanged
+
     private void setAngle(AnimationPanel animPnl) {
+        angle = calc.getAngle();
         animPnl.setAngle(angle);
         angle += 2F;
     }

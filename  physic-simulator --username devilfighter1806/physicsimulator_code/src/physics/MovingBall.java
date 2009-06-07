@@ -19,7 +19,7 @@ public class MovingBall implements Runnable {
     /**
      * reference to the JPanel where the ball will simulate movement
      */
-    private JPanel animPanel;
+    private AnimationPanel animPanel;
     /**
      * calculator object that will be used to get the
      * calculations for the movement of the ball
@@ -35,10 +35,9 @@ public class MovingBall implements Runnable {
      */
     private Point currentCoords;
 
-    public MovingBall(JPanel pnl, Calculator c) {
+    public MovingBall(AnimationPanel pnl, Calculator c) {
         this.animPanel = pnl;
         calc = c;
-
         currentCoords = new Point(calc.getStartPoint());
     }
 
@@ -49,20 +48,20 @@ public class MovingBall implements Runnable {
 
         try {
             do {
-                animPanel.repaint(currentCoords.x-30, currentCoords.y - 30, 50, 50);
-                
+//                animPanel.updateUI();
+//                animPanel.repaint();
+//                animPanel.repaint(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
+//                g.drawOval(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
                 momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                g.fillOval(currentCoords.x, currentCoords.y, 20, 20);
-
+                animPanel.getGraphics().fillOval(currentCoords.x, currentCoords.y, 20, 20);
                 Thread.sleep(20);
-
             } while (currentCoords.x < animPanel.getWidth() && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
 
-         System.out.println("DONE!!!");
+        System.out.println("DONE!!!");
     }
 }

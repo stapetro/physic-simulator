@@ -72,6 +72,10 @@ public class AnimationPanel extends javax.swing.JPanel {
         return target.getPoint();
     }
 
+    public Point getTargetRadiusPoint(){
+        return target.getRadiusPoint();
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

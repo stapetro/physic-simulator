@@ -108,8 +108,7 @@ public class Target {
      * Target radius getter.
      * @return target radius point.
      */
-    //TODO To be implemented.
-    public Point getRadius(){
-        return new Point();
+    public Point getRadiusPoint() {
+        return new Point(x + TARGET_SIZE / 2, y + TARGET_SIZE / 2);
     }
 }

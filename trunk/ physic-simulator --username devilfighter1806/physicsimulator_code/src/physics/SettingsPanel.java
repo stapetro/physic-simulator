@@ -15,11 +15,29 @@ import userInfo.Calculator;
 /**
  * Settings panel.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class SettingsPanel extends javax.swing.JPanel {
 
+    /**
+     * The angle that the ball will the thrown at.
+     */
     private double angle = 10;
+    /**
+     * The initial velocity that the ball will be thrown at.
+     */
+    private double initVelocity = 5;
+    /**
+     * The acceleration that will be simulated during strike.
+     */
+    private double acceleration = 9.8;
+    /**
+     * Referencto to panel where animation will take place.
+     */
     private AnimationPanel animPanel;
+    /**
+     * Calculator object that will be used for acceleration Physics calculations.
+     */
     Calculator calc;
     /**
      * Store default background color for buttons.
@@ -300,10 +318,15 @@ public class SettingsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_upBtnMouseExited
 
     private void angleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleSpinnerStateChanged
-        calc.setAngle((Double) angleSpinner.getValue());
         setAngle(animPanel);
+        calc.setAngle((Double) angleSpinner.getValue());
+        calc.setStartPoint(animPanel.getGunCoorinates());
     }//GEN-LAST:event_angleSpinnerStateChanged
 
+    /**
+     * Set
+     * @param animPnl
+     */
     private void setAngle(AnimationPanel animPnl) {
         angle = calc.getAngle();
         animPnl.setAngle(angle);

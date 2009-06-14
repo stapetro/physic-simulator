@@ -8,6 +8,7 @@ import java.util.Random;
  * Defines the basic characteristics of the target object
  * which will be drawn on the AnimationPanel.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class Target {
     private static final int X_LOWER_BOUND = 10;
@@ -45,7 +46,7 @@ public class Target {
      * @param xCoord    the x coordinate
      * @param yCoord    the y coordinate
      */
-    private void drawTarget(Graphics g, int xCoord, int yCoord, int height, int width) {
+    private void drawTarget(Graphics g) {
         g.setColor(Color.RED);
 //        g.drawOval(x, y, TARGET_SIZE, TARGET_SIZE);
         g.fillOval(x, y, TARGET_SIZE, TARGET_SIZE);
@@ -73,7 +74,7 @@ public class Target {
         } else {
             y = rand.nextInt(panelHeight - Y_UPPER_BOUND);
         }
-        drawTarget(g, x, y, HEIGHT, HEIGHT);
+        drawTarget(g);
     }
 
     /**
@@ -83,6 +84,6 @@ public class Target {
      * @param panelHeight Animation panel height.
      */
     public void reDrawTarget(Graphics g, int panelWidth, int panelHeight){
-        drawTarget(g, x, y, panelWidth, panelHeight);
+        drawTarget(g);
     }
 }

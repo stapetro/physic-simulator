@@ -16,7 +16,13 @@ import javax.swing.BorderFactory;
  */
 public class AnimationPanel extends javax.swing.JPanel {
 
+    /**
+     * The target object that will be drawn on the panel
+     */
     private Target target;
+    /**
+     * Graphics object for the panel
+     */
     public Graphics myGraphics;
 
     /**
@@ -56,6 +62,14 @@ public class AnimationPanel extends javax.swing.JPanel {
 
     public Point getGunCoorinates() {
         return gunPnl.getTopCoordinates();
+    }
+
+    /**
+     * Getter for target point
+     * @return the point of the target
+     */
+    public Point getTargetPoint(){
+        return target.getPoint();
     }
 
     /** This method is called from within the constructor to

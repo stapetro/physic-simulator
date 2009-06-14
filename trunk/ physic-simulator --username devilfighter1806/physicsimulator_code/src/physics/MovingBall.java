@@ -4,10 +4,8 @@
  */
 package physics;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import javax.swing.JPanel;
 import userInfo.Calculator;
 
 /**
@@ -16,6 +14,10 @@ import userInfo.Calculator;
  */
 public class MovingBall implements Runnable {
 
+    /**
+     * determines the size of the ball. Inlcuding width and height.
+     */
+    private static final int BALL_SIZE = 20;
     /**
      * Reference to the JPanel where the ball will simulate movement
      */
@@ -29,6 +31,10 @@ public class MovingBall implements Runnable {
      * The current coordinated of the moving ball
      */
     private Point currentCoords;
+    /**
+     * Stores ball radius coordinates.
+     */
+    private Point ballRadiusPoint;
 
     /**
      * Constructor for general purpose.
@@ -48,6 +54,7 @@ public class MovingBall implements Runnable {
         boolean drawn = false;
 
         try {
+
             do {
 //                animPanel.updateUI();
 //                animPanel.repaint();
@@ -57,14 +64,18 @@ public class MovingBall implements Runnable {
 //                g.setColor(Color.RED);
                 if (drawn) {
                     g.setXORMode(animPanel.getBackground());
-                    g.fillOval(currentCoords.x, currentCoords.y - 15, 20, 20);
+                    g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
                 }
                 momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                g.fillOval(currentCoords.x, currentCoords.y - 15, 20, 20);
+                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
                 g.dispose();
                 drawn = true;
+                if (isTargetHit()) {
+                    System.out.println("HIT TARGET");
+                    break;
+                }
                 Thread.sleep(30);
             } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
@@ -72,5 +83,26 @@ public class MovingBall implements Runnable {
         }
 
         System.out.println("DONE!!!");
+    }
+
+    private boolean isTargetHit() {
+        Point targetPoint = animPanel.getTargetPoint();
+        if (currentCoords.x >= targetPoint.x - BALL_SIZE &&
+                currentCoords.x <= targetPoint.x + Target.TARGET_SIZE - BALL_SIZE &&
+                currentCoords.y >= targetPoint.y - BALL_SIZE &&
+                currentCoords.y <= targetPoint.y + Target.TARGET_SIZE - BALL_SIZE) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Ball radius getter.
+     * @return ball radius coordinates.
+     */
+    //TODO To be implemented.
+    private void setBallRadius() {
+        ballRadiusPoint.x = 0;
+        ballRadiusPoint.y = 0;
     }
 }

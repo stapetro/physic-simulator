@@ -57,12 +57,12 @@ public class MovingBall implements Runnable {
 //                g.setColor(Color.RED);
                 if (drawn) {
                     g.setXORMode(animPanel.getBackground());
-                    g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
+                    g.fillOval(currentCoords.x, currentCoords.y - 15, 20, 20);
                 }
                 momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
+                g.fillOval(currentCoords.x, currentCoords.y - 15, 20, 20);
                 g.dispose();
                 drawn = true;
                 Thread.sleep(30);

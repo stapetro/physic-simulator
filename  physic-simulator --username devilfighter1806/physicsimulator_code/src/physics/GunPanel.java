@@ -18,8 +18,11 @@ import java.awt.Point;
 import javax.swing.border.LineBorder;
 
 /**
- * Visualize gun.
+ * This class represents the gun object. This object can be imported
+ * as part any JPanel and be used.
+ * 
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @author 1.0
  */
 public class GunPanel extends javax.swing.JPanel {
 
@@ -43,7 +46,7 @@ public class GunPanel extends javax.swing.JPanel {
      */
     private Point topCoordinates;
 
-    /** Creates new form btnpanel */
+    /** Creates new form GunPanel */
     public GunPanel() {
         initComponents();
     }
@@ -64,7 +67,7 @@ public class GunPanel extends javax.swing.JPanel {
     }
 
     /**
-     * getter for the top coordinates of the gun
+     * Getter for the top coordinates of the gun
      *
      * @return topCoordinates
      */

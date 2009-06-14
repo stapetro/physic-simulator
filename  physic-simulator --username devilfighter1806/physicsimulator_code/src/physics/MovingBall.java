@@ -45,23 +45,16 @@ public class MovingBall implements Runnable {
         this.animPanel = pnl;
         calc = c;
         currentCoords = new Point(calc.getStartPoint());
+        ballRadiusPoint = new Point();
     }
 
     public void run() {
-//        Graphics g = animPanel.getGraphics();
-//        g.setColor(Color.RED);
         double momentOfTime = 0;
         boolean drawn = false;
 
         try {
-
             do {
-//                animPanel.updateUI();
-//                animPanel.repaint();
-//                animPanel.repaint(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
-//                g.drawOval(currentCoords.x - 30, currentCoords.y - 30, 50, 50);
                 Graphics g = animPanel.getGraphics();
-//                g.setColor(Color.RED);
                 if (drawn) {
                     g.setXORMode(animPanel.getBackground());
                     g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
@@ -69,13 +62,13 @@ public class MovingBall implements Runnable {
                 momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
-                g.dispose();
-                drawn = true;
                 if (isTargetHit()) {
                     System.out.println("HIT TARGET");
                     break;
                 }
+                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+                g.dispose();
+                drawn = true;
                 Thread.sleep(30);
             } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
@@ -86,11 +79,16 @@ public class MovingBall implements Runnable {
     }
 
     private boolean isTargetHit() {
-        Point targetPoint = animPanel.getTargetPoint();
-        if (currentCoords.x >= targetPoint.x - BALL_SIZE &&
-                currentCoords.x <= targetPoint.x + Target.TARGET_SIZE - BALL_SIZE &&
-                currentCoords.y >= targetPoint.y - BALL_SIZE &&
-                currentCoords.y <= targetPoint.y + Target.TARGET_SIZE - BALL_SIZE) {
+        setBallRadius();
+        Point targetRadiusPoint = animPanel.getTargetRadiusPoint();
+        int targetRadius = Target.TARGET_SIZE / 2;
+        int ballRadius = BALL_SIZE / 2;
+        /*
+         * Distance between target and ball centers.
+         */
+        int distance = (targetRadiusPoint.x - ballRadiusPoint.x) * (targetRadiusPoint.x - ballRadiusPoint.x) +
+                (targetRadiusPoint.y - ballRadiusPoint.y) * (targetRadiusPoint.y - ballRadiusPoint.y);
+        if (distance < (targetRadius + ballRadius) * (targetRadius + ballRadius)) {
             return true;
         }
         return false;
@@ -100,9 +98,8 @@ public class MovingBall implements Runnable {
      * Ball radius getter.
      * @return ball radius coordinates.
      */
-    //TODO To be implemented.
     private void setBallRadius() {
-        ballRadiusPoint.x = 0;
-        ballRadiusPoint.y = 0;
+        ballRadiusPoint.x = currentCoords.x + BALL_SIZE / 2;
+        ballRadiusPoint.y = currentCoords.y + BALL_SIZE / 2;
     }
 }

@@ -1,57 +1,62 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package userInfo;
 
 import java.awt.Point;
 
 /**
- * Data for formulas.
+ * Data for formulas. This class represents the high level definition of
+ * Physics formulas. It provides methods to help calculate and monitor the
+ * motion of an flying object.
+ *
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
+ *
  */
 public class Calculator {
 
     /**
-     * the start point for all strikes
+     * The start point for all strikes. By default the start Point is (0, 0).
+     * This represents the initial coordinates of the ball when striken .
      */
     private Point startPoint = new Point(0, 0);
     /**
      * Initial velocity. Keep in mind that to get the velocity on the
-     * X and Y-axis you will need to use SIN and COS
+     * X and Y- axis you will need to use SIN and COS
      */
     private double initialVelocity;
     /**
-     * The angle to strike from. Internally will hold RADIANS but will be set
+     * The angle to strike at. Internally will hold RADIANS but will be set
      * with a DEGREE value and transperantly will transform the value to RADIANS
-     * The same will be when returned
+     * The same will be when returned. A DEGREE value will be returned.
      */
     private double angle;
     /**
-     * the acceleration tham will be used in the simulation
+     * The acceleration tham will be used in the simulation.
      */
     private double acceleration;
     /**
-     * Help variable to present the current velocity on the Y-axis
+     * The length of the flight corresponding to the initially set values for
+     * Velocity, Angle and Acceleration.
      */
-    private double velocityY;
-    /**
-     * Help variable to present if the ball is moveing up or down
-     */
-    private boolean isMoveUp;
     private int lengthOfFlight;
 
     /**
-     * general purpose constructor
+     * Overloaded version of the general purpose constructor.
+     * @param initVel
+     * @param angl
+     * @param acc
      */
     public Calculator(double initVel, double angl, double acc) {
-        setInitialVelosity(initVel * 10);
-        setAngle(angl);
-        setAcceleration(acc);
-
-        lengthOfFlight = calculateLengthOfFlight();
+        this(initVel, angl, acc, new Point(0, 0));
     }
 
+    /**
+     * General purpose constructor.
+     *
+     * @param initVel   Initial Velocity
+     * @param angl      Angle that the ball will be thrown at
+     * @param acc       Acceleration that will be simulated
+     * @param p         Initial point from where the movement will start.
+     */
     public Calculator(double initVel, double angl, double acc, Point p) {
         setInitialVelosity(initVel * 10);
         setAngle(angl);
@@ -62,7 +67,7 @@ public class Calculator {
     }
 
     //Neshto ne raboti kakto trabva - da go inspektiram
-    public Calculator(Calculator c){
+    public Calculator(Calculator c) {
         this(c.getInitialVelosity(), c.getAngle(), c.getAcceleration(), c.getStartPoint());
     }
 
@@ -74,45 +79,11 @@ public class Calculator {
     }
 
     /**
-     * initialize the values if the object is already created
-     * and prepara it for next use of calculations
-     */
-    public void initialize() {
-        isMoveUp = false;
-    }
-
-    /**
-     * Initialize the values of the component and prepare it for future use
-     *
-     * @param initVel   initial velocity
-     * @param angl      angle
-     * @param acc       acceleration
-     */
-    public void initialize(double initVel, double angl, double acc) {
-        this.initialize(initVel, angl, acc, new Point(0, 0));
-    }
-
-    /**
-     * Initialize the values of the component and prepare it for future use
-     *
-     * @param initVel   initial velocity
-     * @param angl      angle
-     * @param acc       acceleration
-     * @param initCoords the starting position where the movement will start from
-     */
-    public void initialize(double initVel, double angl, double acc, Point initCoords) {
-        setInitialVelosity(initVel * 10);
-        setAngle(angl);
-        setAcceleration(acc * 10);
-
-        isMoveUp = true;
-    }
-
-    /**
-     * Get the coordinates of the ball when it is airborne.
+     * Get the coordinates of the ball when it is airborne at specified
+     * moment of time.
      * 
      * @time    The time when we want to get the coordinate
-     * @return the coordinate of the ball at the specified time
+     * @return  The coordinate of the ball at the specified time
      */
     public Point getCoordinate(double time) {
         int xCoord; //the coordinate on the X-axis
@@ -139,13 +110,17 @@ public class Calculator {
         return (int) ((10 * 2 * initialVelocity * initialVelocity * Math.sin(angle) * Math.cos(angle)) / (acceleration));
     }
 
+    /**
+     * Getter for length of flight value
+     * @return lenght of the flight
+     */
     public int getLengthOfFlight() {
         return lengthOfFlight;
     }
 
     /**
-     * setter for initialVelosity
-     * @param val
+     * Setter for initialVelosity
+     * @param val   The value that will be set to initialVelocity
      */
     public void setInitialVelosity(double val) {
         if (val <= 0) {
@@ -156,8 +131,8 @@ public class Calculator {
     }
 
     /**
-     * getter for initialValocity
-     * @return
+     * Getter for initialValocity
+     * @return  initialVelocity
      */
     public double getInitialVelosity() {
         return this.initialVelocity;
@@ -165,9 +140,10 @@ public class Calculator {
 
     /**
      * Setter for angle. A value in degrees is set but internally it is presented
-     * in radians for easier calculations
+     * in radians for easier calculations Values between 0 and 90 degrees are
+     * accepted.
      *
-     * @param val   the value of the angle in degrees
+     * @param val   The value of the angle in degrees
      */
     public void setAngle(double val) {
         if (val > 90 || val < 0) {
@@ -178,16 +154,16 @@ public class Calculator {
     }
 
     /**
-     * getter for angle
-     * @return  return the value of the angle in degrees
+     * Getter for angle
+     * @return  Return the value of the angle in degrees
      */
     public double getAngle() {
         return Math.toDegrees(angle);
     }
 
     /**
-     * setter for acceleration
-     * @param val
+     * Setter for acceleration
+     * @param val   The value that will be set to acceleration.
      */
     public void setAcceleration(double val) {
         if (val <= 0) {
@@ -198,16 +174,16 @@ public class Calculator {
     }
 
     /**
-     * getter for acceleration
-     * @return
+     * Getter for acceleration
+     * @return  acceleration value.
      */
     public double getAcceleration() {
         return acceleration;
     }
 
     /**
-     * setter for the startPoint
-     * @param p     the value that will ne set to startPoint
+     * Setter for the startPoint
+     * @param p     The value that will be set to startPoint
      */
     public void setStartPoint(Point p) {
         if (p != null) {
@@ -218,11 +194,10 @@ public class Calculator {
     }
 
     /**
-     * getter for startPoint
-     * @return  return the value of startPoint
+     * Getter for startPoint
+     * @return  Return the value of startPoint
      */
     public Point getStartPoint() {
         return new Point(startPoint.x, startPoint.y);
     }
-    //TODO Fields - speed, angle, acceleration, etc.
 }

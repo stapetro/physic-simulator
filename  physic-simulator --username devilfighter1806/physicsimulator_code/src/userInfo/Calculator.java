@@ -126,7 +126,7 @@ public class Calculator {
         if (val <= 0) {
             initialVelocity = 1;
         } else {
-            initialVelocity = val;
+            initialVelocity = val * 10;
         }
     }
 
@@ -166,7 +166,7 @@ public class Calculator {
      * @param val   The value that will be set to acceleration.
      */
     public void setAcceleration(double val) {
-        if (val <= 0) {
+        if (val <= 0 ) {
             acceleration = 9.8;
         } else {
             acceleration = val;

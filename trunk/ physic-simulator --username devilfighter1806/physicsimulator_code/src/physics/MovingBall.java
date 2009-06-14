@@ -59,13 +59,13 @@ public class MovingBall implements Runnable {
                     g.setXORMode(animPanel.getBackground());
                     g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
                 }
-                momentOfTime = momentOfTime + 0.4;
+                momentOfTime = momentOfTime + 0.2;
                 currentCoords.x = calc.getCoordinate(momentOfTime).x;
                 currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
                 g.fillOval(currentCoords.x - 40, currentCoords.y, 20, 20);
                 g.dispose();
                 drawn = true;
-                Thread.sleep(100);
+                Thread.sleep(30);
             } while (currentCoords.x < animPanel.getWidth() && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
             ex.printStackTrace();

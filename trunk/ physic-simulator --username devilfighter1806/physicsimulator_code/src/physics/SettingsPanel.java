@@ -32,7 +32,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         this.animPanel = animPnl;
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         defaultBtnBackground = startBtn.getBackground();
-        calc = new Calculator(7, 45, 9.82, animPanel.getGunCoorinates());
+        calc = new Calculator(10, 75, 9.82, animPanel.getGunCoorinates());
         animPanel.setAngle((Double) angleSpinner.getValue());
     }
 

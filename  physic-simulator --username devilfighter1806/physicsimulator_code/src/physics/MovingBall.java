@@ -17,24 +17,24 @@ import userInfo.Calculator;
 public class MovingBall implements Runnable {
 
     /**
-     * reference to the JPanel where the ball will simulate movement
+     * Reference to the JPanel where the ball will simulate movement
      */
     private AnimationPanel animPanel;
     /**
-     * calculator object that will be used to get the
+     * Calculator object that is used to get the
      * calculations for the movement of the ball
      */
     private Calculator calc;
     /**
-     * Constructor
-     * @param pnl   reference to the panel where moving ball will be drawn
-     * @param c     calculator object that will be used for physics calculations
-     */
-    /**
-     * the current coordinated of the moving ball
+     * The current coordinated of the moving ball
      */
     private Point currentCoords;
 
+    /**
+     * Constructor for general purpose.
+     * @param pnl   reference to the panel where moving ball will be drawn
+     * @param c     calculator object that will be used for physics calculations
+     */
     public MovingBall(AnimationPanel pnl, Calculator c) {
         this.animPanel = pnl;
         calc = c;
@@ -66,7 +66,7 @@ public class MovingBall implements Runnable {
                 g.dispose();
                 drawn = true;
                 Thread.sleep(30);
-            } while (currentCoords.x < animPanel.getWidth() && currentCoords.x < calc.getLengthOfFlight());
+            } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

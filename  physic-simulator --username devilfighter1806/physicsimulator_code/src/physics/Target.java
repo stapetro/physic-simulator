@@ -98,6 +98,14 @@ public class Target {
     }
 
     /**
+     * Clears target from panel.
+     * @param g
+     */
+    public void clearTarget(Graphics g){
+        g.clearRect(x, y, TARGET_SIZE, TARGET_SIZE);
+    }
+
+    /**
      * @return target point.
      */
     public Point getPoint() {

@@ -45,7 +45,7 @@ public class MainWindow extends JFrame {
         container.add(logoPanel, BorderLayout.NORTH);
         container.add(settingsPanel, BorderLayout.WEST);
         container.add(animationPanel, BorderLayout.CENTER);
-        container.add(controllerPanel, BorderLayout.SOUTH);
+//        container.add(controllerPanel, BorderLayout.SOUTH);
         setVisible(true);
     }
 }

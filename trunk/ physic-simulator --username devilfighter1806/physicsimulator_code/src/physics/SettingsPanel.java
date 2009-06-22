@@ -69,11 +69,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         speedLabel = new javax.swing.JLabel();
         angleLabel = new javax.swing.JLabel();
         accelLabel = new javax.swing.JLabel();
-        downtBtn = new javax.swing.JButton();
-        upBtn = new javax.swing.JButton();
-        topLbl = new javax.swing.JLabel();
-        downLbl = new javax.swing.JLabel();
-        upLbl = new javax.swing.JLabel();
         speedSpinner = new javax.swing.JSpinner();
         angleSpinner = new javax.swing.JSpinner();
         accelSpinner = new javax.swing.JSpinner();
@@ -81,8 +76,13 @@ public class SettingsPanel extends javax.swing.JPanel {
         newGameBtn = new javax.swing.JButton();
         startBtn = new javax.swing.JButton();
         hintBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        targetHeightTxt = new javax.swing.JTextField();
+        targetWidthTxt = new javax.swing.JTextField();
 
-        speedLabel.setFont(new java.awt.Font("Arial", 1, 14));
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         speedLabel.setText("Speed: ");
 
         angleLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -90,40 +90,6 @@ public class SettingsPanel extends javax.swing.JPanel {
 
         accelLabel.setFont(new java.awt.Font("Arial", 1, 14));
         accelLabel.setText("Acceleration: ");
-
-        downtBtn.setLabel("<");
-        downtBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                downtBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                downtBtnMouseExited(evt);
-            }
-        });
-
-        upBtn.setText(">");
-        upBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                upBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                upBtnMouseExited(evt);
-            }
-        });
-        upBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                upBtnActionPerformed(evt);
-            }
-        });
-
-        topLbl.setFont(new java.awt.Font("Georgia", 1, 16));
-        topLbl.setText("Adjust Top Positions:");
-
-        downLbl.setFont(new java.awt.Font("Arial", 1, 12));
-        downLbl.setText("Down");
-
-        upLbl.setFont(new java.awt.Font("Arial", 1, 12));
-        upLbl.setText("   Up");
 
         speedSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         speedSpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, 2.0d, 30.0d, 1.0d));
@@ -152,7 +118,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 16));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setText("Adjust Settings below:");
 
         newGameBtn.setText("New game");
@@ -187,6 +153,23 @@ public class SettingsPanel extends javax.swing.JPanel {
 
         hintBtn.setText("Hint");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Target Properties");
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("Height:");
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Width:");
+
+        targetHeightTxt.setEditable(false);
+        targetHeightTxt.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        targetHeightTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        targetWidthTxt.setEditable(false);
+        targetWidthTxt.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        targetWidthTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,29 +190,27 @@ public class SettingsPanel extends javax.swing.JPanel {
                             .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(newGameBtn)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(topLbl)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(downtBtn)))
-                            .addComponent(newGameBtn))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(startBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(upLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(upBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(targetWidthTxt)
+                    .addComponent(targetHeightTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,31 +232,29 @@ public class SettingsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addComponent(topLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(downLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(downtBtn)
-                        .addGap(47, 47, 47)
-                        .addComponent(newGameBtn))
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(targetHeightTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(targetWidthTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(upLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(upBtn)
-                        .addGap(47, 47, 47)
-                        .addComponent(startBtn)))
-                .addGap(18, 18, 18)
+                        .addGap(108, 108, 108)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startBtn)
+                            .addComponent(newGameBtn))))
+                .addGap(32, 32, 32)
                 .addComponent(hintBtn)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void upBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upBtnActionPerformed
-        setAngle(animPanel);
-}//GEN-LAST:event_upBtnActionPerformed
 
     /**
      * Draws target on animation panel.
@@ -283,6 +262,9 @@ public class SettingsPanel extends javax.swing.JPanel {
      */
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
         animPanel.drawTarget();
+        animPanel.calculateDistanceGunTarget();
+        targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
+        targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
 }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
@@ -308,25 +290,10 @@ public class SettingsPanel extends javax.swing.JPanel {
         startBtn.setBackground(defaultBtnBackground);
 }//GEN-LAST:event_startBtnMouseExited
 
-    private void downtBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downtBtnMouseEntered
-        downtBtn.setBackground(Color.YELLOW);
-    }//GEN-LAST:event_downtBtnMouseEntered
-
-    private void downtBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_downtBtnMouseExited
-        downtBtn.setBackground(defaultBtnBackground);
-    }//GEN-LAST:event_downtBtnMouseExited
-
-    private void upBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upBtnMouseEntered
-        upBtn.setBackground(Color.YELLOW);
-    }//GEN-LAST:event_upBtnMouseEntered
-
-    private void upBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upBtnMouseExited
-        upBtn.setBackground(defaultBtnBackground);
-    }//GEN-LAST:event_upBtnMouseExited
-
     private void angleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleSpinnerStateChanged
         angle = (Double) angleSpinner.getValue();
         setAngle(animPanel);
+        animPanel.repaint();
     }//GEN-LAST:event_angleSpinnerStateChanged
 
     private void speedSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_speedSpinnerStateChanged
@@ -357,16 +324,16 @@ public class SettingsPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner accelSpinner;
     private javax.swing.JLabel angleLabel;
     private javax.swing.JSpinner angleSpinner;
-    private javax.swing.JLabel downLbl;
-    private javax.swing.JButton downtBtn;
     private javax.swing.JButton hintBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton newGameBtn;
     private javax.swing.JLabel speedLabel;
     private javax.swing.JSpinner speedSpinner;
     private javax.swing.JButton startBtn;
-    private javax.swing.JLabel topLbl;
-    private javax.swing.JButton upBtn;
-    private javax.swing.JLabel upLbl;
+    private javax.swing.JTextField targetHeightTxt;
+    private javax.swing.JTextField targetWidthTxt;
     // End of variables declaration//GEN-END:variables
 }

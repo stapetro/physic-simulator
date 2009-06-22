@@ -91,7 +91,7 @@ public class MovingBall implements Runnable {
     }
 
     public void animateSimulationMode() throws InterruptedException {
-        double momentOfTime = 1;
+        double momentOfTime = 0;
 
         Graphics g = animPanel.getGraphics();
 

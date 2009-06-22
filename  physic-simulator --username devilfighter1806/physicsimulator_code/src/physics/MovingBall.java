@@ -35,6 +35,11 @@ public class MovingBall implements Runnable {
      * Stores ball radius coordinates.
      */
     private Point ballRadiusPoint;
+    /**
+     * If true then the ball will simulate movement
+     * otherwise the trajectory will be drawn
+     */
+    private boolean isRealMode = false;
 
     /**
      * Constructor for general purpose.
@@ -49,33 +54,58 @@ public class MovingBall implements Runnable {
     }
 
     public void run() {
-        double momentOfTime = 0;
-        boolean drawn = false;
-
         try {
-            do {
-                Graphics g = animPanel.getGraphics();
-                if (drawn) {
-                    g.setXORMode(animPanel.getBackground());
-                    g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
-                }
-                momentOfTime = momentOfTime + 0.2;
-                currentCoords.x = calc.getCoordinate(momentOfTime).x;
-                currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
-                if (isTargetHit()) {
-                    System.out.println("HIT TARGET");
-                    break;
-                }
-                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
-                g.dispose();
-                drawn = true;
-                Thread.sleep(30);
-            } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+            if (isRealMode) {
+                animateReadMode();
+            } else {
+                animateSimulationMode();
+            }
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
 
-        System.out.println("DONE!!!");
+    }
+
+    public void animateReadMode() throws InterruptedException {
+        double momentOfTime = 0;
+        boolean drawn = false;
+
+        do {
+            Graphics g = animPanel.getGraphics();
+            if (drawn) {
+                g.setXORMode(animPanel.getBackground());
+                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+            }
+            momentOfTime = momentOfTime + 0.2;
+            currentCoords.x = calc.getCoordinate(momentOfTime).x;
+            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
+            if (isTargetHit()) {
+                System.out.println("HIT TARGET");
+                break;
+            }
+            g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+            g.dispose();
+            drawn = true;
+            Thread.sleep(30);
+        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+    }
+
+    public void animateSimulationMode() throws InterruptedException {
+        double momentOfTime = 1;
+
+        Graphics g = animPanel.getGraphics();
+
+        do {
+            momentOfTime = momentOfTime + 0.2;
+            currentCoords.x = calc.getCoordinate(momentOfTime).x;
+            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
+            if (isTargetHit()) {
+                break;
+            }
+            g.drawOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+            Thread.sleep(30);
+        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+
     }
 
     private boolean isTargetHit() {
@@ -101,5 +131,13 @@ public class MovingBall implements Runnable {
     private void setBallRadius() {
         ballRadiusPoint.x = currentCoords.x + BALL_SIZE / 2;
         ballRadiusPoint.y = currentCoords.y + BALL_SIZE / 2;
+    }
+
+    public void setIsRealMode(boolean val) {
+        isRealMode = val;
+    }
+
+    public boolean getRealMode() {
+        return isRealMode;
     }
 }

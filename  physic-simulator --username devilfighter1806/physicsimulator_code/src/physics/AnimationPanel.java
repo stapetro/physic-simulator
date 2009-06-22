@@ -10,11 +10,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.TextField;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 
 /**
  * Display animations.
@@ -40,9 +42,13 @@ public class AnimationPanel extends javax.swing.JPanel {
      */
     private boolean toBeRepainted;
     /**
-     * Distance between gun and target.
+     * Horizontal distance between gun and target.
      */
-    private double distGunTarget;
+    private double targetHorizontalDistance;
+    /**
+     * Vertical distance between gun and target.
+     */
+    private double targetVerticalDistance;
 
     /**
      * Creates new Animation panel.
@@ -190,12 +196,22 @@ public class AnimationPanel extends javax.swing.JPanel {
         }
     }
 
-    private double calculateDistanceGunTarget() {
+    public double calculateDistanceGunTarget() {
         Point targetCenter = target.getCenterPoint();
         Point gunPoint = gunPnl.getTopCoordinates();
-        double a = (targetCenter.x - gunPoint.x) * (targetCenter.x - gunPoint.x);
-        double b = (getHeight() - targetCenter.y - gunPoint.y) * (getHeight() - targetCenter.y - gunPoint.y);
-        return Math.sqrt(a + b)/10;
+        targetHorizontalDistance = Math.abs(targetCenter.x - gunPoint.x);
+        targetVerticalDistance = Math.abs(getHeight() - targetCenter.y - gunPoint.y);
+        double a = targetHorizontalDistance*targetHorizontalDistance;
+        double b = targetVerticalDistance*targetVerticalDistance;
+        return Math.sqrt(a + b) / 10;
+    }
+
+    public String getTargetHorizontalDistance(){
+        return   String.format("%.0f", targetHorizontalDistance);
+    }
+
+    public String getTargetVerticalDistance(){
+        return String.format("%.0f", targetVerticalDistance);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

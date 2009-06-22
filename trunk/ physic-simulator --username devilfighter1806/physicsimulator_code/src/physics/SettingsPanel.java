@@ -301,8 +301,7 @@ public class SettingsPanel extends javax.swing.JPanel {
 //            y = animPanel.getHeight() - calc.getCoordinate(i).y;
 //            g.drawOval(x, y, 10, 10);
 //        } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
-        updateCalc();
-        System.out.println("angle: " + calc.getAngle() + " initV: " + calc.getInitialVelosity() + " acc: " + calc.getAcceleration());
+        updateCalc();        
         MovingBall b = new MovingBall(animPanel, calc);
         Thread t = new Thread(b);
         t.start();

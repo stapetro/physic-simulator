@@ -6,6 +6,7 @@ package physics;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import javax.swing.JButton;
 import userInfo.Calculator;
 
 /**
@@ -18,6 +19,15 @@ public class MovingBall implements Runnable {
      * determines the size of the ball. Inlcuding width and height.
      */
     private static final int BALL_SIZE = 20;
+    /**
+     * The size of the ball in simulation mode.
+     */
+    private static final int SIMULATION_BALL_SIZE = 10;
+    /**
+     * Offset that is used when the ball is drawn. This is due to some
+     * unexpected result for the Y coordinate of the ball.
+     */
+    private static final int Y_OFFSET = 17;
     /**
      * Reference to the JPanel where the ball will simulate movement
      */
@@ -35,6 +45,11 @@ public class MovingBall implements Runnable {
      * Stores ball radius coordinates.
      */
     private Point ballRadiusPoint;
+    /**
+     * reference to the button that will be locked (set to enabled = false)
+     * when the thread is running
+     */
+    private JButton startAnimBtn;
     /**
      * If true then the ball will simulate movement
      * otherwise the trajectory will be drawn
@@ -54,27 +69,36 @@ public class MovingBall implements Runnable {
     }
 
     public void run() {
+//        startAnimBtn.setEnabled(false);
         try {
             if (isRealMode) {
-                animateReadMode();
+                animateRealMode();
             } else {
                 animateSimulationMode();
             }
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
 
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();}
+//        } finally {
+//            startAnimBtn.setEnabled(true);
+//        }
     }
 
-    public void animateReadMode() throws InterruptedException {
+    /**
+     * Takes care when real simulation of moving ball takes place.
+     * @throws java.lang.InterruptedException
+     */
+    public void animateRealMode() throws InterruptedException {
         double momentOfTime = 0;
         boolean drawn = false;
+
+//        startAnimBtn.setEnabled(false);
 
         do {
             Graphics g = animPanel.getGraphics();
             if (drawn) {
                 g.setXORMode(animPanel.getBackground());
-                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+                g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
             }
             momentOfTime = momentOfTime + 0.2;
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
@@ -83,13 +107,18 @@ public class MovingBall implements Runnable {
                 System.out.println("HIT TARGET");
                 break;
             }
-            g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+            g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
             g.dispose();
             drawn = true;
             Thread.sleep(30);
         } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
     }
 
+    /**
+     * Takes care when drawin the ball in simulation mode. This means that
+     * only the trajectory of the call will be drawn.
+     * @throws java.lang.InterruptedException
+     */
     public void animateSimulationMode() throws InterruptedException {
         double momentOfTime = 0;
 
@@ -102,7 +131,7 @@ public class MovingBall implements Runnable {
             if (isTargetHit()) {
                 break;
             }
-            g.drawOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
+            g.drawOval(currentCoords.x, currentCoords.y - Y_OFFSET, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);
             Thread.sleep(30);
         } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
 
@@ -122,6 +151,14 @@ public class MovingBall implements Runnable {
             return true;
         }
         return false;
+    }
+
+    /**
+     * sets the reference of the button to enabled = false
+     * and release it when the Thread is over.
+     */
+    public void setButtonLock(JButton btn) {
+        startAnimBtn = btn;
     }
 
     /**

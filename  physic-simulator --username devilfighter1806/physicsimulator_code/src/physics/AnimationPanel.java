@@ -49,7 +49,6 @@ public class AnimationPanel extends javax.swing.JPanel {
      */
     public AnimationPanel() {
         initComponents();
-        System.out.println("AnimContructor: " + getWidth());
         target = new Target();
 //        myGraphics = this.getGraphics();
         setOpaque(true);
@@ -62,13 +61,11 @@ public class AnimationPanel extends javax.swing.JPanel {
      * @param angleValue Angle value to be set.
      */
     public void setAngle(double angleValue) {
-        System.out.println("AnimPanel: " + getWidth());
         gunPnl.setAngle(angleValue);
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println("paintComp: " + getWidth());
         super.paintComponent(g);
 //        myGraphics = g;
         target.reDrawTarget(g, getWidth(), getHeight());

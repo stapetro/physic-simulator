@@ -1,10 +1,13 @@
 package physics;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.SwingUtilities;
 import userInfo.Calculator;
 /*
  * SettingsPanel.java
@@ -43,6 +46,10 @@ public class SettingsPanel extends javax.swing.JPanel {
      * Store default background color for buttons.
      */
     private Color defaultBtnBackground;
+    /**
+     * Determines whether the trajectory is draw on the panel
+     */
+    private boolean trajectoryDrawn = false;
 
     /** Creates new form SettingsPanel */
     public SettingsPanel(AnimationPanel animPnl) {
@@ -82,7 +89,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         targetHeightTxt = new javax.swing.JTextField();
         targetWidthTxt = new javax.swing.JTextField();
 
-        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14));
         speedLabel.setText("Speed: ");
 
         angleLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -118,7 +125,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 16));
         jLabel1.setText("Adjust Settings below:");
 
         newGameBtn.setText("New game");
@@ -152,22 +159,27 @@ public class SettingsPanel extends javax.swing.JPanel {
         });
 
         hintBtn.setText("Hint");
+        hintBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hintBtnActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel2.setText("Target Properties");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel3.setText("Height:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel4.setText("Width:");
 
         targetHeightTxt.setEditable(false);
-        targetHeightTxt.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        targetHeightTxt.setFont(new java.awt.Font("Arial", 1, 12));
         targetHeightTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         targetWidthTxt.setEditable(false);
-        targetWidthTxt.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        targetWidthTxt.setFont(new java.awt.Font("Arial", 1, 12));
         targetWidthTxt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -268,10 +280,12 @@ public class SettingsPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        updateCalc();        
-        MovingBall b = new MovingBall(animPanel, calc);
-        Thread t = new Thread(b);
-        t.start();
+
+        if (trajectoryDrawn) {
+            animPanel.repaint();
+            trajectoryDrawn = false;
+        }
+        startAnimation(true);
 }//GEN-LAST:event_startBtnActionPerformed
 
     private void newGameBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGameBtnMouseEntered
@@ -304,6 +318,11 @@ public class SettingsPanel extends javax.swing.JPanel {
         acceleration = (Double) accelSpinner.getValue();
     }//GEN-LAST:event_accelSpinnerStateChanged
 
+    private void hintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintBtnActionPerformed
+        animPanel.repaint();
+        startAnimation(false);
+    }//GEN-LAST:event_hintBtnActionPerformed
+
     /**
      * Set
      * @param animPnl
@@ -312,11 +331,28 @@ public class SettingsPanel extends javax.swing.JPanel {
         animPnl.setAngle(angle);
     }
 
+
     private void updateCalc() {
         calc.setAcceleration(acceleration);
         calc.setAngle(angle);
         calc.setInitialVelosity(initVelocity);
         calc.setStartPoint(animPanel.getGunCoorinates());
+    }
+
+    private void startAnimation(boolean realMode) {
+        updateCalc();
+        MovingBall b = new MovingBall(animPanel, calc);
+        if (realMode == false) {
+            b.setIsRealMode(false);
+            trajectoryDrawn = true;
+        } else {
+            b.setIsRealMode(true);
+            trajectoryDrawn = false;
+        }
+//        Thread t = new Thread(b);
+//        b.setButtonLock(startBtn);
+        SwingUtilities.invokeLater(b);
+        //t.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

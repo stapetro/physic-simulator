@@ -50,7 +50,6 @@ public class AnimationPanel extends javax.swing.JPanel {
     public AnimationPanel() {
         initComponents();
         target = new Target();
-//        myGraphics = this.getGraphics();
         setOpaque(true);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         toBeRepainted = true;
@@ -67,7 +66,6 @@ public class AnimationPanel extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        myGraphics = g;
         target.reDrawTarget(g, getWidth(), getHeight());
     }
 
@@ -77,7 +75,6 @@ public class AnimationPanel extends javax.swing.JPanel {
     public void drawTarget() {
         myGraphics = this.getGraphics();
         target.drawRandomCoordinates(myGraphics, getWidth(), getHeight());
-        setDistanceGunTarget();
         repaint();
     }
 
@@ -94,7 +91,7 @@ public class AnimationPanel extends javax.swing.JPanel {
     }
 
     public Point getTargetRadiusPoint() {
-        return target.getRadiusPoint();
+        return target.getCenterPoint();
     }
 
     /** This method is called from within the constructor to
@@ -147,7 +144,7 @@ public class AnimationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseMoved
 
     private void drawToolTip(Point mousePoint) {
-        Point targetRadius = target.getRadiusPoint();
+        Point targetRadius = target.getCenterPoint();
         if (mousePoint.x >= targetRadius.x - Target.TARGET_SIZE / 2 && mousePoint.x <= targetRadius.x + Target.TARGET_SIZE / 2 &&
                 mousePoint.y >= targetRadius.y - Target.TARGET_SIZE / 2 && mousePoint.y <= targetRadius.y + Target.TARGET_SIZE / 2) {
             if (!drawnToolTip) {
@@ -155,7 +152,7 @@ public class AnimationPanel extends javax.swing.JPanel {
                 Point2D loc = (Point2D) mousePoint;
                 Font font = new Font("Monospaced", Font.PLAIN, 15);
                 FontRenderContext frc = g.getFontRenderContext();
-                TextLayout layout = new TextLayout(String.format("distance: %.2f", distGunTarget),
+                TextLayout layout = new TextLayout(String.format("distance: %.2f", calculateDistanceGunTarget()),
                         font, frc);
                 layout.draw(g, (float) loc.getX() + TOOLTIP_OFFSET, (float) loc.getY());
                 Rectangle2D bounds = layout.getBounds();
@@ -193,12 +190,12 @@ public class AnimationPanel extends javax.swing.JPanel {
         }
     }
 
-    private void setDistanceGunTarget() {
-        Point targetRadius = target.getRadiusPoint();
+    private double calculateDistanceGunTarget() {
+        Point targetCenter = target.getCenterPoint();
         Point gunPoint = gunPnl.getTopCoordinates();
-        double a = (targetRadius.x - gunPoint.x) * (targetRadius.x - gunPoint.x);
-        double b = (targetRadius.y - gunPoint.y) * (targetRadius.y - gunPoint.y);
-        distGunTarget = Math.sqrt(a + b);
+        double a = (targetCenter.x - gunPoint.x) * (targetCenter.x - gunPoint.x);
+        double b = (getHeight() - targetCenter.y - gunPoint.y) * (getHeight() - targetCenter.y - gunPoint.y);
+        return Math.sqrt(a + b)/10;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

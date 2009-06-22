@@ -116,7 +116,7 @@ public class Target {
      * Target radius getter.
      * @return target radius point.
      */
-    public Point getRadiusPoint() {
+    public Point getCenterPoint() {
         return new Point(x + TARGET_SIZE / 2, y + TARGET_SIZE / 2);
     }
 }

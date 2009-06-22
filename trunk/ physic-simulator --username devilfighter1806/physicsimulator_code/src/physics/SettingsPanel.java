@@ -50,12 +50,10 @@ public class SettingsPanel extends javax.swing.JPanel {
         this.animPanel = animPnl;
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         defaultBtnBackground = newGameBtn.getBackground();
-//        calc = new Calculator(10, 75, 9.82, animPanel.getGunCoorinates());
         animPanel.setAngle((Double) angleSpinner.getValue());
         initVelocity = (Double) speedSpinner.getValue();
         angle = (Double) angleSpinner.getValue();
         acceleration = (Double) accelSpinner.getValue();
-//        System.out.println("result: " + (initVelocity));
         calc = new Calculator(initVelocity, angle, acceleration, animPanel.getGunCoorinates());
     }
 
@@ -288,19 +286,6 @@ public class SettingsPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        //IMPORTANT: This is just for test. This methid will NOT have the
-        //following functionality!
-//        Graphics g = animPanel.getGraphics();
-//        g.setColor(Color.BLUE);
-//        double i = 0;
-//        int x;
-//        int y;
-//        do {
-//            i = i + 0.5;
-//            x = calc.getCoordinate(i).x;
-//            y = animPanel.getHeight() - calc.getCoordinate(i).y;
-//            g.drawOval(x, y, 10, 10);
-//        } while (x < calc.getLengthOfFlight() && x < animPanel.getWidth());
         updateCalc();        
         MovingBall b = new MovingBall(animPanel, calc);
         Thread t = new Thread(b);
@@ -365,7 +350,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         calc.setAngle(angle);
         calc.setInitialVelosity(initVelocity);
         calc.setStartPoint(animPanel.getGunCoorinates());
-//        System.out.println("angle: " + angle + " initV: " + initVelocity + " acc: " + acceleration);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -293,6 +293,8 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
 
         if (trajectoryDrawn) {
+            angle = (Double) angleSpinner.getValue();
+            setAngle(animPanel);
             animPanel.repaint();
             trajectoryDrawn = false;
         }
@@ -319,14 +321,17 @@ public class SettingsPanel extends javax.swing.JPanel {
         angle = (Double) angleSpinner.getValue();
         setAngle(animPanel);
         animPanel.repaint();
+        trajectoryDrawn = false;
     }//GEN-LAST:event_angleSpinnerStateChanged
 
     private void speedSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_speedSpinnerStateChanged
         initVelocity = (Double) speedSpinner.getValue();
+        trajectoryDrawn = false;
     }//GEN-LAST:event_speedSpinnerStateChanged
 
     private void accelSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_accelSpinnerStateChanged
         acceleration = (Double) accelSpinner.getValue();
+        trajectoryDrawn = false;
     }//GEN-LAST:event_accelSpinnerStateChanged
 
     private void hintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintBtnActionPerformed
@@ -342,6 +347,10 @@ public class SettingsPanel extends javax.swing.JPanel {
         animPnl.setAngle(angle);
     }
 
+    /**
+     * Sets the values for the calculator object so that they
+     * match the ones in the local variables.
+     */
     private void updateCalc() {
         calc.setAcceleration(acceleration);
         calc.setAngle(angle);
@@ -351,6 +360,7 @@ public class SettingsPanel extends javax.swing.JPanel {
 
     private void startAnimation(boolean realMode) {
         updateCalc();
+        setEnabledSwingComponents(false);
         MovingBall b = new MovingBall(animPanel, calc);
         if (realMode == false) {
             b.setIsRealMode(false);
@@ -359,11 +369,27 @@ public class SettingsPanel extends javax.swing.JPanel {
             b.setIsRealMode(true);
             trajectoryDrawn = false;
         }
-        SwingUtilities.invokeLater(b);
+        b.setPnlRef(this);
+        Thread t = new Thread(b);
+        t.start();
+//        SwingUtilities.invokeLater(b);
+    }
+
+    /**
+     * Disables the swing components during Thread execution
+     * in order to prevent the user from starting several threads
+     * at the same time.
+     */
+    public void setEnabledSwingComponents(boolean val) {
+        startBtn.setEnabled(val);
+        hintBtn.setEnabled(val);
+        newGameBtn.setEnabled(val);
+        angleSpinner.setEnabled(val);
     }
 
     public void setAcceleration(double accelVal) {
         acceleration = accelVal;
+        accelSpinner.setValue((Double) accelVal);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

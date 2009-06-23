@@ -201,16 +201,16 @@ public class AnimationPanel extends javax.swing.JPanel {
         Point gunPoint = gunPnl.getTopCoordinates();
         targetHorizontalDistance = Math.abs(targetCenter.x - gunPoint.x);
         targetVerticalDistance = Math.abs(getHeight() - targetCenter.y - gunPoint.y);
-        double a = targetHorizontalDistance*targetHorizontalDistance;
-        double b = targetVerticalDistance*targetVerticalDistance;
+        double a = targetHorizontalDistance * targetHorizontalDistance;
+        double b = targetVerticalDistance * targetVerticalDistance;
         return Math.sqrt(a + b) / 10;
     }
 
-    public String getTargetHorizontalDistance(){
-        return   String.format("%.0f", targetHorizontalDistance);
+    public String getTargetHorizontalDistance() {
+        return String.format("%.0f", targetHorizontalDistance);
     }
 
-    public String getTargetVerticalDistance(){
+    public String getTargetVerticalDistance() {
         return String.format("%.0f", targetVerticalDistance);
     }
 

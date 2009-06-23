@@ -50,6 +50,8 @@ public class MovingBall implements Runnable {
      * otherwise the trajectory will be drawn
      */
     private boolean isRealMode = false;
+    //Next two variables may be deleted after
+    private SettingsPanel pnl;
 
     /**
      * Constructor for general purpose.
@@ -64,6 +66,7 @@ public class MovingBall implements Runnable {
     }
 
     public void run() {
+        //btn.setEnabled(false);
 //        startAnimBtn.setSelected(false);
         try {
             if (isRealMode) {
@@ -77,6 +80,8 @@ public class MovingBall implements Runnable {
         } finally {
 //            startAnimBtn.setSelected(true);
         }
+
+        pnl.setEnabledSwingComponents(true);
     }
 
     /**
@@ -88,7 +93,6 @@ public class MovingBall implements Runnable {
         boolean drawn = false;
 
 //        startAnimBtn.setEnabled(false);
-
         do {
             Graphics g = animPanel.getGraphics();
             if (drawn) {
@@ -105,7 +109,7 @@ public class MovingBall implements Runnable {
             g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
             g.dispose();
             drawn = true;
-            Thread.sleep(30);
+            Thread.sleep(20);
         } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
     }
 
@@ -127,9 +131,9 @@ public class MovingBall implements Runnable {
                 break;
             }
             g.drawOval(currentCoords.x, currentCoords.y - Y_OFFSET, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);
-            Thread.sleep(30);
-        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+            Thread.sleep(20);
 
+        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
     }
 
     private boolean isTargetHit() {
@@ -163,5 +167,9 @@ public class MovingBall implements Runnable {
 
     public boolean getRealMode() {
         return isRealMode;
+    }
+
+    public void setPnlRef(SettingsPanel p) {
+        pnl = p;
     }
 }

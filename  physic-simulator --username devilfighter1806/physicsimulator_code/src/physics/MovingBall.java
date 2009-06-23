@@ -46,11 +46,6 @@ public class MovingBall implements Runnable {
      */
     private Point ballRadiusPoint;
     /**
-     * reference to the button that will be locked (set to enabled = false)
-     * when the thread is running
-     */
-    private JButton startAnimBtn;
-    /**
      * If true then the ball will simulate movement
      * otherwise the trajectory will be drawn
      */
@@ -69,7 +64,7 @@ public class MovingBall implements Runnable {
     }
 
     public void run() {
-//        startAnimBtn.setEnabled(false);
+//        startAnimBtn.setSelected(false);
         try {
             if (isRealMode) {
                 animateRealMode();
@@ -78,10 +73,10 @@ public class MovingBall implements Runnable {
             }
 
         } catch (InterruptedException ex) {
-            ex.printStackTrace();}
-//        } finally {
-//            startAnimBtn.setEnabled(true);
-//        }
+            ex.printStackTrace();
+        } finally {
+//            startAnimBtn.setSelected(true);
+        }
     }
 
     /**
@@ -151,14 +146,6 @@ public class MovingBall implements Runnable {
             return true;
         }
         return false;
-    }
-
-    /**
-     * sets the reference of the button to enabled = false
-     * and release it when the Thread is over.
-     */
-    public void setButtonLock(JButton btn) {
-        startAnimBtn = btn;
     }
 
     /**

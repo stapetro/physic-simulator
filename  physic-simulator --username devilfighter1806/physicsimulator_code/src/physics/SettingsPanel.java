@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -50,6 +52,7 @@ public class SettingsPanel extends javax.swing.JPanel {
      * Determines whether the trajectory is draw on the panel
      */
     private boolean trajectoryDrawn = false;
+    private Boolean startedAnimation;
 
     /** Creates new form SettingsPanel */
     public SettingsPanel(AnimationPanel animPnl) {
@@ -62,6 +65,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         angle = (Double) angleSpinner.getValue();
         acceleration = (Double) accelSpinner.getValue();
         calc = new Calculator(initVelocity, angle, acceleration, animPanel.getGunCoorinates());
+        startedAnimation = Boolean.FALSE;
     }
 
     /** This method is called from within the constructor to
@@ -273,12 +277,19 @@ public class SettingsPanel extends javax.swing.JPanel {
      * @param evt
      */
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
+//        animPanel.drawTarget();
+//        animPanel.calculateDistanceGunTarget();
+//        targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
+//        targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
+        startNewGame();
+}//GEN-LAST:event_newGameBtnActionPerformed
+
+    public void startNewGame() {
         animPanel.drawTarget();
         animPanel.calculateDistanceGunTarget();
         targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
         targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
-}//GEN-LAST:event_newGameBtnActionPerformed
-
+    }
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
 
         if (trajectoryDrawn) {
@@ -331,7 +342,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         animPnl.setAngle(angle);
     }
 
-
     private void updateCalc() {
         calc.setAcceleration(acceleration);
         calc.setAngle(angle);
@@ -349,10 +359,11 @@ public class SettingsPanel extends javax.swing.JPanel {
             b.setIsRealMode(true);
             trajectoryDrawn = false;
         }
-//        Thread t = new Thread(b);
-//        b.setButtonLock(startBtn);
         SwingUtilities.invokeLater(b);
-        //t.start();
+    }
+
+    public void setAcceleration(double accelVal) {
+        acceleration = accelVal;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -250,7 +250,7 @@ class MenuBar {
                 JOptionPane.showMessageDialog(mainWindow,
                         String.format("Stanislav Petrov, fn61055, SU FMI\n" +
                         "email: devilfighter1806@gmail.com\n" +
-                        "Krasimir Baylov, fn61080, SU FMI\nemail: k.bailov@gmail.com"));
+                        "Krasimir Baylov, fn61080, SU FMI\nemail: kbailov@gmail.com"));
             }
         });
         helpMenu.add(aboutMenuItem);

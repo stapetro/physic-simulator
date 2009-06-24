@@ -50,8 +50,12 @@ public class MovingBall implements Runnable {
      * otherwise the trajectory will be drawn
      */
     private boolean isRealMode = false;
+    /**
+     * Indicates whether target is hitted.
+     */
+    private boolean targetHitted = false;
     //Next two variables may be deleted after
-    private SettingsPanel pnl;
+    private SettingsPanel settingsPanel;
 
     /**
      * Constructor for general purpose.
@@ -67,7 +71,6 @@ public class MovingBall implements Runnable {
 
     public void run() {
         //btn.setEnabled(false);
-//        startAnimBtn.setSelected(false);
         try {
             if (isRealMode) {
                 animateRealMode();
@@ -81,7 +84,7 @@ public class MovingBall implements Runnable {
 //            startAnimBtn.setSelected(true);
         }
 
-        pnl.setEnabledSwingComponents(true);
+        settingsPanel.setEnabledSwingComponents(true);
     }
 
     /**
@@ -91,7 +94,7 @@ public class MovingBall implements Runnable {
     public void animateRealMode() throws InterruptedException {
         double momentOfTime = 0;
         boolean drawn = false;
-
+        targetHitted = false;
 //        startAnimBtn.setEnabled(false);
         do {
             Graphics g = animPanel.getGraphics();
@@ -103,14 +106,18 @@ public class MovingBall implements Runnable {
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
             currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
             if (isTargetHit()) {
-                System.out.println("HIT TARGET");
+                targetHitted = true;
+                settingsPanel.getStatusPanel().setStatus("Hit Target");
                 break;
             }
             g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
             g.dispose();
             drawn = true;
             Thread.sleep(20);
-        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight());
+        if (!targetHitted) {
+            settingsPanel.getStatusPanel().setStatus("Animation finished");
+        }
     }
 
     /**
@@ -120,7 +127,7 @@ public class MovingBall implements Runnable {
      */
     public void animateSimulationMode() throws InterruptedException {
         double momentOfTime = 0;
-
+        targetHitted = false;
         Graphics g = animPanel.getGraphics();
 
         do {
@@ -128,12 +135,17 @@ public class MovingBall implements Runnable {
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
             currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
             if (isTargetHit()) {
+                targetHitted = true;
+                settingsPanel.getStatusPanel().setStatus("Hit Target");
                 break;
             }
             g.drawOval(currentCoords.x, currentCoords.y - Y_OFFSET, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);
             Thread.sleep(20);
 
-        } while (currentCoords.x < animPanel.getWidth() + 40 && currentCoords.x < calc.getLengthOfFlight());
+        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight());
+        if (!targetHitted) {
+            settingsPanel.getStatusPanel().setStatus("Animation finished");
+        }
     }
 
     private boolean isTargetHit() {
@@ -170,6 +182,6 @@ public class MovingBall implements Runnable {
     }
 
     public void setPnlRef(SettingsPanel p) {
-        pnl = p;
+        settingsPanel = p;
     }
 }

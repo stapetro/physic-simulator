@@ -93,7 +93,6 @@ public class Calculator {
 
         if (xCoord < (lengthOfFlight / 2)) {
             yCoord = startPoint.y + (int) (initialVelocity * Math.sin(angle) * time - (acceleration * time * time) / 2);
-
         } else {
             yCoord = startPoint.y + (int) (initialVelocity * Math.sin(angle) * time + (acceleration * time * time) / 2);
         }
@@ -166,7 +165,7 @@ public class Calculator {
      * @param val   The value that will be set to acceleration.
      */
     public void setAcceleration(double val) {
-        if (val <= 0 ) {
+        if (val < 0) {
             acceleration = 9.8;
         } else {
             acceleration = val;

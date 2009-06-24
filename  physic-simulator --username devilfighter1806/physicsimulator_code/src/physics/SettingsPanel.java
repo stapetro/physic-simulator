@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -52,6 +54,7 @@ public class SettingsPanel extends javax.swing.JPanel {
     public SettingsPanel(AnimationPanel animPnl) {
         initComponents();
         this.animPanel = animPnl;
+        animPanel.addMouseMotionListener(new MouseClickHandler());
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         defaultBtnBackground = newGameBtn.getBackground();
         animPanel.setAngle((Double) angleSpinner.getValue());
@@ -417,6 +420,20 @@ public class SettingsPanel extends javax.swing.JPanel {
      */
     public StatusPanel getStatusPanel() {
         return statusPanel;
+    }
+
+    private class MouseClickHandler extends MouseMotionAdapter {
+
+        public void mouseDragged(MouseEvent event) {
+            int xCoord = event.getX();
+            int yCoord = getHeight() - event.getY();
+            double angl = Math.toDegrees(Math.atan(((double) yCoord) / xCoord));
+            angle = angl;
+            angleSpinner.setValue((Double) angle);
+            setAngle(animPanel);
+
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

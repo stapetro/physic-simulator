@@ -27,7 +27,15 @@ public class MovingBall implements Runnable {
      * Offset that is used when the ball is drawn. This is due to some
      * unexpected result for the Y coordinate of the ball.
      */
-    private static final int Y_OFFSET = 17;
+    private static final int Y_OFFSET = 20;
+    /**
+     * Message that is displayed when target is hit
+     */
+    private static final String HIT_TARGET_MSG = "Hit Target";
+    /**
+     * Message that is shown when target is missed
+     */
+    private static final String MISS_TARGET_MSG = "Miss Target";
     /**
      * Reference to the JPanel where the ball will simulate movement
      */
@@ -44,7 +52,7 @@ public class MovingBall implements Runnable {
     /**
      * Stores ball radius coordinates.
      */
-    private Point ballRadiusPoint;
+    private Point ballCenterPoint;
     /**
      * If true then the ball will simulate movement
      * otherwise the trajectory will be drawn
@@ -66,7 +74,7 @@ public class MovingBall implements Runnable {
         this.animPanel = pnl;
         calc = c;
         currentCoords = new Point(calc.getStartPoint());
-        ballRadiusPoint = new Point();
+        ballCenterPoint = new Point();
     }
 
     public void run() {
@@ -100,23 +108,24 @@ public class MovingBall implements Runnable {
             Graphics g = animPanel.getGraphics();
             if (drawn) {
                 g.setXORMode(animPanel.getBackground());
-                g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
+                g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
             }
             momentOfTime = momentOfTime + 0.2;
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
-            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
+            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y - Y_OFFSET;
             if (isTargetHit()) {
                 targetHitted = true;
-                settingsPanel.getStatusPanel().setStatus("Hit Target");
+                settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
                 break;
             }
-            g.fillOval(currentCoords.x, currentCoords.y - Y_OFFSET, BALL_SIZE, BALL_SIZE);
+            g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
             g.dispose();
             drawn = true;
             Thread.sleep(20);
-        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight());
+        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight() &&
+                currentCoords.y < animPanel.getHeight() + 20);
         if (!targetHitted) {
-            settingsPanel.getStatusPanel().setStatus("Animation finished");
+            settingsPanel.getStatusPanel().setStatus(MISS_TARGET_MSG);
         }
     }
 
@@ -133,31 +142,32 @@ public class MovingBall implements Runnable {
         do {
             momentOfTime = momentOfTime + 0.2;
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
-            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y;
+            currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y - Y_OFFSET;
             if (isTargetHit()) {
                 targetHitted = true;
-                settingsPanel.getStatusPanel().setStatus("Hit Target");
+                settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
                 break;
             }
-            g.drawOval(currentCoords.x, currentCoords.y - Y_OFFSET, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);
+            g.drawOval(currentCoords.x, currentCoords.y, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);
             Thread.sleep(20);
 
-        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight());
+        } while (currentCoords.x < animPanel.getWidth() + 20 && currentCoords.x < calc.getLengthOfFlight() &&
+                currentCoords.y < animPanel.getHeight() + 20);
         if (!targetHitted) {
-            settingsPanel.getStatusPanel().setStatus("Animation finished");
+            settingsPanel.getStatusPanel().setStatus(MISS_TARGET_MSG);
         }
     }
 
     private boolean isTargetHit() {
-        setBallRadius();
-        Point targetRadiusPoint = animPanel.getTargetRadiusPoint();
+        updateBallCenterCoordinates();
+        Point targetCenterPoint = animPanel.getTargetRadiusPoint();
         int targetRadius = Target.TARGET_SIZE / 2;
         int ballRadius = BALL_SIZE / 2;
         /*
          * Distance between target and ball centers.
          */
-        int distance = (targetRadiusPoint.x - ballRadiusPoint.x) * (targetRadiusPoint.x - ballRadiusPoint.x) +
-                (targetRadiusPoint.y - ballRadiusPoint.y) * (targetRadiusPoint.y - ballRadiusPoint.y);
+        int distance = (targetCenterPoint.x - ballCenterPoint.x) * (targetCenterPoint.x - ballCenterPoint.x) +
+                (targetCenterPoint.y - ballCenterPoint.y) * (targetCenterPoint.y - ballCenterPoint.y);
         if (distance < (targetRadius + ballRadius) * (targetRadius + ballRadius)) {
             return true;
         }
@@ -165,12 +175,11 @@ public class MovingBall implements Runnable {
     }
 
     /**
-     * Ball radius getter.
-     * @return ball radius coordinates.
+     * Updates the current coordinates of the ball center
      */
-    private void setBallRadius() {
-        ballRadiusPoint.x = currentCoords.x + BALL_SIZE / 2;
-        ballRadiusPoint.y = currentCoords.y + BALL_SIZE / 2;
+    private void updateBallCenterCoordinates() {
+        ballCenterPoint.x = currentCoords.x + BALL_SIZE / 2;
+        ballCenterPoint.y = currentCoords.y + BALL_SIZE / 2;
     }
 
     public void setIsRealMode(boolean val) {

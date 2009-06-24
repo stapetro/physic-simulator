@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +54,7 @@ public class Target {
      * @param xCoord    the x coordinate
      * @param yCoord    the y coordinate
      */
-    private void drawTarget(Graphics g) {
+    public void drawTarget(Graphics g) {
         int tempX = x, tempY = y;
         int size = TARGET_SIZE;
         for (int i = 0; i < targetColors.length; i++) {
@@ -68,29 +70,40 @@ public class Target {
      * Simulates hit by making some animation
      * that attracts the attention of the user
      */
-    public void simulateHit(AnimationPanel animPnl) {
-        Graphics g = animPnl.getGraphics();
+    public void simulateHit(Graphics g, int count) {
         int tempX = x, tempY = y;
-        Random rand = new Random();
         int size = TARGET_SIZE;
-        int cnt = 1;
-        for (int k = 0; k < 10; k++) {
-//            animPnl.repaint();
-            for (int i = 0; i < targetColors.length; i++) {
-                g.setColor(targetColors[( cnt) % targetColors.length]);
-                g.fillOval(tempX, tempY, size, size);
-                tempX += OFFSET;
-                tempY += OFFSET;
-                size -= (2 * OFFSET);
-            }
-            cnt++;
-            try {
-                System.out.println("fuck it");
-                Thread.sleep(199);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Target.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        for (int i = 0; i < targetColors.length; i++) {
+            g.setColor(targetColors[(count + i) % targetColors.length]);
+            g.fillOval(tempX, tempY, size, size);
+            tempX += OFFSET;
+            tempY += OFFSET;
+            size -= (2 * OFFSET);
         }
+    }
+
+    /**
+     * Animation is started when target is hitted with the ball.
+     * @param g Draws animation.
+     */
+    public void simulateHitAnimate(final Graphics g) {
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    try {
+                        simulateHit(g, i);
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AnimationPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                drawTarget(g);
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(task, 0);
     }
 
     /**

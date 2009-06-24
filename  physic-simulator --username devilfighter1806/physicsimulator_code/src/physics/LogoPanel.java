@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class LogoPanel extends JPanel {
 
-    public static final String LOGO_PATH = "src/images/FMI.jpg";
+    public static final String LOGO_PATH = "images/FMI.jpg";
     /**
      * Panel and logo image width are equal.
      */
@@ -56,14 +56,12 @@ public class LogoPanel extends JPanel {
         /**
          * Path who is related to the LogoPanel class location.
          */
-//        URL imgUrl = getClass().getResource(LOGO_PATH);
-//        if (imgUrl == null) {
-//            JOptionPane.showMessageDialog(this, "Cannot find path to logo image.", "Error Loading Logo",
-//                    JOptionPane.ERROR_MESSAGE);
-//        }
-//        image = Toolkit.getDefaultToolkit().getImage(imgUrl);
-//        System.setProperty("java.class.path", "images");
-        image = Toolkit.getDefaultToolkit().getImage(LOGO_PATH);
+        URL imgUrl = getClass().getResource(LOGO_PATH);
+        if (imgUrl == null) {
+            JOptionPane.showMessageDialog(this, "Cannot find path to logo image.", "Error Loading Logo",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        image = Toolkit.getDefaultToolkit().getImage(imgUrl);
         mediaTracker = new MediaTracker(this);
         mediaTracker.addImage(image, 0);
         try {
@@ -82,7 +80,7 @@ public class LogoPanel extends JPanel {
 
     /**
      * Draws image on resizing the panel.
-     * @param g
+     * @param g Logo panel's graphics.
      */
     @Override
     public void paintComponent(Graphics g) {

@@ -6,6 +6,7 @@ package physics;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
@@ -31,6 +32,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class MainWindow extends JFrame {
 
+    private static final Dimension MINIMUM_WINDOW_SIZE = new Dimension(680, 600);
+    private static final Dimension WINDOW_SIZE = new Dimension(800, 600);
     /**
      * Animating starts here.
      */
@@ -60,18 +63,18 @@ public class MainWindow extends JFrame {
      * Adds all panels to main window.
      */
     private void initComponents() {
+        setMinimumSize(MINIMUM_WINDOW_SIZE);
+        setSize(WINDOW_SIZE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         logoPanel = new LogoPanel();
         animationPanel = new AnimationPanel();
         settingsPanel = new SettingsPanel(animationPanel);
         statusPanel = settingsPanel.getStatusPanel();
-        statusPanel.setStatus("Game not started");
+        statusPanel.setStatus("Simulator not started");
         controllerPanel = new ControllerPanel();
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         container.add(logoPanel, BorderLayout.NORTH);
         container.add(settingsPanel, BorderLayout.WEST);
         container.add(animationPanel, BorderLayout.CENTER);
-//        container.add(controllerPanel, BorderLayout.SOUTH);
         menuBar = new MenuBar(settingsPanel);
         setJMenuBar(menuBar.newJMenuBar(this));
         setLocation(150, 50);
@@ -141,9 +144,9 @@ class MenuBar {
      * listeners is added to these items. Game menu is added to the menu bar.
      */
     private void createGameMenu() {
-        gameMenu = new JMenu("Game");
-        gameNewMenuItem = new JMenuItem("New game");
-        gameExitMenuItem = new JMenuItem("Exit game");
+        gameMenu = new JMenu("Simulator");
+        gameNewMenuItem = new JMenuItem("New simulator");
+        gameExitMenuItem = new JMenuItem("Exit");
         gameNewMenuItem.addActionListener(new ActionListener() {
 
             @Override
@@ -208,7 +211,6 @@ class MenuBar {
                 public void actionPerformed(ActionEvent e) {
                     for (int i = 0; i < lookMenuItems.length; i++) {
                         if (lookMenuItems[i].isSelected()) {
-                            System.out.println("check");
                             try {
                                 UIManager.setLookAndFeel(looks[i].getClassName());
                                 SwingUtilities.updateComponentTreeUI(mainWindow);
@@ -238,7 +240,6 @@ class MenuBar {
         aboutMenuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-             
             }
         });
         contactMenuItem = new JMenuItem("Contacts");
@@ -246,10 +247,10 @@ class MenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               JOptionPane.showMessageDialog(mainWindow, 
-                       String.format("Stanislav Petrov, fn61055, SU FMI\n"+
-                       "email: devilfighter1806@gmail.com\n" +
-                       "Krasimir Baylov, fn61080, SU FMI\nemail: k.bailov@gmail.com"));
+                JOptionPane.showMessageDialog(mainWindow,
+                        String.format("Stanislav Petrov, fn61055, SU FMI\n" +
+                        "email: devilfighter1806@gmail.com\n" +
+                        "Krasimir Baylov, fn61080, SU FMI\nemail: k.bailov@gmail.com"));
             }
         });
         helpMenu.add(aboutMenuItem);

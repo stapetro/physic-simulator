@@ -395,6 +395,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         calc.setAngle(angle);
         calc.setInitialVelosity(initVelocity);
         calc.setStartPoint(animPanel.getGunCoorinates());
+        animPanel.repaint();
     }
 
     /**

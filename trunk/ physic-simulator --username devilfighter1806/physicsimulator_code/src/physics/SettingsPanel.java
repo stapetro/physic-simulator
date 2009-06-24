@@ -87,7 +87,9 @@ public class SettingsPanel extends javax.swing.JPanel {
         targetWidthTxt = new javax.swing.JTextField();
         statusPanel = new physics.StatusPanel();
 
-        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(245, 500));
+
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14));
         speedLabel.setText("Speed: ");
 
         angleLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -123,7 +125,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        adjustSettingsLbl.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        adjustSettingsLbl.setFont(new java.awt.Font("Arial", 1, 16));
         adjustSettingsLbl.setText("Adjust Settings below:");
 
         newGameBtn.setText("New game");
@@ -171,13 +173,13 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        targetPropLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        targetPropLbl.setFont(new java.awt.Font("Arial", 1, 14));
         targetPropLbl.setText("Target Properties");
 
-        heightLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        heightLbl.setFont(new java.awt.Font("Arial", 1, 14));
         heightLbl.setText("Height:");
 
-        widthLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        widthLbl.setFont(new java.awt.Font("Arial", 1, 14));
         widthLbl.setText("Width:");
 
         targetHeightTxt.setEditable(false);
@@ -193,21 +195,13 @@ public class SettingsPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(newGameBtn)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(startBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                     .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accelLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,14 +221,22 @@ public class SettingsPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(heightLbl)
                             .addComponent(widthLbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(targetWidthTxt)
-                            .addComponent(targetHeightTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)))
+                            .addComponent(targetHeightTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(targetPropLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(newGameBtn)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,9 +276,9 @@ public class SettingsPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(startBtn)
                             .addComponent(newGameBtn))))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(hintBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents

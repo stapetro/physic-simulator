@@ -77,7 +77,10 @@ public class MainWindow extends JFrame {
         container.add(animationPanel, BorderLayout.CENTER);
         menuBar = new MenuBar(settingsPanel);
         setJMenuBar(menuBar.newJMenuBar(this));
-        setLocation(150, 50);
+        /*
+         * Displays frame to the center of the screen.
+         */
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

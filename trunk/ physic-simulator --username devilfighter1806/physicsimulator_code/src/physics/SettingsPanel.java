@@ -11,11 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.SwingUtilities;
 import userInfo.Calculator;
-/*
- * SettingsPanel.java
- *
- * Created on 2009-5-16, 22:09:29
- */
 
 /**
  * Settings panel.
@@ -52,7 +47,6 @@ public class SettingsPanel extends javax.swing.JPanel {
      * Determines whether the trajectory is draw on the panel
      */
     private boolean trajectoryDrawn = false;
-    private Boolean startedAnimation;
 
     /** Creates new form SettingsPanel */
     public SettingsPanel(AnimationPanel animPnl) {
@@ -65,7 +59,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         angle = (Double) angleSpinner.getValue();
         acceleration = (Double) accelSpinner.getValue();
         calc = new Calculator(initVelocity, angle, acceleration, animPanel.getGunCoorinates());
-        startedAnimation = Boolean.FALSE;
     }
 
     /** This method is called from within the constructor to
@@ -83,17 +76,18 @@ public class SettingsPanel extends javax.swing.JPanel {
         speedSpinner = new javax.swing.JSpinner();
         angleSpinner = new javax.swing.JSpinner();
         accelSpinner = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
+        adjustSettingsLbl = new javax.swing.JLabel();
         newGameBtn = new javax.swing.JButton();
         startBtn = new javax.swing.JButton();
         hintBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        targetPropLbl = new javax.swing.JLabel();
+        heightLbl = new javax.swing.JLabel();
+        widthLbl = new javax.swing.JLabel();
         targetHeightTxt = new javax.swing.JTextField();
         targetWidthTxt = new javax.swing.JTextField();
+        statusPanel = new physics.StatusPanel();
 
-        speedLabel.setFont(new java.awt.Font("Arial", 1, 14));
+        speedLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         speedLabel.setText("Speed: ");
 
         angleLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -129,8 +123,8 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 16));
-        jLabel1.setText("Adjust Settings below:");
+        adjustSettingsLbl.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        adjustSettingsLbl.setText("Adjust Settings below:");
 
         newGameBtn.setText("New game");
         newGameBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,20 +157,28 @@ public class SettingsPanel extends javax.swing.JPanel {
         });
 
         hintBtn.setText("Hint");
+        hintBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hintBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hintBtnMouseExited(evt);
+            }
+        });
         hintBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hintBtnActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14));
-        jLabel2.setText("Target Properties");
+        targetPropLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        targetPropLbl.setText("Target Properties");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14));
-        jLabel3.setText("Height:");
+        heightLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        heightLbl.setText("Height:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14));
-        jLabel4.setText("Width:");
+        widthLbl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        widthLbl.setText("Width:");
 
         targetHeightTxt.setEditable(false);
         targetHeightTxt.setFont(new java.awt.Font("Arial", 1, 12));
@@ -190,21 +192,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accelLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(newGameBtn)
@@ -212,27 +199,48 @@ public class SettingsPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(startBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(targetWidthTxt)
-                    .addComponent(targetHeightTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addComponent(speedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(angleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accelLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(accelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(speedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(adjustSettingsLbl))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(heightLbl)
+                            .addComponent(widthLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(targetWidthTxt)
+                            .addComponent(targetHeightTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(targetPropLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(adjustSettingsLbl)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -249,17 +257,17 @@ public class SettingsPanel extends javax.swing.JPanel {
                         .addGap(49, 49, 49)
                         .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addGap(13, 13, 13)
+                .addComponent(targetPropLbl)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(heightLbl)
                             .addComponent(targetHeightTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(widthLbl)
                             .addComponent(targetWidthTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
@@ -268,7 +276,8 @@ public class SettingsPanel extends javax.swing.JPanel {
                             .addComponent(newGameBtn))))
                 .addGap(32, 32, 32)
                 .addComponent(hintBtn)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -285,13 +294,14 @@ public class SettingsPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_newGameBtnActionPerformed
 
     public void startNewGame() {
+        statusPanel.setStatus("New game started");
         animPanel.drawTarget();
         animPanel.calculateDistanceGunTarget();
         targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
         targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
     }
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-
+        statusPanel.setStatus("Please wait..");
         if (trajectoryDrawn) {
             angle = (Double) angleSpinner.getValue();
             setAngle(animPanel);
@@ -336,8 +346,35 @@ public class SettingsPanel extends javax.swing.JPanel {
 
     private void hintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintBtnActionPerformed
         animPanel.repaint();
+        statusPanel.setStatus("Please wait..");
         startAnimation(false);
+//        statusPanel.setStatus("Hint mode finished");
     }//GEN-LAST:event_hintBtnActionPerformed
+
+    private void hintBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hintBtnMouseEntered
+        hintBtn.setBackground(Color.YELLOW);
+    }//GEN-LAST:event_hintBtnMouseEntered
+
+    private void hintBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hintBtnMouseExited
+        hintBtn.setBackground(defaultBtnBackground);
+    }//GEN-LAST:event_hintBtnMouseExited
+
+    private void startAnimation(boolean realMode) {
+        updateCalc();
+        setEnabledSwingComponents(false);
+        MovingBall b = new MovingBall(animPanel, calc);
+        if (realMode == false) {
+            b.setIsRealMode(false);
+            trajectoryDrawn = true;
+        } else {
+            b.setIsRealMode(true);
+            trajectoryDrawn = false;
+        }
+        b.setPnlRef(this);
+//        Thread t = new Thread(b);
+//        t.start();
+        SwingUtilities.invokeLater(b);
+    }
 
     /**
      * Set
@@ -358,23 +395,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         calc.setStartPoint(animPanel.getGunCoorinates());
     }
 
-    private void startAnimation(boolean realMode) {
-        updateCalc();
-        setEnabledSwingComponents(false);
-        MovingBall b = new MovingBall(animPanel, calc);
-        if (realMode == false) {
-            b.setIsRealMode(false);
-            trajectoryDrawn = true;
-        } else {
-            b.setIsRealMode(true);
-            trajectoryDrawn = false;
-        }
-        b.setPnlRef(this);
-        Thread t = new Thread(b);
-        t.start();
-//        SwingUtilities.invokeLater(b);
-    }
-
     /**
      * Disables the swing components during Thread execution
      * in order to prevent the user from starting several threads
@@ -392,21 +412,30 @@ public class SettingsPanel extends javax.swing.JPanel {
         accelSpinner.setValue((Double) accelVal);
     }
 
+    /**
+     * Sets reference to status panel.
+     * @param statusPnl Reference variable to be set.
+     */
+    public StatusPanel getStatusPanel() {
+        return statusPanel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accelLabel;
     private javax.swing.JSpinner accelSpinner;
+    private javax.swing.JLabel adjustSettingsLbl;
     private javax.swing.JLabel angleLabel;
     private javax.swing.JSpinner angleSpinner;
+    private javax.swing.JLabel heightLbl;
     private javax.swing.JButton hintBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton newGameBtn;
     private javax.swing.JLabel speedLabel;
     private javax.swing.JSpinner speedSpinner;
     private javax.swing.JButton startBtn;
+    private physics.StatusPanel statusPanel;
     private javax.swing.JTextField targetHeightTxt;
+    private javax.swing.JLabel targetPropLbl;
     private javax.swing.JTextField targetWidthTxt;
+    private javax.swing.JLabel widthLbl;
     // End of variables declaration//GEN-END:variables
 }

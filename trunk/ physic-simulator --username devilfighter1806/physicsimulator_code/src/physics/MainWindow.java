@@ -10,16 +10,20 @@ import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JRadioButton;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Contains all panels.
@@ -27,13 +31,22 @@ import javax.swing.event.ChangeListener;
  */
 public class MainWindow extends JFrame {
 
+    /**
+     * Animating starts here.
+     */
     private AnimationPanel animationPanel;
+    /**
+     * Adjust settings from formulas.
+     */
     private SettingsPanel settingsPanel;
     private ControllerPanel controllerPanel;
     private LogoPanel logoPanel;
-    private Status status;
+    private StatusPanel statusPanel;
     private LayoutManager layout;
     private Container container;
+    /**
+     * Menu bar with relevant menus.
+     */
     private MenuBar menuBar;
 
     public MainWindow(String name) {
@@ -50,6 +63,8 @@ public class MainWindow extends JFrame {
         logoPanel = new LogoPanel();
         animationPanel = new AnimationPanel();
         settingsPanel = new SettingsPanel(animationPanel);
+        statusPanel = settingsPanel.getStatusPanel();
+        statusPanel.setStatus("Game not started");
         controllerPanel = new ControllerPanel();
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +73,8 @@ public class MainWindow extends JFrame {
         container.add(animationPanel, BorderLayout.CENTER);
 //        container.add(controllerPanel, BorderLayout.SOUTH);
         menuBar = new MenuBar(settingsPanel);
-        setJMenuBar(menuBar.newJMenuBar());
+        setJMenuBar(menuBar.newJMenuBar(this));
+        setLocation(150, 50);
         setVisible(true);
     }
 }
@@ -70,21 +86,36 @@ public class MainWindow extends JFrame {
 class MenuBar {
 
     /**
-     * Stored radio button menu items names in gravity menu.
+     * Stores look names.
      */
-    private final String[] planetNames = {"Moon", "Saturn", "Mercury", "Earth",
-        "Mars", "Neptune", "Uranus", "Jupiter", "Venus", "Sun", "Vacuum"};
+    private final String[] LOOKS = {"Metal", "Motif", "Windows"};
     private JMenuBar menuBar;
     private JMenu gameMenu;
-    private JMenu gravityMenu;
-    private JMenu helpMenu;
     private JMenuItem gameNewMenuItem;
     private JMenuItem gameExitMenuItem;
-    private JMenuItem contactMenuItem;
-    private JMenuItem aboutMenuItem;
+    private JMenu gravityMenu;
     private JRadioButtonMenuItem[] planetsItems;
     private Gravity[] planetGravity;
+    private JMenu helpMenu;
+    private JMenuItem contactMenuItem;
+    private JMenuItem aboutMenuItem;
+    /**
+     * Change main window's looks from look menu.
+     */
+    private JMenu lookMenu;
+    private JCheckBoxMenuItem[] lookMenuItems;
+    /**
+     * Stores refercen to settings panel for changing acceleration value.
+     */
     private SettingsPanel settingsPanel;
+    /**
+     * Stores different looks and feels for main window.
+     */
+    private UIManager.LookAndFeelInfo looks[];
+    /**
+     * Stores main window reference for changing window's look.
+     */
+    private JFrame mainWindow;
 
     public MenuBar(SettingsPanel settingsPnl) {
         settingsPanel = settingsPnl;
@@ -94,15 +125,21 @@ class MenuBar {
      * Creates new jmenu bar with relevant menu items.
      * @return JMenuBar
      */
-    public JMenuBar newJMenuBar() {
+    public JMenuBar newJMenuBar(JFrame mainW) {
+        mainWindow = mainW;
         menuBar = new JMenuBar();
         planetGravity = Gravity.values();
         createGameMenu();
         createPlanetsMenu();
+        createLookAndFeelMenu();
         createHelpMenu();
         return menuBar;
     }
 
+    /**
+     * Creates game menu with new game and exit game menu items. Action 
+     * listeners is added to these items. Game menu is added to the menu bar.
+     */
     private void createGameMenu() {
         gameMenu = new JMenu("Game");
         gameNewMenuItem = new JMenuItem("New game");
@@ -127,19 +164,20 @@ class MenuBar {
     }
 
     /**
-     * Planets menu represents gravities in different planets.
+     * Planets menu represents gravities in different planets. Adds action
+     * listeners to planet menu items.
      */
     private void createPlanetsMenu() {
         gravityMenu = new JMenu("Gravity");
-        planetsItems = new JRadioButtonMenuItem[planetNames.length];
+        planetsItems = new JRadioButtonMenuItem[planetGravity.length];
         ButtonGroup planetsBtnGroup = new ButtonGroup();
-        for (int i = 0; i < planetNames.length; i++) {
-            planetsItems[i] = new JRadioButtonMenuItem(planetNames[i]);
+        for (int i = 0; i < planetGravity.length; i++) {
+            planetsItems[i] = new JRadioButtonMenuItem(planetGravity[i].toString());
             planetsItems[i].addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    for (int i = 0; i < planetNames.length; i++) {
+                    for (int i = 0; i < planetGravity.length; i++) {
                         if (planetsItems[i].isSelected()) {
                             settingsPanel.setAcceleration(planetGravity[i].value());
                             break;
@@ -153,10 +191,67 @@ class MenuBar {
         menuBar.add(gravityMenu);
     }
 
+    /**
+     * Creates look and feel menu for changing main window's look.
+     */
+    private void createLookAndFeelMenu() {
+        looks = UIManager.getInstalledLookAndFeels();
+        lookMenu = new JMenu("LookNFeel");
+        lookMenuItems = new JCheckBoxMenuItem[LOOKS.length];
+        ButtonGroup lookGroup = new ButtonGroup();
+        for (int i = 0; i < LOOKS.length; i++) {
+            lookMenuItems[i] = new JCheckBoxMenuItem(LOOKS[i]);
+            lookMenu.add(lookMenuItems[i]);
+            lookGroup.add(lookMenuItems[i]);
+            lookMenuItems[i].addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    for (int i = 0; i < lookMenuItems.length; i++) {
+                        if (lookMenuItems[i].isSelected()) {
+                            System.out.println("check");
+                            try {
+                                UIManager.setLookAndFeel(looks[i].getClassName());
+                                SwingUtilities.updateComponentTreeUI(mainWindow);
+                            } catch (ClassNotFoundException ex) {
+                                JOptionPane.showMessageDialog(mainWindow, "Look not found");
+                            } catch (InstantiationException ex) {
+                                Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IllegalAccessException ex) {
+                                Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (UnsupportedLookAndFeelException ex) {
+                                Logger.getLogger(MenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        menuBar.add(lookMenu);
+    }
+
+    /**
+     * Creates help menu with about and contacts menu items.
+     */
     private void createHelpMenu() {
         helpMenu = new JMenu("Help");
         aboutMenuItem = new JMenuItem("About...");
+        aboutMenuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+             
+            }
+        });
         contactMenuItem = new JMenuItem("Contacts");
+        contactMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               JOptionPane.showMessageDialog(mainWindow, 
+                       String.format("Stanislav Petrov, fn61055, SU FMI\n"+
+                       "email: devilfighter1806@gmail.com\n" +
+                       "Krasimir Baylov, fn61080, SU FMI\nemail: k.bailov@gmail.com"));
+            }
+        });
         helpMenu.add(aboutMenuItem);
         helpMenu.add(contactMenuItem);
         menuBar.add(helpMenu);
@@ -169,15 +264,33 @@ class MenuBar {
  */
 enum Gravity {
 
-    MOON(1.62F), SATURN(8.96F), MERCURY(3.701F), EARTH(9.81F), MARS(3.86F), NEPTUNE(11.15F),
-    URANUS(8.69F), JUPITER(24.9F), VENUS(8.88F), SUN(273.95F), VACUUM(0F);
+    MOON(1.62F, "Moon"), SATURN(8.96F, "Saturn"), MERCURY(3.701F, "Mercury"),
+    EARTH(9.81F, "Earth"), MARS(3.86F, "Mars"), NEPTUNE(11.15F, "Neptune"),
+    URANUS(8.69F, "Uranus"), JUPITER(24.9F, "Jupiter"), VENUS(8.88F, "Venus"),
+    SUN(273.95F, "Sun"), VACUUM(0F, "Vacuum");
     private float value;
+    private String name;
 
-    Gravity(float val) {
+    Gravity(float val, String name) {
         value = val;
+        this.name = name;
     }
 
     public float value() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public String[] getGravityNames() {
+        Gravity[] gravities = Gravity.values();
+        String[] result = new String[gravities.length];
+        for (int i = 0; i < gravities.length; i++) {
+            result[i] = gravities[i].toString();
+        }
+        return result;
     }
 }

@@ -15,6 +15,10 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -88,7 +92,7 @@ public class AnimationPanel extends javax.swing.JPanel {
         return gunPnl.getTopCoordinates();
     }
 
-    public Target getTarget(){
+    public Target getTarget() {
         return target;
     }
 

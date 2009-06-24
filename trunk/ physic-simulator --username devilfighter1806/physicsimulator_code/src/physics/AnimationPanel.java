@@ -155,31 +155,28 @@ public class AnimationPanel extends javax.swing.JPanel {
                 mousePoint.y >= targetRadius.y - Target.TARGET_SIZE / 2 && mousePoint.y <= targetRadius.y + Target.TARGET_SIZE / 2) {
             if (!drawnToolTip) {
                 Graphics2D g = (Graphics2D) this.getGraphics();
-                Point2D loc = (Point2D) mousePoint;
                 Font font = new Font("Monospaced", Font.PLAIN, 15);
                 FontRenderContext frc = g.getFontRenderContext();
                 TextLayout layout = new TextLayout(String.format("distance: %.2f", calculateDistanceGunTarget()),
                         font, frc);
-                layout.draw(g, (float) loc.getX() + TOOLTIP_OFFSET, (float) loc.getY());
                 Rectangle2D bounds = layout.getBounds();
-                bounds.setRect(bounds.getX() + loc.getX() + TOOLTIP_OFFSET,
-                        bounds.getY() + loc.getY() - 3,
-                        bounds.getWidth(),
-                        bounds.getHeight() + 6);
-                g.draw(bounds);
+                bounds.setRect(bounds.getX() + targetRadius.x + TOOLTIP_OFFSET,
+                        bounds.getY() + targetRadius.y - 3,
+                        bounds.getWidth(), bounds.getHeight() + 6);
                 /*
-                 * Indicates if too tip is longer than free space in panel.
+                 * Second condition: Indicates if too tip is longer than free
+                 * space in panel.
                  */
                 double limitWidth = getWidth() - bounds.getX();
-                if (limitWidth < bounds.getWidth()) {
-                    g.clearRect((int) (bounds.getX() - 2), (int) (bounds.getY() - 2),
-                            (int) (limitWidth + 2), (int) (bounds.getHeight() + 10));
-                    target.reDrawTarget(g, getWidth(), getHeight());
-                    g.setColor(Color.BLACK);
-                    layout.draw(g, (float) loc.getX() - 5 * TOOLTIP_OFFSET, (float) loc.getY());
+                if (limitWidth >= bounds.getWidth()) {
+                    layout.draw(g, (float) targetRadius.x + TOOLTIP_OFFSET,
+                            (float) targetRadius.y);
+                    g.draw(bounds);
+                } else {
+                    layout.draw(g, (float) targetRadius.x - 5 * TOOLTIP_OFFSET, (float) targetRadius.y);
                     bounds = layout.getBounds();
-                    bounds.setRect(bounds.getX() + loc.getX() - 5 * TOOLTIP_OFFSET,
-                            bounds.getY() + loc.getY() - 3,
+                    bounds.setRect(bounds.getX() + targetRadius.x - 5 * TOOLTIP_OFFSET,
+                            bounds.getY() + targetRadius.y - 3,
                             bounds.getWidth(),
                             bounds.getHeight() + 6);
                     g.draw(bounds);

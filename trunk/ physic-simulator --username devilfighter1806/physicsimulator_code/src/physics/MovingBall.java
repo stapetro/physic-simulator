@@ -116,6 +116,7 @@ public class MovingBall implements Runnable {
             if (isTargetHit()) {
                 targetHitted = true;
                 settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
+                animPanel.getTarget().simulateHitAnimate(animPanel.getGraphics());
                 break;
             }
             g.fillOval(currentCoords.x, currentCoords.y, BALL_SIZE, BALL_SIZE);
@@ -146,10 +147,7 @@ public class MovingBall implements Runnable {
             if (isTargetHit()) {
                 targetHitted = true;
                 settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
-//                animPanel.getTarget().simulateHit(animPanel);
-//                TargetHitSimulator tSim = new TargetHitSimulator(animPanel);
-//                SwingUtilities.invokeLater(tSim);
-//                new Thread(tSim).start();
+                animPanel.getTarget().simulateHitAnimate(animPanel.getGraphics());
                 break;
             }
             g.drawOval(currentCoords.x, currentCoords.y, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);

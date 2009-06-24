@@ -350,7 +350,6 @@ public class SettingsPanel extends javax.swing.JPanel {
         animPanel.repaint();
         statusPanel.setStatus("Please wait..");
         startAnimation(false);
-//        statusPanel.setStatus("Hint mode finished");
     }//GEN-LAST:event_hintBtnActionPerformed
 
     private void hintBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hintBtnMouseEntered
@@ -373,8 +372,6 @@ public class SettingsPanel extends javax.swing.JPanel {
             trajectoryDrawn = false;
         }
         b.setPnlRef(this);
-//        Thread t = new Thread(b);
-//        t.start();
         SwingUtilities.invokeLater(b);
     }
 

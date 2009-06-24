@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Defines the basic characteristics of the target object
@@ -19,7 +21,7 @@ public class Target {
     private static final int Y_MID_UPPER_BOUND = 250;
     private static final int Y_UPPER_BOUND = 50;
     private static final int HEIGHT = 30;
-    private static final int OFFSET = 10;
+    public static final int OFFSET = 10;
     private static final Color[] targetColors = {Color.BLACK, Color.WHITE, Color.RED};
     public static final int TARGET_SIZE = 50;
     /**
@@ -66,8 +68,29 @@ public class Target {
      * Simulates hit by making some animation
      * that attracts the attention of the user
      */
-    public void simulateHit() {
-        //abe tuka neshto sharenko da stava
+    public void simulateHit(AnimationPanel animPnl) {
+        Graphics g = animPnl.getGraphics();
+        int tempX = x, tempY = y;
+        Random rand = new Random();
+        int size = TARGET_SIZE;
+        int cnt = 1;
+        for (int k = 0; k < 10; k++) {
+//            animPnl.repaint();
+            for (int i = 0; i < targetColors.length; i++) {
+                g.setColor(targetColors[( cnt) % targetColors.length]);
+                g.fillOval(tempX, tempY, size, size);
+                tempX += OFFSET;
+                tempY += OFFSET;
+                size -= (2 * OFFSET);
+            }
+            cnt++;
+            try {
+                System.out.println("fuck it");
+                Thread.sleep(199);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Target.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -101,7 +124,7 @@ public class Target {
      * Clears target from panel.
      * @param g
      */
-    public void clearTarget(Graphics g){
+    public void clearTarget(Graphics g) {
         g.clearRect(x, y, TARGET_SIZE, TARGET_SIZE);
     }
 

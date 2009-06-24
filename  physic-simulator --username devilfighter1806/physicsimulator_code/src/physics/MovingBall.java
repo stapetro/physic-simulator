@@ -6,7 +6,7 @@ package physics;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import userInfo.Calculator;
 
 /**
@@ -18,7 +18,7 @@ public class MovingBall implements Runnable {
     /**
      * determines the size of the ball. Inlcuding width and height.
      */
-    private static final int BALL_SIZE = 20;
+    private static final int BALL_SIZE = 15;
     /**
      * The size of the ball in simulation mode.
      */
@@ -27,7 +27,7 @@ public class MovingBall implements Runnable {
      * Offset that is used when the ball is drawn. This is due to some
      * unexpected result for the Y coordinate of the ball.
      */
-    private static final int Y_OFFSET = 20;
+    private static final int Y_OFFSET = 14;
     /**
      * Message that is displayed when target is hit
      */
@@ -146,6 +146,10 @@ public class MovingBall implements Runnable {
             if (isTargetHit()) {
                 targetHitted = true;
                 settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
+//                animPanel.getTarget().simulateHit(animPanel);
+//                TargetHitSimulator tSim = new TargetHitSimulator(animPanel);
+//                SwingUtilities.invokeLater(tSim);
+//                new Thread(tSim).start();
                 break;
             }
             g.drawOval(currentCoords.x, currentCoords.y, SIMULATION_BALL_SIZE, SIMULATION_BALL_SIZE);

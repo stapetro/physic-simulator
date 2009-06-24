@@ -410,7 +410,7 @@ public class SettingsPanel extends javax.swing.JPanel {
     }
 
     public void setAcceleration(double accelVal) {
-        acceleration = accelVal;
+        acceleration = (accelVal == 0F) ? 0.01F : accelVal;
         accelSpinner.setValue((Double) accelVal);
     }
 

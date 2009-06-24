@@ -88,6 +88,10 @@ public class AnimationPanel extends javax.swing.JPanel {
         return gunPnl.getTopCoordinates();
     }
 
+    public Target getTarget(){
+        return target;
+    }
+
     /**
      * Getter for target point
      * @return the point of the target

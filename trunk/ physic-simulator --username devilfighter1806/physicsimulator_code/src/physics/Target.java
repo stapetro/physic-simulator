@@ -164,7 +164,7 @@ public class Target {
      * @param panelWidth Animation panel width.
      * @param panelHeight Animation panel height.
      */
-    public void reDrawTarget(Graphics g, int panelWidth, int panelHeight) {
+    public void reDrawTarget(Graphics g) {
         drawTarget(g);
     }
 

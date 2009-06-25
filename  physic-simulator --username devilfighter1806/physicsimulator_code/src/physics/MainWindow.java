@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package physics;
 
 import java.awt.BorderLayout;
@@ -29,6 +25,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 /**
  * Contains all panels.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class MainWindow extends JFrame {
 
@@ -42,7 +39,6 @@ public class MainWindow extends JFrame {
      * Adjust settings from formulas.
      */
     private SettingsPanel settingsPanel;
-    private ControllerPanel controllerPanel;
     private LogoPanel logoPanel;
     private StatusPanel statusPanel;
     private LayoutManager layout;
@@ -71,7 +67,6 @@ public class MainWindow extends JFrame {
         settingsPanel = new SettingsPanel(animationPanel);
         statusPanel = settingsPanel.getStatusPanel();
         statusPanel.setStatus("Simulator not started");
-        controllerPanel = new ControllerPanel();
         container.add(logoPanel, BorderLayout.NORTH);
         container.add(settingsPanel, BorderLayout.WEST);
         container.add(animationPanel, BorderLayout.CENTER);
@@ -154,7 +149,7 @@ class MenuBar {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                settingsPanel.startNewGame();
+                settingsPanel.startNewSimulator();
             }
         });
         gameExitMenuItem.addActionListener(new ActionListener() {
@@ -289,6 +284,10 @@ enum Gravity {
         return name;
     }
 
+    /**
+     * Gravity names getter.
+     * @return Gravity names representing relevant menu items.
+     */
     public String[] getGravityNames() {
         Gravity[] gravities = Gravity.values();
         String[] result = new String[gravities.length];

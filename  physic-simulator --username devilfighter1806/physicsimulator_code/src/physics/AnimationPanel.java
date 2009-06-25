@@ -1,8 +1,3 @@
-/*
- * AnimationPanel.java
- *
- * Created on 2009-5-16, 23:20:19
- */
 package physics;
 
 import java.awt.Color;
@@ -25,6 +20,7 @@ import javax.swing.JLabel;
 /**
  * Display animations.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class AnimationPanel extends javax.swing.JPanel {
 
@@ -73,6 +69,10 @@ public class AnimationPanel extends javax.swing.JPanel {
         gunPnl.setAngle(angleValue);
     }
 
+    /**
+     * Redraws target when panel is resized.
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -88,23 +88,36 @@ public class AnimationPanel extends javax.swing.JPanel {
         repaint();
     }
 
+    /**
+     * Coordinates of the top of the gun.
+     * @return
+     */
     public Point getGunCoorinates() {
         return gunPnl.getTopCoordinates();
     }
 
+    /**
+     * Target's object reference getter.
+     * @return Target reference.
+     */
     public Target getTarget() {
         return target;
     }
 
     /**
-     * Getter for target point
+     * Target upper left corner point getter.
      * @return the point of the target
      */
     public Point getTargetPoint() {
         return target.getPoint();
     }
 
-    public Point getTargetRadiusPoint() {
+    /**
+     * Target center point getter. Used in moving ball class for checking
+     * whether target is hitted by the ball.
+     * @return Target center point.
+     */
+    public Point getTargetCenterPoint(){
         return target.getCenterPoint();
     }
 
@@ -121,6 +134,9 @@ public class AnimationPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(550, 500));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
@@ -157,10 +173,30 @@ public class AnimationPanel extends javax.swing.JPanel {
         drawToolTip(evt.getPoint());
     }//GEN-LAST:event_formMouseMoved
 
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        moveTarget(evt.getPoint());
+    }//GEN-LAST:event_formMouseDragged
+
+    /**
+     * Draggine target with mouse.
+     * @param mousePoint New target coordinates for drawing it.
+     */
+    private void moveTarget(Point mousePoint) {
+        if (isInsideTarget(mousePoint)) {
+            target.setTargetCoordinates(mousePoint.x - Target.TARGET_SIZE / 2,
+                    mousePoint.y - Target.TARGET_SIZE / 2);
+            target.drawTarget(myGraphics);
+        }
+    }
+
+    /**
+     * Checks wheter mouse is over the target and draws tool tip associated with
+     * target.
+     * @param mousePoint Stores mouse coordinates.
+     */
     private void drawToolTip(Point mousePoint) {
-        Point targetRadius = target.getCenterPoint();
-        if (mousePoint.x >= targetRadius.x - Target.TARGET_SIZE / 2 && mousePoint.x <= targetRadius.x + Target.TARGET_SIZE / 2 &&
-                mousePoint.y >= targetRadius.y - Target.TARGET_SIZE / 2 && mousePoint.y <= targetRadius.y + Target.TARGET_SIZE / 2) {
+        Point targetCenterPoint = target.getCenterPoint();
+        if (isInsideTarget(mousePoint)) {
             if (!drawnToolTip) {
                 Graphics2D g = (Graphics2D) this.getGraphics();
                 Font font = new Font("Monospaced", Font.PLAIN, 15);
@@ -168,8 +204,8 @@ public class AnimationPanel extends javax.swing.JPanel {
                 TextLayout layout = new TextLayout(String.format("distance: %.2f", calculateDistanceGunTarget()),
                         font, frc);
                 Rectangle2D bounds = layout.getBounds();
-                bounds.setRect(bounds.getX() + targetRadius.x + TOOLTIP_OFFSET,
-                        bounds.getY() + targetRadius.y - 3,
+                bounds.setRect(bounds.getX() + targetCenterPoint.x + TOOLTIP_OFFSET,
+                        bounds.getY() + targetCenterPoint.y - 3,
                         bounds.getWidth(), bounds.getHeight() + 6);
                 /*
                  * Second condition: Indicates if too tip is longer than free
@@ -177,14 +213,14 @@ public class AnimationPanel extends javax.swing.JPanel {
                  */
                 double limitWidth = getWidth() - bounds.getX();
                 if (limitWidth >= bounds.getWidth()) {
-                    layout.draw(g, (float) targetRadius.x + TOOLTIP_OFFSET,
-                            (float) targetRadius.y);
+                    layout.draw(g, (float) targetCenterPoint.x + TOOLTIP_OFFSET,
+                            (float) targetCenterPoint.y);
                     g.draw(bounds);
                 } else {
-                    layout.draw(g, (float) targetRadius.x - 5 * TOOLTIP_OFFSET, (float) targetRadius.y);
+                    layout.draw(g, (float) targetCenterPoint.x - 5 * TOOLTIP_OFFSET, (float) targetCenterPoint.y);
                     bounds = layout.getBounds();
-                    bounds.setRect(bounds.getX() + targetRadius.x - 5 * TOOLTIP_OFFSET,
-                            bounds.getY() + targetRadius.y - 3,
+                    bounds.setRect(bounds.getX() + targetCenterPoint.x - 5 * TOOLTIP_OFFSET,
+                            bounds.getY() + targetCenterPoint.y - 3,
                             bounds.getWidth(),
                             bounds.getHeight() + 6);
                     g.draw(bounds);
@@ -201,6 +237,27 @@ public class AnimationPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Checks wheter mouse cursor is over the target.
+     * @param mousePoint Mouse cursor coordinates.
+     * @return True - if mouse is inside target, false - otherwise.
+     */
+    private boolean isInsideTarget(Point mousePoint) {
+        Point targetCenterPoint = target.getCenterPoint();
+        if (mousePoint.x >= targetCenterPoint.x - Target.TARGET_SIZE / 2 &&
+                mousePoint.x <= targetCenterPoint.x + Target.TARGET_SIZE / 2 &&
+                mousePoint.y >= targetCenterPoint.y - Target.TARGET_SIZE / 2 &&
+                mousePoint.y <= targetCenterPoint.y + Target.TARGET_SIZE / 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Calculates distance between top of the gun and target center.
+     * @return Distance value.
+     */
     public double calculateDistanceGunTarget() {
         Point targetCenter = target.getCenterPoint();
         Point gunPoint = gunPnl.getTopCoordinates();
@@ -211,10 +268,18 @@ public class AnimationPanel extends javax.swing.JPanel {
         return Math.sqrt(a + b) / 10;
     }
 
+    /**
+     * Horizontal target's distance from top of the gun getter.
+     * @return Horizontal distance value representation.
+     */
     public String getTargetHorizontalDistance() {
         return String.format("%.0f", targetHorizontalDistance);
     }
 
+    /**
+     * Vertical target's distance from top of the gun getter.
+     * @return Vertical distance value representation.
+     */
     public String getTargetVerticalDistance() {
         return String.format("%.0f", targetVerticalDistance);
     }

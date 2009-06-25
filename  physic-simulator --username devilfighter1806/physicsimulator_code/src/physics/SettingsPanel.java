@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 import userInfo.Calculator;
 
 /**
- * Settings panel.
+ * Settings panel for simulator properties tunings.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  * @version 1.0
  */
@@ -56,7 +56,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         this.animPanel = animPnl;
         animPanel.addMouseMotionListener(new MouseClickHandler());
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        defaultBtnBackground = newGameBtn.getBackground();
+        defaultBtnBackground = newTargetBtn.getBackground();
         animPanel.setAngle((Double) angleSpinner.getValue());
         initVelocity = (Double) speedSpinner.getValue();
         angle = (Double) angleSpinner.getValue();
@@ -80,7 +80,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         angleSpinner = new javax.swing.JSpinner();
         accelSpinner = new javax.swing.JSpinner();
         adjustSettingsLbl = new javax.swing.JLabel();
-        newGameBtn = new javax.swing.JButton();
+        newTargetBtn = new javax.swing.JButton();
         startBtn = new javax.swing.JButton();
         hintBtn = new javax.swing.JButton();
         targetPropLbl = new javax.swing.JLabel();
@@ -119,7 +119,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             }
         });
 
-        accelSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        accelSpinner.setFont(new java.awt.Font("Arial", 0, 12));
         accelSpinner.setModel(new javax.swing.SpinnerNumberModel(9.0d, 0.0d, 275.0d, 1.0d));
         accelSpinner.setEditor(new JSpinner.NumberEditor(accelSpinner, "#0.00"));
         accelSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -131,18 +131,18 @@ public class SettingsPanel extends javax.swing.JPanel {
         adjustSettingsLbl.setFont(new java.awt.Font("Arial", 1, 16));
         adjustSettingsLbl.setText("Adjust Settings below:");
 
-        newGameBtn.setText("New game");
-        newGameBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        newTargetBtn.setText("New target");
+        newTargetBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                newGameBtnMouseEntered(evt);
+                newTargetBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                newGameBtnMouseExited(evt);
+                newTargetBtnMouseExited(evt);
             }
         });
-        newGameBtn.addActionListener(new java.awt.event.ActionListener() {
+        newTargetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newGameBtnActionPerformed(evt);
+                newTargetBtnActionPerformed(evt);
             }
         });
 
@@ -234,12 +234,12 @@ public class SettingsPanel extends javax.swing.JPanel {
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(newGameBtn)
+                .addComponent(newTargetBtn)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(hintBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(startBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +278,7 @@ public class SettingsPanel extends javax.swing.JPanel {
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(startBtn)
-                            .addComponent(newGameBtn))))
+                            .addComponent(newTargetBtn))))
                 .addGap(18, 18, 18)
                 .addComponent(hintBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
@@ -288,23 +288,28 @@ public class SettingsPanel extends javax.swing.JPanel {
 
     /**
      * Draws target on animation panel.
-     * @param evt
+     * @param evt Event when new target buttons is pressed.
      */
-    private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-//        animPanel.drawTarget();
-//        animPanel.calculateDistanceGunTarget();
-//        targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
-//        targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
-        startNewGame();
-}//GEN-LAST:event_newGameBtnActionPerformed
+    private void newTargetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTargetBtnActionPerformed
+        startNewSimulator();
+}//GEN-LAST:event_newTargetBtnActionPerformed
 
-    public void startNewGame() {
+    /**
+     * Draws target whne new simulator is started and inizliazes all variables
+     * with default values.
+     */
+    public void startNewSimulator() {
         statusPanel.setStatus("Simulator started");
         animPanel.drawTarget();
         animPanel.calculateDistanceGunTarget();
         targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
         targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
     }
+
+    /**
+     * Starts animation in real/hint mode.
+     * @param evt Action event to be handled.
+     */
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         statusPanel.setStatus("Please wait..");
         if (trajectoryDrawn) {
@@ -316,13 +321,23 @@ public class SettingsPanel extends javax.swing.JPanel {
         startAnimation(true);
 }//GEN-LAST:event_startBtnActionPerformed
 
-    private void newGameBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGameBtnMouseEntered
-        newGameBtn.setBackground(Color.YELLOW);
-}//GEN-LAST:event_newGameBtnMouseEntered
+    /**
+     * Mouse hover effect over new target button.
+     * @param evt Mouse event to be handles when mouse is over the new target
+     * button.
+     */
+    private void newTargetBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newTargetBtnMouseEntered
+        newTargetBtn.setBackground(Color.YELLOW);
+}//GEN-LAST:event_newTargetBtnMouseEntered
 
-    private void newGameBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGameBtnMouseExited
-        newGameBtn.setBackground(defaultBtnBackground);
-}//GEN-LAST:event_newGameBtnMouseExited
+    /**
+     * Mouse hover effect over new target button.
+     * @param evt Mouse event to be handles when mouse leaves the new target
+     * button.
+     */
+    private void newTargetBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newTargetBtnMouseExited
+        newTargetBtn.setBackground(defaultBtnBackground);
+}//GEN-LAST:event_newTargetBtnMouseExited
 
     private void startBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startBtnMouseEntered
         startBtn.setBackground(Color.YELLOW);
@@ -332,6 +347,10 @@ public class SettingsPanel extends javax.swing.JPanel {
         startBtn.setBackground(defaultBtnBackground);
 }//GEN-LAST:event_startBtnMouseExited
 
+    /**
+     * Set gun's angle value when angle spinner is changed.
+     * @param evt Angle spinner change event to be handled.
+     */
     private void angleSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleSpinnerStateChanged
         angle = (Double) angleSpinner.getValue();
         setAngle(animPanel);
@@ -339,16 +358,28 @@ public class SettingsPanel extends javax.swing.JPanel {
         trajectoryDrawn = false;
     }//GEN-LAST:event_angleSpinnerStateChanged
 
+    /**
+     * Set gun's speed value when angle spinner is changed.
+     * @param evt Angle spinner change event to be handled.
+     */
     private void speedSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_speedSpinnerStateChanged
         initVelocity = (Double) speedSpinner.getValue();
         trajectoryDrawn = false;
     }//GEN-LAST:event_speedSpinnerStateChanged
 
+    /**
+     * Set gun's acceleration(gravity) value when angle spinner is changed.
+     * @param evt Angle spinner change event to be handled.
+     */
     private void accelSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_accelSpinnerStateChanged
         acceleration = (Double) accelSpinner.getValue();
         trajectoryDrawn = false;
     }//GEN-LAST:event_accelSpinnerStateChanged
 
+    /**
+     * Starts animation in hint mode.
+     * @param evt Event to be handled when hint button is pressed.
+     */
     private void hintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintBtnActionPerformed
         animPanel.repaint();
         statusPanel.setStatus("Please wait..");
@@ -363,10 +394,14 @@ public class SettingsPanel extends javax.swing.JPanel {
         hintBtn.setBackground(defaultBtnBackground);
     }//GEN-LAST:event_hintBtnMouseExited
 
+    /**
+     * Starts animation and updates calculation members.
+     * @param realMode True - if animation is in real mode, false - hint mode.
+     */
     private void startAnimation(boolean realMode) {
         updateCalc();
         setEnabledSwingComponents(false);
-        MovingBall b = new MovingBall(animPanel, calc);
+        MovingBall b = new MovingBall(animPanel,this, calc);
         if (realMode == false) {
             b.setIsRealMode(false);
             trajectoryDrawn = true;
@@ -374,13 +409,12 @@ public class SettingsPanel extends javax.swing.JPanel {
             b.setIsRealMode(true);
             trajectoryDrawn = false;
         }
-        b.setPnlRef(this);
         SwingUtilities.invokeLater(b);
     }
 
     /**
-     * Set
-     * @param animPnl
+     * Gun's angle setter in animation panel.
+     * @param animPnl Animation panel reference.
      */
     private void setAngle(AnimationPanel animPnl) {
         animPnl.setAngle(angle);
@@ -406,12 +440,15 @@ public class SettingsPanel extends javax.swing.JPanel {
     public void setEnabledSwingComponents(boolean val) {
         startBtn.setEnabled(val);
         hintBtn.setEnabled(val);
-        newGameBtn.setEnabled(val);
+        newTargetBtn.setEnabled(val);
         angleSpinner.setEnabled(val);
     }
 
+    /**
+     * Set acceleration value to acceleration spinner.
+     * @param accelVal Acceleration value to be set.
+     */
     public void setAcceleration(double accelVal) {
-        acceleration = (accelVal == 0F) ? 0.01F : accelVal;
         accelSpinner.setValue((Double) accelVal);
     }
 
@@ -423,8 +460,13 @@ public class SettingsPanel extends javax.swing.JPanel {
         return statusPanel;
     }
 
+    /**
+     * Mouse click handler when mouse is dragged over the animation panel and
+     * gun position follows mouse cursor.
+     */
     private class MouseClickHandler extends MouseMotionAdapter {
 
+        @Override
         public void mouseDragged(MouseEvent event) {
             int xCoord = event.getX();
             int yCoord = getHeight() - event.getY();
@@ -432,8 +474,6 @@ public class SettingsPanel extends javax.swing.JPanel {
             angle = angl;
             angleSpinner.setValue((Double) angle);
             setAngle(animPanel);
-
-
         }
     }
 
@@ -445,7 +485,7 @@ public class SettingsPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner angleSpinner;
     private javax.swing.JLabel heightLbl;
     private javax.swing.JButton hintBtn;
-    private javax.swing.JButton newGameBtn;
+    private javax.swing.JButton newTargetBtn;
     private javax.swing.JLabel speedLabel;
     private javax.swing.JSpinner speedSpinner;
     private javax.swing.JButton startBtn;

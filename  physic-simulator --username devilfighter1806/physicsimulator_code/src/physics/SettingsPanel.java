@@ -401,7 +401,7 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void startAnimation(boolean realMode) {
         updateCalc();
         setEnabledSwingComponents(false);
-        MovingBall b = new MovingBall(animPanel,this, calc);
+        MovingBall b = new MovingBall(animPanel, this, calc);
         if (realMode == false) {
             b.setIsRealMode(false);
             trajectoryDrawn = true;
@@ -468,12 +468,32 @@ public class SettingsPanel extends javax.swing.JPanel {
 
         @Override
         public void mouseDragged(MouseEvent event) {
-            int xCoord = event.getX();
-            int yCoord = getHeight() - event.getY();
-            double angl = Math.toDegrees(Math.atan(((double) yCoord) / xCoord));
-            angle = angl;
-            angleSpinner.setValue((Double) angle);
-            setAngle(animPanel);
+
+            if (!moveTarget(event.getPoint())) {
+                int xCoord = event.getX();
+                int yCoord = getHeight() - event.getY();
+                double angl = Math.toDegrees(Math.atan(((double) yCoord) / xCoord));
+                angle = angl;
+                angleSpinner.setValue((Double) angle);
+                setAngle(animPanel);
+            }
+        }
+
+        /**
+         * Dragging target with mouse.
+         * @param mousePoint New target coordinates for drawing it.
+         */
+        private boolean moveTarget(Point mousePoint) {
+            if (animPanel.isInsideTarget(mousePoint)) {
+                animPanel.getTarget().setTargetCoordinates(mousePoint.x - Target.TARGET_SIZE / 2,
+                        mousePoint.y - Target.TARGET_SIZE / 2);
+                animPanel.repaint();
+                animPanel.calculateDistanceGunTarget();
+                targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
+                targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
+                return true;
+            }
+            return false;
         }
     }
 

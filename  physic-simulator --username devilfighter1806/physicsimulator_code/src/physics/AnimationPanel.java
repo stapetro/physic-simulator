@@ -76,7 +76,7 @@ public class AnimationPanel extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        target.reDrawTarget(g, getWidth(), getHeight());
+        target.reDrawTarget(g);
     }
 
     /**
@@ -134,9 +134,6 @@ public class AnimationPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(550, 500));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                formMouseDragged(evt);
-            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
             }
@@ -172,22 +169,6 @@ public class AnimationPanel extends javax.swing.JPanel {
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         drawToolTip(evt.getPoint());
     }//GEN-LAST:event_formMouseMoved
-
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        moveTarget(evt.getPoint());
-    }//GEN-LAST:event_formMouseDragged
-
-    /**
-     * Draggine target with mouse.
-     * @param mousePoint New target coordinates for drawing it.
-     */
-    private void moveTarget(Point mousePoint) {
-        if (isInsideTarget(mousePoint)) {
-            target.setTargetCoordinates(mousePoint.x - Target.TARGET_SIZE / 2,
-                    mousePoint.y - Target.TARGET_SIZE / 2);
-            target.drawTarget(myGraphics);
-        }
-    }
 
     /**
      * Checks wheter mouse is over the target and draws tool tip associated with
@@ -242,7 +223,7 @@ public class AnimationPanel extends javax.swing.JPanel {
      * @param mousePoint Mouse cursor coordinates.
      * @return True - if mouse is inside target, false - otherwise.
      */
-    private boolean isInsideTarget(Point mousePoint) {
+    public boolean isInsideTarget(Point mousePoint) {
         Point targetCenterPoint = target.getCenterPoint();
         if (mousePoint.x >= targetCenterPoint.x - Target.TARGET_SIZE / 2 &&
                 mousePoint.x <= targetCenterPoint.x + Target.TARGET_SIZE / 2 &&

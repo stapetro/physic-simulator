@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 /**
  * Logo panel displays logo image.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class LogoPanel extends JPanel {
 

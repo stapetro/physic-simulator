@@ -17,14 +17,40 @@ import java.util.logging.Logger;
  */
 public class Target {
 
+    /**
+     * Lower bound for drawing target with random x-coordinate.
+     */
     private static final int X_LOWER_BOUND = 10;
+    /**
+     * Middle x-coordinate bound which bounds drawing target not over tha gun panel.
+     */
     private static final int X_MID_BOUND = 200;
+    /**
+     * Upper bound which is x-coordinate offset for drawing target not outside
+     * right side of the animation panel.
+     */
     private static final int X_UPPER_BOUND = 50;
+    /**
+     * Middle y-coordinate bound which bounds drawing target not over tha gun panel.
+     */
     private static final int Y_MID_UPPER_BOUND = 250;
+    /**
+     * Upper bound which is x-coordinate offset for drawing target not outside
+     * top side of the animation panel.
+     */
     private static final int Y_UPPER_BOUND = 50;
-    private static final int HEIGHT = 30;
+    /**
+     * Offset for drawing nested ovals.
+     */
     public static final int OFFSET = 10;
+    /**
+     * Stored colors for different nested ovals which represents the whole
+     * target.
+     */
     private static final Color[] targetColors = {Color.BLACK, Color.WHITE, Color.RED};
+    /**
+     * Size of the rectangle which is around the biggest target oval.
+     */
     public static final int TARGET_SIZE = 50;
     /**
      * Random generator.
@@ -64,6 +90,16 @@ public class Target {
             tempY += OFFSET;
             size -= (2 * OFFSET);
         }
+    }
+
+    /**
+     * Target upper left corner coordinates setter.
+     * @param x1 X-coordinate to be set.
+     * @param y1 Y-coordinate to be set.
+     */
+    public void setTargetCoordinates(int x1, int y1) {
+        x = x1;
+        y = y1;
     }
 
     /**
@@ -113,7 +149,6 @@ public class Target {
      * @param panelHeight Animation panel height.
      */
     public void drawRandomCoordinates(Graphics g, int panelWidth, int panelHeight) {
-        //TODO TO be modified rand y coord.
         x = X_LOWER_BOUND + rand.nextInt(panelWidth - X_UPPER_BOUND);
         if (x <= X_MID_BOUND) {
             y = rand.nextInt(panelHeight - Y_MID_UPPER_BOUND);

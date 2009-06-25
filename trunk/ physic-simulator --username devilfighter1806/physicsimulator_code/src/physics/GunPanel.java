@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * btnpanel.java
- *
- * Created on 2009-5-6, 20:58:20
- */
 package physics;
 
 import java.awt.BasicStroke;
@@ -20,7 +10,6 @@ import javax.swing.border.LineBorder;
 /**
  * This class represents the gun object. This object can be imported
  * as part any JPanel and be used.
- * 
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  * @author 1.0
  */

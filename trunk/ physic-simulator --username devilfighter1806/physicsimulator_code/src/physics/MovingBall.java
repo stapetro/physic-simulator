@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package physics;
 
 import java.awt.Graphics;
@@ -10,8 +6,9 @@ import javax.swing.SwingUtilities;
 import userInfo.Calculator;
 
 /**
- *
- * @author Administrator
+ * Controls moving ball animation.
+ * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
+ * @version 1.0
  */
 public class MovingBall implements Runnable {
 
@@ -37,7 +34,7 @@ public class MovingBall implements Runnable {
      */
     private static final String MISS_TARGET_MSG = "Miss Target";
     /**
-     * Reference to the JPanel where the ball will simulate movement
+     * Reference to animation panel where the ball will simulate movement
      */
     private AnimationPanel animPanel;
     /**
@@ -62,7 +59,9 @@ public class MovingBall implements Runnable {
      * Indicates whether target is hitted.
      */
     private boolean targetHitted = false;
-    //Next two variables may be deleted after
+    /**
+     * Reference to settings panel for changing status label in it.
+     */
     private SettingsPanel settingsPanel;
 
     /**
@@ -70,15 +69,19 @@ public class MovingBall implements Runnable {
      * @param pnl   reference to the panel where moving ball will be drawn
      * @param c     calculator object that will be used for physics calculations
      */
-    public MovingBall(AnimationPanel pnl, Calculator c) {
+    public MovingBall(AnimationPanel pnl, SettingsPanel settingsPnl, Calculator c) {
         this.animPanel = pnl;
+        this.settingsPanel = settingsPnl;
         calc = c;
         currentCoords = new Point(calc.getStartPoint());
         ballCenterPoint = new Point();
     }
 
+    /**
+     * Executes animation in real/hint mode.
+     */
+    @Override
     public void run() {
-        //btn.setEnabled(false);
         try {
             if (isRealMode) {
                 animateRealMode();
@@ -88,10 +91,7 @@ public class MovingBall implements Runnable {
 
         } catch (InterruptedException ex) {
             ex.printStackTrace();
-        } finally {
-//            startAnimBtn.setSelected(true);
         }
-
         settingsPanel.setEnabledSwingComponents(true);
     }
 
@@ -102,8 +102,6 @@ public class MovingBall implements Runnable {
     public void animateRealMode() throws InterruptedException {
         double momentOfTime = 0;
         boolean drawn = false;
-        targetHitted = false;
-//        startAnimBtn.setEnabled(false);
         do {
             Graphics g = animPanel.getGraphics();
             if (drawn) {
@@ -113,8 +111,7 @@ public class MovingBall implements Runnable {
             momentOfTime = momentOfTime + 0.2;
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
             currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y - Y_OFFSET;
-            if (isTargetHit()) {
-                targetHitted = true;
+            if (targetHitted = isTargetHit()) {
                 settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
                 animPanel.getTarget().simulateHitAnimate(animPanel.getGraphics());
                 break;
@@ -137,15 +134,13 @@ public class MovingBall implements Runnable {
      */
     public void animateSimulationMode() throws InterruptedException {
         double momentOfTime = 0;
-        targetHitted = false;
         Graphics g = animPanel.getGraphics();
 
         do {
             momentOfTime = momentOfTime + 0.2;
             currentCoords.x = calc.getCoordinate(momentOfTime).x;
             currentCoords.y = animPanel.getHeight() - calc.getCoordinate(momentOfTime).y - Y_OFFSET;
-            if (isTargetHit()) {
-                targetHitted = true;
+            if (targetHitted = isTargetHit()) {
                 settingsPanel.getStatusPanel().setStatus(HIT_TARGET_MSG);
                 animPanel.getTarget().simulateHitAnimate(animPanel.getGraphics());
                 break;
@@ -160,9 +155,13 @@ public class MovingBall implements Runnable {
         }
     }
 
+    /**
+     * Checks whether target is hit by the thrown ball from the gun.
+     * @return True - if target is hitted, false - if target is missed.
+     */
     private boolean isTargetHit() {
         updateBallCenterCoordinates();
-        Point targetCenterPoint = animPanel.getTargetRadiusPoint();
+        Point targetCenterPoint = animPanel.getTargetCenterPoint();
         int targetRadius = Target.TARGET_SIZE / 2;
         int ballRadius = BALL_SIZE / 2;
         /*
@@ -184,15 +183,19 @@ public class MovingBall implements Runnable {
         ballCenterPoint.y = currentCoords.y + BALL_SIZE / 2;
     }
 
+    /**
+     * Sets real mode.
+     * @param val True - real mode is turned on, false - turned off.
+     */
     public void setIsRealMode(boolean val) {
         isRealMode = val;
     }
 
+    /**
+     * Real mode status getter.
+     * @return True - if real mode is turned on, false - turned off.
+     */
     public boolean getRealMode() {
         return isRealMode;
-    }
-
-    public void setPnlRef(SettingsPanel p) {
-        settingsPanel = p;
     }
 }

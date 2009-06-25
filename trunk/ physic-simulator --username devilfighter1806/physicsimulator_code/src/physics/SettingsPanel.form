@@ -70,13 +70,13 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="newGameBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="newTargetBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="hintBtn" alignment="0" max="32767" attributes="1"/>
                   <Component id="startBtn" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,7 +125,7 @@
                       <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="startBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="newGameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newTargetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -218,14 +218,14 @@
         <Property name="text" type="java.lang.String" value="Adjust Settings below:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="newGameBtn">
+    <Component class="javax.swing.JButton" name="newTargetBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="New game"/>
+        <Property name="text" type="java.lang.String" value="New target"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newGameBtnMouseEntered"/>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newGameBtnMouseExited"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGameBtnActionPerformed"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newTargetBtnMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newTargetBtnMouseExited"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTargetBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="startBtn">

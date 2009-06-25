@@ -66,7 +66,10 @@ public class Calculator {
         lengthOfFlight = calculateLengthOfFlight();
     }
 
-    //Neshto ne raboti kakto trabva - da go inspektiram
+    /**
+     * Calculator copy constructor.
+     * @param c Calculator object to be copied information from.
+     */
     public Calculator(Calculator c) {
         this(c.getInitialVelosity(), c.getAngle(), c.getAcceleration(), c.getStartPoint());
     }

@@ -410,6 +410,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             trajectoryDrawn = false;
         }
         SwingUtilities.invokeLater(b);
+//        new Thread(b).start();
     }
 
     /**

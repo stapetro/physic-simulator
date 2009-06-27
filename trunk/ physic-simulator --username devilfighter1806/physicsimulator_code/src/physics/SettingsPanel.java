@@ -5,8 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.logging.Level;
@@ -58,6 +60,7 @@ public class SettingsPanel extends javax.swing.JPanel {
         initComponents();
         this.animPanel = animPnl;
         animPanel.addMouseMotionListener(new MouseClickHandler());
+        animPanel.addMouseListener(new StrikeMouseHandler());
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         defaultBtnBackground = newTargetBtn.getBackground();
         animPanel.setAngle((Double) angleSpinner.getValue());
@@ -480,11 +483,43 @@ public class SettingsPanel extends javax.swing.JPanel {
     }
 
     /**
+     * Handler for striking with mouse options.
+     * If pressed the LEFT button of the mouse the ball is stricken
+     * if pressed the RIGHT button of the mouse the trajectory is shown
+     */
+    private class StrikeMouseHandler extends MouseAdapter {
+
+        /**
+         * Handle events when mouse button is clicked
+         * @param event data for the input event
+         */
+        @Override
+        public void mouseClicked(MouseEvent event) {
+            if (newTargetBtn.isEnabled()) {
+                switch (event.getModifiers()) {
+                    case InputEvent.BUTTON1_MASK: {
+                        startBtnActionManage();
+                        break;
+                    }
+                    case InputEvent.BUTTON3_MASK: {
+                        hintBtnActionManage();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Mouse click handler when mouse is dragged over the animation panel and
      * gun position follows mouse cursor.
      */
     private class MouseClickHandler extends MouseMotionAdapter {
 
+        /**
+         * Handle events while mouse is dragged.
+         * @param event input event data
+         */
         @Override
         public void mouseDragged(MouseEvent event) {
             if (!moveTarget(event.getPoint())) {
@@ -520,7 +555,7 @@ public class SettingsPanel extends javax.swing.JPanel {
      * for the keyboard. The following shortcuts are provided:
      * "Space" -> Strike
      * "Enter" -> Strike
-     * "H"     -> Show trajectory
+     * "Shift" -> Show trajectory
      * "N"     -> New target
      * "Up"    -> increase angle with 1
      * "Down"  -> decrease angle with 1
@@ -545,7 +580,7 @@ public class SettingsPanel extends javax.swing.JPanel {
                 if (keyName.equalsIgnoreCase("Space") || keyName.equalsIgnoreCase("Enter")) {
                     startBtnActionManage();
                 }
-                if (keyName.equalsIgnoreCase("H")) {
+                if (keyName.equalsIgnoreCase("Shift")) {
                     hintBtnActionManage();
                 }
                 if (keyName.equalsIgnoreCase("N")) {

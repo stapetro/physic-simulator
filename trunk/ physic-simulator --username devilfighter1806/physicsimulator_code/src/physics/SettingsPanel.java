@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.logging.Level;
@@ -62,6 +65,9 @@ public class SettingsPanel extends javax.swing.JPanel {
         angle = (Double) angleSpinner.getValue();
         acceleration = (Double) accelSpinner.getValue();
         calc = new Calculator(initVelocity, angle, acceleration, animPanel.getGunCoorinates());
+
+        this.setFocusable(true);
+        this.addKeyListener(new KeyPressedHandler());
     }
 
     /** This method is called from within the constructor to
@@ -311,6 +317,14 @@ public class SettingsPanel extends javax.swing.JPanel {
      * @param evt Action event to be handled.
      */
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        startBtnActionManage();
+}//GEN-LAST:event_startBtnActionPerformed
+
+    /**
+     * This is the method that is called when the
+     * Action performed of the startBtn is activated
+     */
+    private void startBtnActionManage() {
         statusPanel.setStatus("Please wait..");
         if (trajectoryDrawn) {
             angle = (Double) angleSpinner.getValue();
@@ -319,7 +333,7 @@ public class SettingsPanel extends javax.swing.JPanel {
             trajectoryDrawn = false;
         }
         startAnimation(true);
-}//GEN-LAST:event_startBtnActionPerformed
+    }
 
     /**
      * Mouse hover effect over new target button.
@@ -381,9 +395,7 @@ public class SettingsPanel extends javax.swing.JPanel {
      * @param evt Event to be handled when hint button is pressed.
      */
     private void hintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintBtnActionPerformed
-        animPanel.repaint();
-        statusPanel.setStatus("Please wait..");
-        startAnimation(false);
+        hintBtnActionManage();
     }//GEN-LAST:event_hintBtnActionPerformed
 
     private void hintBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hintBtnMouseEntered
@@ -393,6 +405,12 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void hintBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hintBtnMouseExited
         hintBtn.setBackground(defaultBtnBackground);
     }//GEN-LAST:event_hintBtnMouseExited
+
+    private void hintBtnActionManage() {
+        animPanel.repaint();
+        statusPanel.setStatus("Please wait..");
+        startAnimation(false);
+    }
 
     /**
      * Starts animation and updates calculation members.
@@ -469,13 +487,12 @@ public class SettingsPanel extends javax.swing.JPanel {
 
         @Override
         public void mouseDragged(MouseEvent event) {
-
             if (!moveTarget(event.getPoint())) {
                 int xCoord = event.getX();
                 int yCoord = getHeight() - event.getY();
                 double angl = Math.toDegrees(Math.atan(((double) yCoord) / xCoord));
                 angle = angl;
-                angleSpinner.setValue((Double) angle);
+                angleSpinner.getModel().setValue((Double) angle);
                 setAngle(animPanel);
             }
         }
@@ -495,6 +512,92 @@ public class SettingsPanel extends javax.swing.JPanel {
                 return true;
             }
             return false;
+        }
+    }
+
+    /**
+     * Class handler for key input. This implements shortcuts
+     * for the keyboard. The following shortcuts are provided:
+     * "Space" -> Strike
+     * "Enter" -> Strike
+     * "H"     -> Show trajectory
+     * "N"     -> New target
+     * "Up"    -> increase angle with 1
+     * "Down"  -> decrease angle with 1
+     * "Right" -> increase the initial velocity with 1
+     * "Left"  -> decrease the initial velocity with 1
+     * "Escape"-> exit the program
+     */
+    private class KeyPressedHandler extends KeyAdapter {
+
+        /**
+         * Determine what key was released and take the relevant action
+         * 
+         * @param event
+         *          data for the event generated
+         */
+        @Override
+        public void keyReleased(KeyEvent event) {
+            //perform the action only if the buttons are enabled
+            if (newTargetBtn.isEnabled()) {
+                String keyName = event.getKeyText(event.getKeyCode());
+
+                if (keyName.equalsIgnoreCase("Space") || keyName.equalsIgnoreCase("Enter")) {
+                    startBtnActionManage();
+                }
+                if (keyName.equalsIgnoreCase("H")) {
+                    hintBtnActionManage();
+                }
+                if (keyName.equalsIgnoreCase("N")) {
+                    startNewSimulator();
+                }
+                if (keyName.equalsIgnoreCase("Escape")) {
+                    System.exit(0);
+                }
+            }
+        }
+
+        /**
+         * Determine if UP ot DOWM arrows of the keyboard were pressed.
+         * keyPressed method was overriden so that user could
+         * keep the buttons pressed for long time and get the angle
+         * changed continuously.
+         *
+         * @param event
+         *          data for the event generated
+         */
+        @Override
+        public void keyPressed(KeyEvent event) {
+            if (newTargetBtn.isEnabled()) {
+                String keyName = event.getKeyText(event.getKeyCode());
+
+                if (keyName.equalsIgnoreCase("Up") && angle < 85) {
+                    angleSpinner.setValue((Double) angle + 1);
+                    updateDistanceValues();
+                }
+                if (keyName.equalsIgnoreCase("Down") && angle > 5) {
+                    angleSpinner.setValue((Double) angle - 1);
+                    updateDistanceValues();
+                }
+                if (keyName.equalsIgnoreCase("Left") && initVelocity > 2) {
+                    speedSpinner.setValue((Double) initVelocity - 1);
+                    updateDistanceValues();
+                }
+                if (keyName.equalsIgnoreCase("Right") && initVelocity < 30) {
+                    speedSpinner.setValue((Double) initVelocity + 1);
+                    updateDistanceValues();
+                }
+            }
+        }
+
+        /**
+         * updates the distance values between the target and the
+         * gun the graphical components are updates as well.
+         */
+        private void updateDistanceValues() {
+            animPanel.calculateDistanceGunTarget();
+            targetHeightTxt.setText(animPanel.getTargetVerticalDistance());
+            targetWidthTxt.setText(animPanel.getTargetHorizontalDistance());
         }
     }
 

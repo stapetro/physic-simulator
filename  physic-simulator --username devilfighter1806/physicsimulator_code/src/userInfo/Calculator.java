@@ -41,9 +41,10 @@ public class Calculator {
 
     /**
      * Overloaded version of the general purpose constructor.
-     * @param initVel
-     * @param angl
-     * @param acc
+     *
+     * @param initVel   Initial Velocity
+     * @param angl      Angle that the ball will be thrown at
+     * @param acc       Acceleration that will be simulated
      */
     public Calculator(double initVel, double angl, double acc) {
         this(initVel, angl, acc, new Point(0, 0));

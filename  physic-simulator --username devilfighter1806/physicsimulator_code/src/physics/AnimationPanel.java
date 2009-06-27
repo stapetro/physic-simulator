@@ -117,7 +117,7 @@ public class AnimationPanel extends javax.swing.JPanel {
      * whether target is hitted by the ball.
      * @return Target center point.
      */
-    public Point getTargetCenterPoint(){
+    public Point getTargetCenterPoint() {
         return target.getCenterPoint();
     }
 
@@ -241,9 +241,15 @@ public class AnimationPanel extends javax.swing.JPanel {
      */
     public double calculateDistanceGunTarget() {
         Point targetCenter = target.getCenterPoint();
-        Point gunPoint = gunPnl.getTopCoordinates();
-        targetHorizontalDistance = Math.abs(targetCenter.x - gunPoint.x);
-        targetVerticalDistance = Math.abs(getHeight() - targetCenter.y - gunPoint.y);
+        if (targetCenter.x == -75) {
+            targetHorizontalDistance = 0;
+            targetVerticalDistance = 0;
+        } else {
+            Point gunPoint = gunPnl.getTopCoordinates();
+            targetHorizontalDistance = Math.abs(targetCenter.x - gunPoint.x);
+            targetVerticalDistance = Math.abs(getHeight() - targetCenter.y - gunPoint.y);
+
+        }
         double a = targetHorizontalDistance * targetHorizontalDistance;
         double b = targetVerticalDistance * targetVerticalDistance;
         return Math.sqrt(a + b) / 10;

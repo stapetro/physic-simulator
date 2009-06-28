@@ -102,6 +102,7 @@ class MenuBar {
     private JMenu helpMenu;
     private JMenuItem contactMenuItem;
     private JMenuItem aboutMenuItem;
+    private JMenuItem shortcutsMenuItem;
     /**
      * Change main window's looks from look menu.
      */
@@ -236,10 +237,36 @@ class MenuBar {
      */
     private void createHelpMenu() {
         helpMenu = new JMenu("Help");
+
+        shortcutsMenuItem = new JMenuItem("Shortcuts");
+        shortcutsMenuItem.addActionListener(new ActionListener() {
+
+            private final String delimiterSign = "->  ";
+            private String enter = String.format("%-10s%s%s", "Enter", delimiterSign, "Strike\n");
+            private String space = String.format("%-10s%s%s", "Space", delimiterSign, "Strike\n");
+            private String shift = String.format("%-10s%s%s", "Shift", delimiterSign, "Show trajectory\n");
+            private String n = String.format("%-10s%s%s", "N", delimiterSign, "New simulation\n");
+            private String up = String.format("%-10s%s%s", "Up", delimiterSign, "Increase angle with 1\n");
+            private String down = String.format("%-10s%s%s", "Down", delimiterSign, "Decrease angle with 1\n");
+            private String right = String.format("%-10s%s%s", "Right", delimiterSign, "Increase speed with 1\n");
+            private String left = String.format("%-10s%s%s", "Left", delimiterSign, "Decrease speed with 1\n");
+            private String escape = String.format("%-10s%s%s", "Escape", delimiterSign, "Exit");
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(mainWindow,
+                        String.format(enter + space + shift + n + up + down + right + left + escape));
+                System.out.println(enter + space + shift + n + up + down + right + left + escape);
+            }
+        });
+
         aboutMenuItem = new JMenuItem("About...");
         aboutMenuItem.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(mainWindow,
+                        String.format("PHYSICS SIMULATOR v1.0\n" +
+                        "All rights reserved!\n"));
             }
         });
         contactMenuItem = new JMenuItem("Contacts");
@@ -253,6 +280,7 @@ class MenuBar {
                         "Krasimir Baylov, fn61080, SU FMI\nemail: kbailov@gmail.com"));
             }
         });
+        helpMenu.add(shortcutsMenuItem);
         helpMenu.add(aboutMenuItem);
         helpMenu.add(contactMenuItem);
         menuBar.add(helpMenu);

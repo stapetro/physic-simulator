@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#2f67a021002882b6317e583008a4f3e7"><param name="Name" value="animateRealMode"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#2880d984b24f3bc0cd0580685e6606b0"><param name="Name" value="animateSimulationMode"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#a4c58eb9c8cafec497e49755b1a4a180"><param name="Name" value="AnimationPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#4c3b8cef8cd80f626871c467e003c16f"><param name="Name" value="calc"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#145af95ec0c581fe348b5b9ddcf8de05"><param name="Name" value="calculateDistanceGunTarget"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#5ef606073d5fe9cb9ecb44b05ec64fae"><param name="Name" value="Calculator"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#af1e35dcb8396d96936ef0ae8f3e8d83"><param name="Name" value="clearTarget"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#99a13b0ae9c7bc6edbccd52e70da8ec1"><param name="Name" value="drawRandomCoordinates"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#59ab2b8413406dbc02ffcd967599b44b"><param name="Name" value="drawTarget"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#59ab2b8413406dbc02ffcd967599b44b"><param name="Name" value="physics::AnimationPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#ff0aad416defe318f57ed254a7154a7a"><param name="Name" value="physics::Target"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="EARTH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#ef93e16eda771c2b421cb047df73ac54"><param name="Name" value="getAcceleration"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#96410b84ef56354d963e31902b745502"><param name="Name" value="getAngle"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#647847ac05f4105f2b4a34a459c55078"><param name="Name" value="getCenterPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#5e63668f6e5d39e2030391adb2e49f0d"><param name="Name" value="getCoordinate"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#eaf4c3a783effa9a2dd549b7c3ae3433"><param name="Name" value="getGunCoorinates"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#acec1c4335b8a1a260f49dc5e8aa77ff"><param name="Name" value="getInitialVelosity"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#4a029c7c58a4d8f4bedad715764ddde1"><param name="Name" value="getLengthOfFlight"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#1767b34a0e617595b3bf89fedc485597"><param name="Name" value="getPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#ead4f5dc53ea80920fb1c0cc2705a037"><param name="Name" value="getRealMode"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#f012f8d517e415e48f24c721da63e013"><param name="Name" value="getStartPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#2f9889b91849c10b26fd87c96e245d91"><param name="Name" value="getStatusPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#e76f76fc9c1c738c8d5f4b94dd0326cb"><param name="Name" value="getTarget"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#82430f4559cde6d18382f32e888b2189"><param name="Name" value="getTargetCenterPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#40d0f27f1ec1b2241da52d469c9107ad"><param name="Name" value="getTargetHorizontalDistance"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#80903bb09857e892a01d0a24810b2215"><param name="Name" value="getTargetPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#4af4d37faede7251792b1b54d7bd971f"><param name="Name" value="getTargetVerticalDistance"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#85c8db58d10bd4615fcc7e25e84fee75"><param name="Name" value="getTopCoordinates"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#7756fd6363e241ca5156b78491b86d6c"><param name="Name" value="GunPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#1e08a3437cf7e4d32ef48bbb33070ed1"><param name="Name" value="IMAGE_HEIGHT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#787f5ccff7001a7429c1b2b6305eefdf"><param name="Name" value="IMAGE_WIDTH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#aba3198a8bfc465af1c402d4dd304154"><param name="Name" value="isInsideTarget"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="JUPITER"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#7f20d019056d7153b3c83f99dfe798e8"><param name="Name" value="LOGO_PATH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#d214fc675dbd6d01310ef524e52cc45f"><param name="Name" value="LogoPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_start_application.html#204717e911d4631fff037c3adfc862e8"><param name="Name" value="main"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_main_window.html#a7be7abe062fc2d2472b2263935657af"><param name="Name" value="MainWindow"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MARS"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_menu_bar.html#6e76975f20aedb3d2b41718a14086ec3"><param name="Name" value="MenuBar"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MERCURY"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MOON"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#3ea5decb0d407cec19981604689f3931"><param name="Name" value="MovingBall"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#5cc779179868af6d764e27f250ea4f77"><param name="Name" value="myGraphics"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="NEPTUNE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_menu_bar.html#0064ad0b2b577b04ff5057c68ea478fd"><param name="Name" value="newJMenuBar"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#6a461cae4e55e200166166e912216fb4"><param name="Name" value="OFFSET"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#4160cb32c1511cac797e274abb42281a"><param name="Name" value="paintComponent"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#4160cb32c1511cac797e274abb42281a"><param name="Name" value="physics::AnimationPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#31d1754197eff03194d845af19f51462"><param name="Name" value="physics::GunPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#59859d631aaee47dad79103a497bc238"><param name="Name" value="physics::LogoPanel"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html"><param name="Name" value="physics::AnimationPanel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#a4c58eb9c8cafec497e49755b1a4a180"><param name="Name" value="AnimationPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#145af95ec0c581fe348b5b9ddcf8de05"><param name="Name" value="calculateDistanceGunTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#59ab2b8413406dbc02ffcd967599b44b"><param name="Name" value="drawTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#eaf4c3a783effa9a2dd549b7c3ae3433"><param name="Name" value="getGunCoorinates"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#e76f76fc9c1c738c8d5f4b94dd0326cb"><param name="Name" value="getTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#82430f4559cde6d18382f32e888b2189"><param name="Name" value="getTargetCenterPoint"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#40d0f27f1ec1b2241da52d469c9107ad"><param name="Name" value="getTargetHorizontalDistance"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#80903bb09857e892a01d0a24810b2215"><param name="Name" value="getTargetPoint"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#4af4d37faede7251792b1b54d7bd971f"><param name="Name" value="getTargetVerticalDistance"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#aba3198a8bfc465af1c402d4dd304154"><param name="Name" value="isInsideTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#5cc779179868af6d764e27f250ea4f77"><param name="Name" value="myGraphics"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#4160cb32c1511cac797e274abb42281a"><param name="Name" value="paintComponent"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#9a59e7e2ce05b13cb7c506823f96bf28"><param name="Name" value="setAngle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html"><param name="Name" value="physics::GunPanel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#85c8db58d10bd4615fcc7e25e84fee75"><param name="Name" value="getTopCoordinates"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#7756fd6363e241ca5156b78491b86d6c"><param name="Name" value="GunPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#31d1754197eff03194d845af19f51462"><param name="Name" value="paintComponent"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#25172d213bb5e1ad65f9e7edb0754550"><param name="Name" value="setAngle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html"><param name="Name" value="physics::LogoPanel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#1e08a3437cf7e4d32ef48bbb33070ed1"><param name="Name" value="IMAGE_HEIGHT"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#787f5ccff7001a7429c1b2b6305eefdf"><param name="Name" value="IMAGE_WIDTH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#7f20d019056d7153b3c83f99dfe798e8"><param name="Name" value="LOGO_PATH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#d214fc675dbd6d01310ef524e52cc45f"><param name="Name" value="LogoPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_logo_panel.html#59859d631aaee47dad79103a497bc238"><param name="Name" value="paintComponent"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_main_window.html"><param name="Name" value="physics::MainWindow"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_menu_bar.html"><param name="Name" value="physics::MenuBar"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_menu_bar.html#6e76975f20aedb3d2b41718a14086ec3"><param name="Name" value="MenuBar"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_menu_bar.html#0064ad0b2b577b04ff5057c68ea478fd"><param name="Name" value="newJMenuBar"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html"><param name="Name" value="physics::MovingBall"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#2f67a021002882b6317e583008a4f3e7"><param name="Name" value="animateRealMode"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#2880d984b24f3bc0cd0580685e6606b0"><param name="Name" value="animateSimulationMode"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#ead4f5dc53ea80920fb1c0cc2705a037"><param name="Name" value="getRealMode"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#3ea5decb0d407cec19981604689f3931"><param name="Name" value="MovingBall"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#e7bf489665e7c1571cada37c27c08b1e"><param name="Name" value="run"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#4c1f463c7185c5a25b7cdd05735a22ec"><param name="Name" value="setIsRealMode"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html"><param name="Name" value="physics::SettingsPanel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#4c3b8cef8cd80f626871c467e003c16f"><param name="Name" value="calc"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#2f9889b91849c10b26fd87c96e245d91"><param name="Name" value="getStatusPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#37b5d07f3fd40d9eb7c165b0480df557"><param name="Name" value="setAcceleration"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#b3a02a6f7a28e9db7a90bb36781c4685"><param name="Name" value="setEnabledSwingComponents"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#5f787d833522cd8a3d82cdc1b7ae48c9"><param name="Name" value="SettingsPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#c02488079b63b6f92a672370eb0f4808"><param name="Name" value="startNewSimulator"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_start_application.html"><param name="Name" value="physics::StartApplication"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_status_panel.html"><param name="Name" value="physics::StatusPanel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_status_panel.html#0364c4ded70043f509a2deae475f4a4d"><param name="Name" value="setStatus"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_status_panel.html#052a280da95c7b9f92b3927ccf7b423d"><param name="Name" value="StatusPanel"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html"><param name="Name" value="physics::Target"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#af1e35dcb8396d96936ef0ae8f3e8d83"><param name="Name" value="clearTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#99a13b0ae9c7bc6edbccd52e70da8ec1"><param name="Name" value="drawRandomCoordinates"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#ff0aad416defe318f57ed254a7154a7a"><param name="Name" value="drawTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#647847ac05f4105f2b4a34a459c55078"><param name="Name" value="getCenterPoint"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#1767b34a0e617595b3bf89fedc485597"><param name="Name" value="getPoint"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#6a461cae4e55e200166166e912216fb4"><param name="Name" value="OFFSET"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#26922c390c485a4d10fbbe95c5cef96e"><param name="Name" value="reDrawTarget"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#d0573152beb164f703df066206ddf97b"><param name="Name" value="setTargetCoordinates"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#de2f95c51c937bb2887e6eca0f9b1053"><param name="Name" value="simulateHit"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#fdcee7b8534e22762598bb639e9c3a3d"><param name="Name" value="simulateHitAnimate"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#206e771abb10726a768185885310ee82"><param name="Name" value="Target"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#ff42a1785aea9ebef8cf6e558cfeb2ec"><param name="Name" value="TARGET_SIZE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html"><param name="Name" value="physics"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="EARTH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="JUPITER"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MARS"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MERCURY"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="MOON"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="NEPTUNE"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="SATURN"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="SUN"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="URANUS"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="VACUUM"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="VENUS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#26922c390c485a4d10fbbe95c5cef96e"><param name="Name" value="reDrawTarget"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#e7bf489665e7c1571cada37c27c08b1e"><param name="Name" value="run"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="SATURN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#37b5d07f3fd40d9eb7c165b0480df557"><param name="Name" value="setAcceleration"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#37b5d07f3fd40d9eb7c165b0480df557"><param name="Name" value="physics::SettingsPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#07820edab06d368d864d7cf541872599"><param name="Name" value="userInfo::Calculator"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#9a59e7e2ce05b13cb7c506823f96bf28"><param name="Name" value="setAngle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_animation_panel.html#9a59e7e2ce05b13cb7c506823f96bf28"><param name="Name" value="physics::AnimationPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_gun_panel.html#25172d213bb5e1ad65f9e7edb0754550"><param name="Name" value="physics::GunPanel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#4b2acfe10acf454377add5e555bd226d"><param name="Name" value="userInfo::Calculator"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#b3a02a6f7a28e9db7a90bb36781c4685"><param name="Name" value="setEnabledSwingComponents"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#fca83ba046d92977575c93ce5cedf46c"><param name="Name" value="setInitialVelosity"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_moving_ball.html#4c1f463c7185c5a25b7cdd05735a22ec"><param name="Name" value="setIsRealMode"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#c399015b70cdcb7aada533964fa9a18c"><param name="Name" value="setStartPoint"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_status_panel.html#0364c4ded70043f509a2deae475f4a4d"><param name="Name" value="setStatus"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#d0573152beb164f703df066206ddf97b"><param name="Name" value="setTargetCoordinates"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#5f787d833522cd8a3d82cdc1b7ae48c9"><param name="Name" value="SettingsPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#de2f95c51c937bb2887e6eca0f9b1053"><param name="Name" value="simulateHit"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#fdcee7b8534e22762598bb639e9c3a3d"><param name="Name" value="simulateHitAnimate"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_settings_panel.html#c02488079b63b6f92a672370eb0f4808"><param name="Name" value="startNewSimulator"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_status_panel.html#052a280da95c7b9f92b3927ccf7b423d"><param name="Name" value="StatusPanel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="SUN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#206e771abb10726a768185885310ee82"><param name="Name" value="Target"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classphysics_1_1_target.html#ff42a1785aea9ebef8cf6e558cfeb2ec"><param name="Name" value="TARGET_SIZE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="URANUS"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html"><param name="Name" value="userInfo::Calculator"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#5ef606073d5fe9cb9ecb44b05ec64fae"><param name="Name" value="Calculator"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#ef93e16eda771c2b421cb047df73ac54"><param name="Name" value="getAcceleration"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#96410b84ef56354d963e31902b745502"><param name="Name" value="getAngle"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#5e63668f6e5d39e2030391adb2e49f0d"><param name="Name" value="getCoordinate"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#acec1c4335b8a1a260f49dc5e8aa77ff"><param name="Name" value="getInitialVelosity"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#4a029c7c58a4d8f4bedad715764ddde1"><param name="Name" value="getLengthOfFlight"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#f012f8d517e415e48f24c721da63e013"><param name="Name" value="getStartPoint"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#07820edab06d368d864d7cf541872599"><param name="Name" value="setAcceleration"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#4b2acfe10acf454377add5e555bd226d"><param name="Name" value="setAngle"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#fca83ba046d92977575c93ce5cedf46c"><param name="Name" value="setInitialVelosity"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classuser_info_1_1_calculator.html#c399015b70cdcb7aada533964fa9a18c"><param name="Name" value="setStartPoint"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="VACUUM"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespacephysics.html#d1cdbc9aa4068bf874f23c1ec2e24e06"><param name="Name" value="VENUS"></OBJECT>
+</UL>
+</BODY>
+</HTML>

@@ -86,7 +86,7 @@ public class Calculator {
      * Get the coordinates of the ball when it is airborne at specified
      * moment of time.
      * 
-     * @time    The time when we want to get the coordinate
+     * @param time The time when we want to get the coordinate
      * @return  The coordinate of the ball at the specified time
      */
     public Point getCoordinate(double time) {

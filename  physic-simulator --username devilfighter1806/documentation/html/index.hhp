@@ -1,0 +1,63 @@
+[OPTIONS]
+Compiled file=C:/Documents and Settings/User/Desktop/Physic_Simulator_Documentation_01.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=Physics Simulator
+
+[WINDOWS]
+main="Physics Simulator","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+index.html
+_animation_panel_8java.html
+_gun_panel_8java.html
+_logo_panel_8java.html
+_main_window_8java.html
+_moving_ball_8java.html
+_settings_panel_8java.html
+_start_application_8java.html
+_status_panel_8java.html
+_target_8java.html
+_calculator_8java.html
+annotated.html
+classes.html
+functions.html
+functions_func.html
+functions_vars.html
+namespaces.html
+namespacephysics.html
+classphysics_1_1_animation_panel.html
+classphysics_1_1_animation_panel-members.html
+classphysics_1_1_gun_panel.html
+classphysics_1_1_gun_panel-members.html
+classphysics_1_1_logo_panel.html
+classphysics_1_1_logo_panel-members.html
+classphysics_1_1_main_window.html
+classphysics_1_1_main_window-members.html
+classphysics_1_1_menu_bar.html
+classphysics_1_1_menu_bar-members.html
+classphysics_1_1_moving_ball.html
+classphysics_1_1_moving_ball-members.html
+classphysics_1_1_settings_panel.html
+classphysics_1_1_settings_panel-members.html
+classphysics_1_1_start_application.html
+classphysics_1_1_start_application-members.html
+classphysics_1_1_status_panel.html
+classphysics_1_1_status_panel-members.html
+classphysics_1_1_target.html
+classphysics_1_1_target-members.html
+namespaceuser_info.html
+classuser_info_1_1_calculator.html
+classuser_info_1_1_calculator-members.html
+namespacemembers.html
+namespacemembers_enum.html
+files.html
+tabs.css
+tab_b.gif
+tab_l.gif
+tab_r.gif

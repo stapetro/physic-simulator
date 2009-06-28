@@ -76,9 +76,7 @@ public class Target {
 
     /**
      * Draws the target on the panel of the specified coordinates.
-     *
-     * @param xCoord    the x coordinate
-     * @param yCoord    the y coordinate
+     * @param g Graphics which draw the target.
      */
     public void drawTarget(Graphics g) {
         int tempX = x, tempY = y;
@@ -160,9 +158,7 @@ public class Target {
 
     /**
      * Redraws target.
-     * @param g Canvas on which target will be drawn.
-     * @param panelWidth Animation panel width.
-     * @param panelHeight Animation panel height.
+     * @param g Graphics which draws target.
      */
     public void reDrawTarget(Graphics g) {
         drawTarget(g);

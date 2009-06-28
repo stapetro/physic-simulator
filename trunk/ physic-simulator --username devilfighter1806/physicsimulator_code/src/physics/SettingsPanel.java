@@ -475,8 +475,8 @@ public class SettingsPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Sets reference to status panel.
-     * @param statusPnl Reference variable to be set.
+     * Status panel reference getter.
+     * @return Status panel reference.
      */
     public StatusPanel getStatusPanel() {
         return statusPanel;

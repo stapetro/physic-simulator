@@ -90,7 +90,7 @@ public class AnimationPanel extends javax.swing.JPanel {
 
     /**
      * Coordinates of the top of the gun.
-     * @return
+     * @return Point coordinates of the top of the gun.
      */
     public Point getGunCoorinates() {
         return gunPnl.getTopCoordinates();
@@ -271,6 +271,9 @@ public class AnimationPanel extends javax.swing.JPanel {
         return String.format("%.0f", targetVerticalDistance);
     }
 
+    /**
+     * Gun panel which visualizes the gun.
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private physics.GunPanel gunPnl;
     // End of variables declaration//GEN-END:variables

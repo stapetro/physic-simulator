@@ -1,7 +1,7 @@
 package physics;
 
 /**
- * Starts application.
+ * Entry point for starting the application.
  * @author Krasimir Baylov(61080), Stanislav Petrov(61055)
  * @version 1.0
  */
